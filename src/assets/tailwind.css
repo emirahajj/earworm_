@@ -1,0 +1,71 @@
+@tailwind base;
+
+@tailwind components;
+
+
+
+
+@font-face {
+  font-family: 'Calibre';
+  src: local('Calibre'), url(./fonts/calibre-test-semibold.woff) format('woff');
+}
+
+@font-face {
+  font-family: "Galyon-Bold";
+  src: url("./fonts/Galyon-Bold.woff2");
+}
+@font-face {
+  font-family: "Galyon-Regular";
+  src: url("./fonts/Galyon-Regular.woff2");
+}
+@font-face {
+  font-family: "Galyon-Italic";
+  src: url("./fonts/Galyon-Italic.woff2");
+}
+
+p{
+  font-family: "Galyon-Regular";
+  font-size: 1.175rem;
+}
+text, h1, button{
+  font-family: "Galyon-Bold";
+}
+
+.st0, .st1 {
+  fill: none;
+  stroke: white;
+  stroke-width: 0.75;
+  stroke-miterlimit: 20;
+}
+
+.dropdown-menu {
+  background-color: #4fd1c5;
+  min-width: 4rem;
+  border: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+
+.btn-custom1, .btn-custom1:hover, .btn-custom, .btn-custom:hover{
+  color: #fff;
+  background: -webkit-linear-gradient(to right, #4fd1c5, #4299e1);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #4fd1c5, #4299e1);
+  border-color: #121834;
+  border-radius: 4rem;
+  font-size: inherit;
+}
+
+.btn-custom, .btn-custom:hover{
+  width: inherit;
+}
+
+.dropdown-item {
+  color: white;
+  border-radius: 4rem;
+}
+
+@tailwind utilities;
+
+
+
