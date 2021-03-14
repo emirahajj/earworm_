@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import tester from './tester.js';
+import entries from './final.js';
 
 const app = express();
 
@@ -14,7 +14,7 @@ app.use(cors());
 //the conncetion URL we got from Cloud Atlas. 
 //will store them in environment variable when we deploy
 //**need to replace <password> with the password */
-const CONNECTION_URL = 'mongodb+srv://emira499:<password>@cluster0.9fd8x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
+const CONNECTION_URL = 'mongodb+srv://emira499:iPMaOTv6bTjsz8WG@cluster0.9fd8x.mongodb.net/billboard?retryWrites=true&w=majority'
 //we're going to use mongodb atlas
 const PORT = process.env.port || 5000;
 
@@ -41,6 +41,7 @@ const albumSchema = new mongoose.Schema({
     chart_positions: {type: Array, "default": []},
     awards: {type: Array, "default": []}
 });
+
 albumSchema.index({title: 1, artist: 1}, {unique: true});
 
 const Album = mongoose.model("album", albumSchema);
@@ -62,7 +63,7 @@ const chartSchema = new mongoose.Schema({
 const Chart = mongoose.model("charts", chartSchema);
 
 
-tester.forEach(async element => {
+entries.forEach(async element => {
     //first make the album object
     let id = new mongoose.Types.ObjectId();
     let a = element.duration.split(":");
@@ -70,7 +71,15 @@ tester.forEach(async element => {
     let b = parseInt(element.release_year);
     let newChartPos = {year: element.chart_year, rank: element.rank};
 
-    await Album.findOneAndUpdate({title: element.title, artist: element.artist}, {$addToSet: {chart_positions: newChartPos}, img: element.image, duration: number}, {upsert: true, new: true}, (err, doc, res)=>{
+    let albumUpdate = {
+      img: element.image,
+      genre: element.genre,
+      duration: number,
+      release: b,
+      styles: element.subgenres,
+      $addToSet: {chart_positions: newChartPos}
+    }
+    await Album.findOneAndUpdate({title: element.title, artist: element.artist}, albumUpdate, {upsert: true, new: true}, (err, doc, res)=>{
       id = doc._id; 
       const chartEntry = new Chart({
         year: element.chart_year,
@@ -78,8 +87,7 @@ tester.forEach(async element => {
         album: doc._id
       })
        chartEntry.save();
-      
     });
-     await Artist.updateOne({name: element.artist}, {$addToSet: {genres: element.genre, albums: id}}, {upsert: true, new: true});
-
+    let artistUpdate = {$addToSet: {genres: element.genre, albums: id}};
+     await Artist.updateOne({name: element.artist}, artistUpdate, {upsert: true, new: true});
 });
