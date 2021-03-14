@@ -5,6 +5,7 @@ import cors from 'cors';
 import albumRoutes from './routes/albums.js'
 import artistRoutes from './routes/artists.js'
 
+
 const app = express();
 
 app.use('/artists', artistRoutes);
@@ -31,6 +32,7 @@ const connection = mongoose.connect(CONNECTION_URL, connectionparams)
 .catch((error)=> console.log(error.message));
 
 mongoose.set('useFindAndModify', false);
+
 
 
 

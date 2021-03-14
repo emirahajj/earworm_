@@ -7699,3 +7699,5 @@ const entries = [{'rank': '1', 'chart_year': '2020', 'title': "Hollywood's Bleed
 ,{'rank': '99', 'chart_year': '1970', 'title': 'Puzzle People', 'artist': 'The Temptations', 'release_year': 1969, 'genre': 'R&B', 'subgenres': ['Motown', 'Soul', 'Psychedelic Soul'], 'duration': '43:08', 'image': 'https://rovimusic.rovicorp.com/image.jpg?c=2cUdgzKd0x5pBFghS8pMdT6KsMttLlyBmmVTZ6_CLs0=&f=5', 'awards': []}
 ,{'rank': '100', 'chart_year': '1970', 'title': 'Ten Years Together: The Best of Peter, Paul and Mary', 'artist': 'Peter, Paul & Mary', 'release_year': 1970, 'genre': 'Folk', 'subgenres': ['Contemporary Folk', 'Folk-Pop', 'Traditional Folk'], 'duration': '37:48', 'image': 'https://rovimusic.rovicorp.com/image.jpg?c=ufkaRQvjhdL2oSQ4Orl9Ag4Q1ghY8VaPylnm7PwcKNY=&f=5', 'awards': []}
 ]
+
+export default entries;
