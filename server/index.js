@@ -2,9 +2,13 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
-import entries from './final.js';
+import albumRoutes from './routes/albums.js'
+import artistRoutes from './routes/artists.js'
 
 const app = express();
+
+app.use('/artists', artistRoutes);
+app.use('/albums', albumRoutes);
 
 //setting up body parser so we can send requests
 app.use(bodyParser.json({limit: "30mb", extended: true}));
@@ -29,37 +33,6 @@ const connection = mongoose.connect(CONNECTION_URL, connectionparams)
 mongoose.set('useFindAndModify', false);
 
 
-const albumSchema = new mongoose.Schema({
-    title: String,
-    artist: String,
-    img: String,
-    genre: String,
-    duration: Number,
-    release: Number,
-    styles: {type: Array, "default": []},
-    chart_positions: {type: Array, "default": []},
-    awards: {type: Array, "default": []}
-});
-
-albumSchema.index({title: 1, artist: 1}, {unique: true});
-
-const Album = mongoose.model("album", albumSchema);
-
-const artistSchema = new mongoose.Schema({
-    name: String,
-    genres: {type: Array, "default": []},
-    albums: [{type: mongoose.Schema.Types.ObjectId, ref: 'Album'}]
-});
-
-artistSchema.index({name: 1}, {unique: true})
-const Artist = mongoose.model("artist", artistSchema)
-
-const chartSchema = new mongoose.Schema({
-  year: Number,
-  rank: Number,
-  album: {type: mongoose.Schema.Types.ObjectId, ref: 'Album'}
-});
-const Chart = mongoose.model("charts", chartSchema);
 
 // //loop through the whole scraped array to populate our DB
 // entries.forEach(async element => {
