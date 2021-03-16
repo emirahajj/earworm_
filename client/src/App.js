@@ -1,8 +1,14 @@
 import Landing from "./Landing"
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const App = () => {
     return (
-        <Landing />
+        // Navigation Bar Component
+        <Router>
+            <div>
+                <Route path="/" component={Landing} />
+            </div>
+        </Router>
     );
 }
 
