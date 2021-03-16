@@ -1,13 +1,9 @@
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <p className="text-blue-700">
-          Hello in blue text
-        </p>
-      </header>
-    </div>
-  );
+import Landing from "./Landing"
+
+const App = () => {
+    return (
+        <Landing />
+    );
 }
 
 export default App;
