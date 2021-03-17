@@ -1,4 +1,4 @@
-import Landing from "./Landing"
+import Landing from "./pages/Landing"
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const App = () => {
