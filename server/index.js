@@ -19,7 +19,7 @@ app.use(cors());
 //the conncetion URL we got from Cloud Atlas. 
 //will store them in environment variable when we deploy
 //**need to replace <password> with the password */
-const CONNECTION_URL = 'mongodb+srv://emira499:<password>@cluster0.9fd8x.mongodb.net/billboard?retryWrites=true&w=majority'
+const CONNECTION_URL = 'mongodb+srv://emira499:ZFk3ypdGfrw8hYbd@cluster0.9fd8x.mongodb.net/billboard?retryWrites=true&w=majority'
 //we're going to use mongodb atlas
 const PORT = process.env.port || 5000;
 
