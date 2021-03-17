@@ -1,12 +1,15 @@
 import Landing from "./pages/Landing"
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Home from "./pages/Home"
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const App = () => {
     return (
-        // Navigation Bar Component
         <Router>
             <div>
-                <Route path="/" component={Landing} />
+                <Switch>
+                    <Route path="/" exact component={Landing} />
+                    <Route path="/home" component={Home} />
+                </Switch>
             </div>
         </Router>
     );
