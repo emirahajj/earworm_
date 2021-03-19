@@ -1,14 +1,10 @@
-<<<<<<< HEAD
 import fetchData from './api/index';
 import React, {useState, useEffect} from 'react';
-=======
->>>>>>> main
 import Landing from "./pages/Landing"
 import Home from "./pages/Home"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const App = () => {
-<<<<<<< HEAD
   const [yearChart, setYearChart] = useState(2020);
 
   useEffect(()=> {
@@ -17,8 +13,6 @@ const App = () => {
     });
   })
 
-=======
->>>>>>> main
     return (
         <Router>
             <div>
