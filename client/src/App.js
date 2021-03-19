@@ -1,53 +1,29 @@
 import fetchData from './api/index';
-import React, {Component} from 'react';
-import { render } from 'react-dom';
+import React, {useState, useEffect} from 'react';
+//import { render } from 'react-dom';
+import Landing from "./pages/Landing"
+import Home from "./pages/Home"
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
+const App = () => {
+  const [yearChart, setYearChart] = useState(2020);
 
-function makeCard(element){
-  return(
-    <div>
-          <p>Album tite: {element.title}</p>
-          <p>Album artist: {element.artist}</p>
-          <p>Album genre: {element.genre}</p>
-          <img src = {element.img} ></img>
-    </div>
-  )
-}
-
-class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      albums: []
-    }
-  }
-
-  componentDidMount(){
+  useEffect(()=> {
     let albums = fetchData().then((result) => {
-      this.setState({
-        albums: result.data
-      })
+      setYearChart(result.data);
     });
-
-  }
-  //console.log(array);
-
-  render() {
-    //console.log(this.state.albums);
-    let array = this.state.albums.map(makeCard)
+  })
 
     return (
-      <div className="App">
-        <header className="App-header">
-          <p className="text-blue-700">
-            Hello in blue text
-          </p>
-          {array}
-        </header>
-      </div>
+        <Router>
+            <div>
+                <Switch>
+                    <Route path="/" exact component={Landing} />
+                    <Route path="/home" component={Home} />
+                </Switch>
+            </div>
+        </Router>
     );
-  }
-
 }
 
 export default App;
