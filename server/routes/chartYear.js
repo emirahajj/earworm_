@@ -1,11 +1,11 @@
 import express from 'express';
-import Artist from '../models/Artists.js';
+import Chart from '../models/Charts.js';
 
 const router = express.Router();
 
 router.get("/",  (req,res)=> {
     try {
-        const data =  await Artist.find().limit(20);
+        const data =  await Chart.find().limit(10);
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(data);
     } catch (error) {

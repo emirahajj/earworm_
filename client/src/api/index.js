@@ -1,14 +1,14 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/albums';
+const url = 'http://localhost:5000/';
 
 
-const fetchAlbums = () => { 
-    return axios.get(url)
+export const fetchAlbums = () => { 
+    return axios.get(url + 'albums')
   };
-  //
-//console.log(boo)
-
-export default fetchAlbums;
-
-//export default albums_10;
+export const fetchArtists = () => { 
+    return axios.get(url + 'artists')
+  };
+export const fetchChart = () => { 
+    return axios.get(url + 'charts')
+  };
