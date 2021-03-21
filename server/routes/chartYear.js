@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/",  (req,res)=> {
     try {
-        const data =  await Chart.find().limit(10);
+        const data =  await Chart.find();
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(data);
     } catch (error) {
