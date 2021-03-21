@@ -5,14 +5,6 @@ import Home from "./pages/Home"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const App = () => {
-  const [yearChart, setYearChart] = useState(2020);
-
-  useEffect(()=> {
-    let albums = fetchData().then((result) => {
-      setYearChart(result.data);
-    });
-  })
-
     return (
         <Router>
             <div>
