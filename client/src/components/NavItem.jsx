@@ -8,7 +8,7 @@ const NavItem = (props) => {
         highlight = true;
     }
 
-    return <li className={"py-2 px-4 rounded-full " + (highlight ? 'bg-indigo-700' : 'hover:bg-indigo-700')}>{props.text}</li>
+    return <li className={"py-2 px-4 rounded-full " + (highlight ? 'bg-dark' : 'hover:bg-dark')}>{props.text}</li>
 }
 
 export default NavItem

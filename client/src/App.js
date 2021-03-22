@@ -1,5 +1,5 @@
 import fetchData from './api/index';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Landing from "./pages/Landing"
 import Home from "./pages/Home"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
