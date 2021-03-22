@@ -1,5 +1,5 @@
 import Navbar from "../components/Navbar"
-import fetchData from './api/index';
+import fetchData from '../api/index';
 import React, {useState, useEffect} from 'react';
 import { fetchChart } from "../api";
 
