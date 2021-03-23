@@ -1,11 +1,16 @@
 import Navbar from "../components/Navbar"
 import fetchData from '../api/index';
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
+=======
+import React, {useState, useEffect} from 'react';
+>>>>>>> main
 import { fetchChart } from "../api";
 
 const Home = () => {
-    const [yearChart, setYearChart] = useState(2020);
+  const [yearChart, setYearChart] = useState(2020);
 
+<<<<<<< HEAD
     useEffect(() => {
         let albums = fetchChart().then((result) => {
             //add more specific logic here like how many to return etc.
@@ -21,6 +26,19 @@ const Home = () => {
             </div>
         </div>
     )
+=======
+  useEffect(() => {
+    let albums = fetchChart().then((result) => {
+      //add more specific logic here like how many to return etc.
+      setYearChart(result.data);
+    });
+  })
+  return (
+    <div className="bg-indigo-600">
+      <Navbar />
+    </div>
+  )
+>>>>>>> main
 }
 
 export default Home
