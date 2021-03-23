@@ -1,11 +1,12 @@
 import Header from "../components/Header"
 import { Link } from "react-router-dom"
+import "../App.css"
 
 const Landing = () => {
     return (
         <div>
             <Header />
-            <div className="flex justify-center items-center flex-col font-bold">
+            <div className="flex justify-center items-center flex-col font-bold fade-in">
                 <div className="pt-24 pb-4">
                     <h2 className="text-3xl">All about the world of music</h2>
                 </div>
