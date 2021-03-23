@@ -10,9 +10,9 @@ module.exports = {
                 'gray-3': '#787878'
             },
             backgroundImage: theme => ({
-                'concert': "url('/src/concert.jpeg')",
-                'concert2': "url('/src/concert2.jpeg')",
-                'concert3': "url('/src/concert3.jpeg')",
+                'concert': "url('/src/img/concert.jpeg')",
+                'concert2': "url('/src/img/concert2.jpeg')",
+                'concert3': "url('/src/img/concert3.jpeg')",
             }),
             backgroundSize: {
                 '100': '100% 100%',
