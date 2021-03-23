@@ -18,6 +18,7 @@ const Home = () => {
             <Navbar />
             <div>
                 <h1 className="text-center bg-dark w-2/5 h-14 ml-10 mt-10 pt-4 rounded-full font-bold">Billboard Top Albums</h1>
+                <div>Hello</div>
             </div>
         </div>
     )
