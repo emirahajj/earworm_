@@ -1,5 +1,6 @@
 import express from 'express';
 import Artist from '../models/Artists.js';
+import mongoose from 'mongoose';
 
 const router = express.Router();
 
@@ -15,7 +16,8 @@ router.get("/", async (req,res)=> {
 
 router.get("/:id", async (req,res)=> {
     try {
-        const data =  await Artist.find({_id: request.params.id});
+        let id = new mongoose.Types.ObjectId(req.params.id)
+        const data =  await Artist.find({_id: id});
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(data);
     } catch (error) {
