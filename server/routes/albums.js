@@ -1,4 +1,4 @@
-import express, { request } from 'express';
+import express from 'express';
 import mongoose from 'mongoose';
 import Album from '../models/Albums.js'
 
@@ -17,7 +17,8 @@ router.get("/", async (req,res)=> {
 
 router.get("/:id", async (req,res)=> {
     try {
-        const data =  await Album.find({_id: request.params.id});
+        let id = new mongoose.Types.ObjectId(req.params.id)
+        const data =  await Album.find({_id: id});
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(data);
     } catch (error) {

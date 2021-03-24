@@ -4,12 +4,16 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import albumRoutes from './routes/albums.js'
 import artistRoutes from './routes/artists.js'
+import genreRoutes from './routes/genres.js'
+import chartRoutes from './routes/chartYear.js'
 
 
 const app = express();
 
 app.use('/artists', artistRoutes);
 app.use('/albums', albumRoutes);
+app.use('/charts', chartRoutes);
+app.use('/genres', genreRoutes);
 
 //setting up body parser so we can send requests
 app.use(bodyParser.json({limit: "30mb", extended: true}));
@@ -33,7 +37,22 @@ const connection = mongoose.connect(CONNECTION_URL, connectionparams)
 
 mongoose.set('useFindAndModify', false);
 
-
+// let alby = [];
+// let albums = async () => {
+//     let result = await Album.find();
+//     return result
+// }
+// // x is the array 
+// albums().then(x => {
+//     x.forEach(async element =>{
+//         let genreName = element.genre;
+//         let stylesArray = element.styles;
+//         let criteria = {
+//             $addToSet: {styles: {$each : stylesArray}}
+//         }
+//         await Genre.findOneAndUpdate({name: genreName}, criteria, {upsert: true, new: true});
+//     })
+// })
 
 
 // //loop through the whole scraped array to populate our DB
