@@ -3,6 +3,7 @@ import React from "react";
 const Image = (props) => {
     return (
         <div className="container">
+            {/*
             <div className="grid lg:grid-cols-6 gap-10">
                 <a href="#"><img src={props.src} alt="Artist" /></a>
                 <div className="content">
@@ -10,6 +11,7 @@ const Image = (props) => {
                     <p className="text-white">{props.genre}</p>
                 </div>
             </div>
+            */}
         </div>
     );
 }
