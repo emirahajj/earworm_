@@ -3,6 +3,9 @@ import fetchData from '../api/index';
 import React, { useState, useEffect } from 'react';
 import { fetchChart } from "../api";
 import "../App.css"
+import logo from "../img/icon.png"
+import Dropdown from "../components/Dropdown"
+import ChartItem from "../components/ChartItem"
 
 const Home = () => {
     const [yearChart, setYearChart] = useState(2020);
@@ -17,8 +20,17 @@ const Home = () => {
     return (
         <div className="fade-in">
             <Navbar />
-            <div>
-                <h1 className="text-center bg-dark w-2/5 h-14 ml-10 mt-10 pt-4 rounded-full font-bold">Billboard Top Albums</h1>
+            <div className="ml-10 w-96">
+                <h1 className="text-center bg-dark w-96 h-14 mt-10 pt-4 rounded-full font-bold">Billboard Top Albums</h1>
+
+                {/* Chart */}
+                <Dropdown />
+                <div className="flex flex-col p-5">
+                    <ChartItem albumTitle="" artistName="" />
+                    <ChartItem albumTitle="" artistName="" />
+                    <ChartItem albumTitle="" artistName="" />
+                    <ChartItem albumTitle="" artistName="" />
+                </div>
             </div>
         </div>
     )
