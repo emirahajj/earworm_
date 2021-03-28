@@ -5,6 +5,7 @@ import { fetchChart } from "../api";
 import "../App.css"
 import logo from "../img/icon.png"
 import Dropdown from "../components/Dropdown"
+import DropdownItem from "../components/DropdownItem"
 import Entry from "../components/Entry"
 
 const Home = () => {
@@ -18,13 +19,15 @@ const Home = () => {
     })
 
     return (
-        <div className="fade-in">
+        <div>
             <Navbar />
-            <div className="ml-10 w-96">
-                <h1 className="text-center bg-dark w-96 h-14 mt-10 pt-4 rounded-full font-bold">Billboard Top Albums</h1>
+            <div className="ml-10 w-96 fade-in">
+                <h1 className="text-center bg-dark w-96 h-14 mt-12 pt-4 rounded-full font-bold shadow-md">Billboard Top Albums</h1>
 
                 {/* Chart */}
-                <Dropdown />
+                <Dropdown>
+                    <DropdownItem name="2019"/>
+                </Dropdown>
                 <div className="flex flex-col p-5">
                     {/*
                     {topAlbums.map((album) => {

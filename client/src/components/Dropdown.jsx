@@ -1,12 +1,26 @@
-const Dropdown = () => {
+import React, { useState } from "react"
+
+const downArrow = {
+    width: "0",
+    height: "0",
+    borderLeft: "8px solid transparent",
+    borderRight: "8px solid transparent",
+    borderTop: "8px solid #fff",
+}
+
+const Dropdown = (props) => {
+
+    const [open, setOpen] = useState(false)
+
     return (
-        <div className="text-center">
-            <select name="years" id="years" className="bg-dark mt-5">
-                <option value="2020">2020</option>
-                <option value="2019">2019</option>
-                <option value="2018">2018</option>
-                <option value="2017">2017</option>
-            </select>
+        <div className="flex justify-center items-center">
+            <button className="flex items-center space-x-2 transition duration-500 ease-in-out bg-dark hover:bg-dark-1 px-14 py-1 mt-3 rounded-full font-bold focus:outline-none shadow-md"
+            onClick={() => setOpen(!open)}>
+                <p>2020</p>
+                <div style={downArrow}></div>
+            </button>
+
+            {open && props.children}
         </div>
     )
 }
