@@ -39,6 +39,7 @@ const Home = () => {
                     <Entry id="2" title="Album 2" artist="Artist 2" />
                     <Entry id="3" title="Album 3" artist="Artist 3" />
                     <Entry id="4" title="Album 4" artist="Artist 4" />
+                    <Entry id="5" title="Album 5" artist="Artist 5" />
                 </div>
             </div>
         </div>
