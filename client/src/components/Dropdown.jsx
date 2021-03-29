@@ -14,13 +14,12 @@ const Dropdown = (props) => {
 
     return (
         <div className="flex justify-center items-center">
-            <button className="flex items-center space-x-2 transition duration-500 ease-in-out bg-dark hover:bg-dark-1 px-14 py-1 mt-3 rounded-full font-bold focus:outline-none shadow-md"
+            {open && props.children}
+            <button className="flex items-center space-x-2 transition duration-500 ease-in-out bg-dark hover:bg-dark-1 px-14 py-1 mt-2 rounded-full font-bold focus:outline-none shadow-md"
             onClick={() => setOpen(!open)}>
                 <p>2020</p>
                 <div style={downArrow}></div>
             </button>
-
-            {open && props.children}
         </div>
     )
 }

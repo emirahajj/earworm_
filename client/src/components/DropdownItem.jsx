@@ -1,8 +1,8 @@
-const DropdownItem = (props) => {
+const DropdownItem = ({ text }) => {
     return (
-        <div className="absolute transition duration-500 ease-in-out bg-dark hover:bg-dark-1 px-14 py-1 rounded-full font-bold shadow-md mt-20">
-            {props.name}
-        </div>
+        <button className="rounded-md px-4 py-1 text-white  transition duration-500 ease-in-out hover:bg-dark-1 shadow-md focus:outline-none focus:bg-dark-1">
+            {text}
+        </button>
     )
 }
 

@@ -5,7 +5,7 @@ import { fetchChart } from "../api";
 import "../App.css"
 import logo from "../img/icon.png"
 import Dropdown from "../components/Dropdown"
-import DropdownItem from "../components/DropdownItem"
+import DropdownList from "../components/DropdownList"
 import Entry from "../components/Entry"
 
 const Home = () => {
@@ -26,7 +26,7 @@ const Home = () => {
 
                 {/* Chart */}
                 <Dropdown>
-                    <DropdownItem name="2019"/>
+                    <DropdownList name="2019"/>
                 </Dropdown>
                 <div className="flex flex-col p-5">
                     {/*
