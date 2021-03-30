@@ -23,14 +23,12 @@ const Home = () => {
     return (
         <div>
             <Navbar />
-            <div className="flex flex-row space-x-96">
-                <div className="ml-10 w-96 fade-in">
+            <div className="grid grid-flow-col gap-20">
+                <section className="ml-10 w-96 fade-in">
                     <Label text="Billboard Top Albums" />
 
                     {/* Chart */}
-                    <Dropdown>
-                        <DropdownList />
-                    </Dropdown>
+                    <Dropdown />
                     <div className="flex flex-col p-5">
                         {/*
                         {topAlbums.map((album) => {
@@ -47,12 +45,12 @@ const Home = () => {
                         <Entry id="4" title="Album 4" artist="Artist 4" />
                         <Entry id="5" title="Album 5" artist="Artist 5" />
                     </div>
-                </div>
-                <div className="w-1/4">
+                </section>
+                <section className="col-span-2">
                     <Label text="Statistics" />
                     <Fact />
                     <Fact />
-                </div>
+                </section>
             </div>
         </div>
     )
