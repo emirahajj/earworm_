@@ -25,6 +25,10 @@ const Home = () => {
         //console.log(typeof albums)
     })
 
+    const onYearChange = (year) => {
+        setChartYear(year)
+    }
+
     return (
         <div>
             <Navbar />
@@ -33,7 +37,7 @@ const Home = () => {
                     <Label text="Billboard Top Albums" />
 
                     {/* Chart */}
-                    <Dropdown def="2020"/>
+                    <Dropdown year={chartYear} onChange={onYearChange}/>
                     <div className="flex flex-col p-5">
                         {/*
                         {topAlbums.map((album) => {
