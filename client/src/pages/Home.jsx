@@ -6,7 +6,6 @@ import "../App.css"
 import logo from "../img/icon.png"
 import Label from "../components/Label"
 import Dropdown from "../components/Dropdown"
-import DropdownList from "../components/DropdownList"
 import Entry from "../components/Entry"
 import Fact from "../components/Fact"
 
@@ -46,10 +45,11 @@ const Home = () => {
                         <Entry id="5" title="Album 5" artist="Artist 5" />
                     </div>
                 </section>
-                <section className="col-span-2">
+                <section className="col-span-2 fade-in">
                     <Label text="Statistics" />
                     <Fact />
                     <Fact />
+                    <Label text="Top 100 Albums by Genre" />
                 </section>
             </div>
         </div>
