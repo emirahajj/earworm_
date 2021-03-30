@@ -6,9 +6,11 @@ import albumRoutes from './routes/albums.js'
 import artistRoutes from './routes/artists.js'
 import genreRoutes from './routes/genres.js'
 import chartRoutes from './routes/chartYear.js'
+import dotenv from 'dotenv'
 
 
 const app = express();
+dotenv.config();
 
 app.use('/artists', artistRoutes);
 app.use('/albums', albumRoutes);
@@ -20,16 +22,12 @@ app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 
-//the conncetion URL we got from Cloud Atlas. 
-//will store them in environment variable when we deploy
-//**need to replace <password> with the password */
-const CONNECTION_URL = 'mongodb+srv://emira499:<pass>@cluster0.9fd8x.mongodb.net/billboard?retryWrites=true&w=majority'
 //we're going to use mongodb atlas
 const PORT = process.env.port || 5000;
 
 const connectionparams = {useNewUrlParser: true, useUnifiedTopology: true}
 
-const connection = mongoose.connect(CONNECTION_URL, connectionparams)
+const connection = mongoose.connect(process.env.CONNECTION_URL, connectionparams)
 .then(() => {
     app.listen(PORT, () => console.log(`server running on port: ${PORT}`))
 })
