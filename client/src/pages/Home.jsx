@@ -1,17 +1,23 @@
 import Navbar from "../components/Navbar"
-import fetchData from '../api/index';
+import fetchData, { fetchAlbum, fetchChartYear } from '../api/index';
 import React, { useState, useEffect } from 'react';
 import { fetchChart } from "../api";
 import "../App.css"
 
 const Home = () => {
-    const [yearChart, setYearChart] = useState(2020);
+    const [chartYear, setChartYear] = useState(2020);
 
     useEffect(() => {
         let albums = fetchChart().then((result) => {
             //add more specific logic here like how many to return etc.
-            setYearChart(result.data);
+            //let yearChart = result.data.filter(entry => entry.year === chartYear)
+            let yearChart = fetchChartYear(chartYear).then((res)=>{
+                console.log(res.data)
+            })
+            //console.log(typeof result.data[0])
+            //setYearChart(result.data);
         });
+        //console.log(typeof albums)
     })
 
     return (
