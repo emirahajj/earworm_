@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import Landing from "./pages/Landing"
 import Home from "./pages/Home"
 import Artists from "./pages/Artists"
+import About from "./pages/About"
+import Genres from "./pages/Genres"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 const App = () => {
@@ -13,6 +15,8 @@ const App = () => {
                     <Route path="/" exact component={Landing} />
                     <Route path="/home" component={Home} />
                     <Route path="/artists" component={Artists} />
+                    <Route path="/about" component={About} />
+                    <Route path="/genres" component={Genres} />
                 </Switch>
             </div>
         </Router>
