@@ -33,7 +33,7 @@ const Home = () => {
                     <Label text="Billboard Top Albums" />
 
                     {/* Chart */}
-                    <Dropdown />
+                    <Dropdown def="2020" />
                     <div className="flex flex-col p-5">
                         {/*
                         {topAlbums.map((album) => {
