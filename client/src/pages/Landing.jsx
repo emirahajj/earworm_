@@ -15,7 +15,7 @@ const Landing = () => {
                     <div>Discover</div>
                     <div>Analyze</div>
                 </div>
-                <Link className="m-12 bg-dark text-md px-8 py-3 rounded-full shadow-md font-bold text-white hover:bg-gray-1" to="/home">
+                <Link className="m-12 bg-dark text-md px-8 py-3 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1" to="/home">
                     Go
                 </Link>
 
