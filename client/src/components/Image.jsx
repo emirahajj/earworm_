@@ -1,4 +1,4 @@
-import React from "react";
+import album from "../img/album-cover.jpg"
 
 const Image = (props) => {
     return (

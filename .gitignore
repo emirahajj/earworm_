@@ -3,4 +3,7 @@ server/node_modules/
 client/node_modules
 client/node_modules/
 server/node_modules/
+server/.env
 .DS_Store
+.vscode/
+demo_client/
