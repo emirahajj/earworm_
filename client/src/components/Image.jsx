@@ -2,15 +2,7 @@ import album from "../img/album-cover.jpg"
 
 const Image = (props) => {
     return (
-        <div className="container">
-                <a href="#">
-                    <img src={props.src} className= "w-40 h-40" alt="Artist" />
-                </a>
-                <div className="content py-6">
-                    <h4 className="text-white font-semibold">{props.name}</h4>
-                    <p className="text-white">{props.genre}</p>
-                </div>
-        </div>
+        <img src={album} alt="Album Cover" className="flex-none w-24 h-24 rounded-2xl overflow-hidden shadow-md"/>
     );
 }
 export default Image;
