@@ -1,6 +1,7 @@
 import "../App.css"
 import {useEffect, useState} from 'react'
 import { fetchAlbum } from "../api";
+import { Link } from "react-router-dom";
 
 const AlbumModal = (props) => {
     const [AlbumTitle, setAlbumTitle] = useState(" ")
@@ -14,8 +15,8 @@ const AlbumModal = (props) => {
     }, [])
     return (
         <div className="w-32">
-            <img className= "w-32 rounded-lg" src={AlbumImage} alt=""/>
-            <p>{AlbumTitle}</p>
+            <img className= "h-32 rounded-lg" src={AlbumImage} alt=""/>
+            <Link to={"/albums/" + props.id}>{AlbumTitle}</Link>
         </div>
     )
 }

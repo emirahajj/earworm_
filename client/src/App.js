@@ -7,6 +7,7 @@ import Genres from "./pages/Genres"
 import IndividualGenre from "./pages/IndividualGenre"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import IndividualArtist from './pages/IndividualArtist';
+import IndividualAlbum from './pages/IndividualAlbum';
 
 const App = () => {
     return (
@@ -20,6 +21,7 @@ const App = () => {
                     <Route path="/about" component={About} />
                     <Route exact path="/genres" component={Genres} />
                     <Route path="/genres/:genreId" component={IndividualGenre} />
+                    <Route exact path="/albums/:albumId" component={IndividualAlbum} />
 
                 </Switch>
             </div>
