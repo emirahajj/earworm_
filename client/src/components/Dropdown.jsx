@@ -20,10 +20,10 @@ const Dropdown = ({ year, onChange }) => {
         leave: { opacity: 0, transform: 'translate3d(0,-5px,0)', pointerEvents: 'none'  }
     })
 
-    const switchChoice = (text) => {
+    const switchChoice = (year) => {
         setOpen(false)
-        setChoice(text)
-        onChange(text)
+        setChoice(year)
+        onChange(year)
     }
 
     return (
