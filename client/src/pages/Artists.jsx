@@ -30,8 +30,6 @@ const Artists = () => {
                     })
                     }
 
-                    <ArtistsThumbImg className="fade-in" />
-
 
                 </div>
                 :
