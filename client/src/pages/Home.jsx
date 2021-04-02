@@ -8,25 +8,39 @@ import Label from "../components/Label"
 import Dropdown from "../components/Dropdown"
 import Entry from "../components/Entry"
 import Fact from "../components/Fact"
+import { a } from "@react-spring/web";
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
+    const [chart, setChart] = useState([])
+    const [album, setAlbum] = useState({
+        albumTitle:"",
+        artistName: ""
+    })
 
     useEffect(() => {
-        let albums = fetchChart().then((result) => {
+        fetchChart().then((result) => {
             //add more specific logic here like how many to return etc.
             //let yearChart = result.data.filter(entry => entry.year === chartYear)
-            let yearChart = fetchChartYear(chartYear).then((res) => {
-                console.log(res.data)
+            fetchChartYear(chartYear).then((res) => {
+                console.log("Fetching chart data..")
+                setChart(res.data)
             })
             //console.log(typeof result.data[0])
             //setYearChart(result.data);
         });
         //console.log(typeof albums)
-    })
+    }, [chartYear])
 
     const onYearChange = (year) => {
         setChartYear(year)
+    }
+
+    const getAlbum = (chartEntry) => {
+        fetchAlbum(chartEntry.album).then((res) => {
+            console.log(res.data[0])
+            return res.data[0]
+        })
     }
 
     return (
@@ -39,20 +53,18 @@ const Home = () => {
                     {/* Chart */}
                     <Dropdown year={chartYear} onChange={onYearChange}/>
                     <div className="flex flex-col p-5">
-                        {/*
-                        {topAlbums.map((album) => {
-                            <Entry
-                                key={topAlbums.id}
-                                title={topAlbums.title}
-                                artist={topAlbums.artist}
-                            />
+                        {chart.slice(0, 10).map((entry) => {
+                            // const album = getAlbum(entry)
+                            return (
+                                <Entry
+                                    key={entry._id}
+                                    rank={entry.rank}
+                                    year={entry.year}
+                                    title="Album Title"
+                                    artist="Artist"
+                                />
+                            )
                         })}
-                        */}
-                        <Entry id="1" title="Album 1" artist="Artist 1" />
-                        <Entry id="2" title="Album 2" artist="Artist 2" />
-                        <Entry id="3" title="Album 3" artist="Artist 3" />
-                        <Entry id="4" title="Album 4" artist="Artist 4" />
-                        <Entry id="5" title="Album 5" artist="Artist 5" />
                     </div>
                 </section>
                 <section className="col-span-2 fade-in">
