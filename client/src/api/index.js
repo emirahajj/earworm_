@@ -22,7 +22,7 @@ export const fetchAlbum = (id) => {
     return axios.get(`${url}/albums/${id}`)
   };
 export const fetchArtist = (id) => { 
-    return axios.get(`${url}/artist/${id}`)
+    return axios.get(`${url}/artists/${id}`)
   };
 export const fetchChartYear = (year) => { 
     return axios.get(`${url}/charts/${year}`)

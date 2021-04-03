@@ -1,6 +1,6 @@
 // Used to store dummy artists in Artist.jsx
 
-/* const Artists = [
+ const Artists_list = [
     {
       id: 1,
       genre: "Rock",
@@ -75,5 +75,4 @@
     }
   ];
 
-  export default Artists;
-*/
+  export default Artists_list;
