@@ -1,9 +1,8 @@
-import Navbar from "../components/Navbar"
-import fetchData, { fetchAlbum, fetchChartYear } from '../api/index';
-import React, { useState, useEffect } from 'react';
+import { fetchChartYear } from '../api/index';
 import { fetchChart } from "../api";
+import React, { useState, useEffect } from 'react';
 import "../App.css"
-import logo from "../img/icon.png"
+import Navbar from "../components/Navbar"
 import Label from "../components/Label"
 import Dropdown from "../components/Dropdown"
 import Entry from "../components/Entry"
@@ -12,23 +11,14 @@ import Fact from "../components/Fact"
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
     const [chart, setChart] = useState([])
-    /* const [album, setAlbum] = useState({
-        albumTitle:"",
-        artistName: ""
-    }) */
 
     useEffect(() => {
         fetchChart().then((result) => {
-            //add more specific logic here like how many to return etc.
-            //let yearChart = result.data.filter(entry => entry.year === chartYear)
             fetchChartYear(chartYear).then((res) => {
                 console.log("Fetching chart data..")
                 setChart(res.data)
             })
-            //console.log(typeof result.data[0])
-            //setYearChart(result.data);
         });
-        //console.log(typeof albums)
     }, [chartYear])
 
     const onYearChange = (year) => {
