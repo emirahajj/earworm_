@@ -24,7 +24,7 @@ router.get("/:year", async (req,res)=> {
             return obj[0];
         })
         let results = await Promise.all(newdata);
-        console.log(results);
+        //console.log(results);
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(results);
     } catch (error) {

@@ -8,22 +8,17 @@ import Label from "../components/Label"
 import Dropdown from "../components/Dropdown"
 import Entry from "../components/Entry"
 import Fact from "../components/Fact"
+import GenrePie from "../components/GenrePie"
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
+    const [albumsArray, setAlbumsArray] = useState([ ]);
 
     useEffect(() => {
-        let albums = fetchChart().then((result) => {
-            //add more specific logic here like how many to return etc.
-            //let yearChart = result.data.filter(entry => entry.year === chartYear)
-            let yearChart = fetchChartYear(chartYear).then((res) => {
-                console.log(res.data)
-            })
-            //console.log(typeof result.data[0])
-            //setYearChart(result.data);
-        });
-        //console.log(typeof albums)
-    })
+        let yearChart = fetchChartYear(chartYear).then((res) => {
+            setAlbumsArray(res.data)
+        })
+    }, [chartYear])
 
     const onYearChange = (year) => {
         setChartYear(year)
@@ -39,20 +34,15 @@ const Home = () => {
                     {/* Chart */}
                     <Dropdown year={chartYear} onChange={onYearChange}/>
                     <div className="flex flex-col p-5">
-                        {/*
-                        {topAlbums.map((album) => {
-                            <Entry
-                                key={topAlbums.id}
-                                title={topAlbums.title}
-                                artist={topAlbums.artist}
-                            />
+                        {albumsArray.slice(0,10).map((album, index) => {
+                            return (                            
+                                <Entry
+                                id={index}
+                                title={album.title}
+                                artist={album.artist}
+                            />)
+
                         })}
-                        */}
-                        <Entry id="1" title="Album 1" artist="Artist 1" />
-                        <Entry id="2" title="Album 2" artist="Artist 2" />
-                        <Entry id="3" title="Album 3" artist="Artist 3" />
-                        <Entry id="4" title="Album 4" artist="Artist 4" />
-                        <Entry id="5" title="Album 5" artist="Artist 5" />
                     </div>
                 </section>
                 <section className="col-span-2 fade-in">
@@ -60,6 +50,7 @@ const Home = () => {
                     <Fact />
                     <Fact />
                     <Label text="Top 100 Albums by Genre" />
+                    <GenrePie year = {chartYear} albums = {albumsArray}/>
                 </section>
             </div>
         </div>
