@@ -8,15 +8,14 @@ import Label from "../components/Label"
 import Dropdown from "../components/Dropdown"
 import Entry from "../components/Entry"
 import Fact from "../components/Fact"
-import { a } from "@react-spring/web";
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
     const [chart, setChart] = useState([])
-    const [album, setAlbum] = useState({
+    /* const [album, setAlbum] = useState({
         albumTitle:"",
         artistName: ""
-    })
+    }) */
 
     useEffect(() => {
         fetchChart().then((result) => {
@@ -36,11 +35,12 @@ const Home = () => {
         setChartYear(year)
     }
 
-    const getAlbum = (chartEntry) => {
-        fetchAlbum(chartEntry.album).then((res) => {
-            console.log(res.data[0])
-            return res.data[0]
-        })
+    const getRank = (chartPositions) => {
+        for (let i = 0; i < chartPositions.length; i++) {
+            if (parseInt(chartPositions[i].year) === chartYear) {
+                return chartPositions[i].rank
+            }
+        }
     }
 
     return (
@@ -51,17 +51,17 @@ const Home = () => {
                     <Label text="Billboard Top Albums" />
 
                     {/* Chart */}
-                    <Dropdown year={chartYear} onChange={onYearChange}/>
+                    <Dropdown year={chartYear} onChange={onYearChange} />
                     <div className="flex flex-col p-5">
                         {chart.slice(0, 10).map((entry) => {
-                            // const album = getAlbum(entry)
                             return (
                                 <Entry
                                     key={entry._id}
-                                    rank={entry.rank}
-                                    year={entry.year}
-                                    title="Album Title"
-                                    artist="Artist"
+                                    rank={getRank(entry.chart_positions)}
+                                    year={chartYear}
+                                    title={entry.title}
+                                    artist={entry.artist}
+                                    cover={entry.img}
                                 />
                             )
                         })}
