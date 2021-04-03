@@ -1,9 +1,8 @@
-import Navbar from "../components/Navbar"
-import fetchData, { fetchAlbum, fetchChartYear } from '../api/index';
-import React, { useState, useEffect } from 'react';
+import { fetchChartYear } from '../api/index';
 import { fetchChart } from "../api";
+import React, { useState, useEffect } from 'react';
 import "../App.css"
-import logo from "../img/icon.png"
+import Navbar from "../components/Navbar"
 import Label from "../components/Label"
 import Dropdown from "../components/Dropdown"
 import Entry from "../components/Entry"
@@ -11,22 +10,27 @@ import Fact from "../components/Fact"
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
+    const [chart, setChart] = useState([])
 
     useEffect(() => {
-        let albums = fetchChart().then((result) => {
-            //add more specific logic here like how many to return etc.
-            //let yearChart = result.data.filter(entry => entry.year === chartYear)
-            let yearChart = fetchChartYear(chartYear).then((res) => {
-                console.log(res.data)
+        fetchChart().then((result) => {
+            fetchChartYear(chartYear).then((res) => {
+                console.log("Fetching chart data..")
+                setChart(res.data)
             })
-            //console.log(typeof result.data[0])
-            //setYearChart(result.data);
         });
-        //console.log(typeof albums)
-    })
+    }, [chartYear])
 
     const onYearChange = (year) => {
         setChartYear(year)
+    }
+
+    const getRank = (chartPositions) => {
+        for (let i = 0; i < chartPositions.length; i++) {
+            if (parseInt(chartPositions[i].year) === chartYear) {
+                return chartPositions[i].rank
+            }
+        }
     }
 
     return (
@@ -37,22 +41,20 @@ const Home = () => {
                     <Label text="Billboard Top Albums" />
 
                     {/* Chart */}
-                    <Dropdown year={chartYear} onChange={onYearChange}/>
+                    <Dropdown year={chartYear} onChange={onYearChange} />
                     <div className="flex flex-col p-5">
-                        {/*
-                        {topAlbums.map((album) => {
-                            <Entry
-                                key={topAlbums.id}
-                                title={topAlbums.title}
-                                artist={topAlbums.artist}
-                            />
+                        {chart.slice(0, 10).map((entry) => {
+                            return (
+                                <Entry
+                                    key={entry._id}
+                                    rank={getRank(entry.chart_positions)}
+                                    year={chartYear}
+                                    title={entry.title}
+                                    artist={entry.artist}
+                                    cover={entry.img}
+                                />
+                            )
                         })}
-                        */}
-                        <Entry id="1" title="Album 1" artist="Artist 1" />
-                        <Entry id="2" title="Album 2" artist="Artist 2" />
-                        <Entry id="3" title="Album 3" artist="Artist 3" />
-                        <Entry id="4" title="Album 4" artist="Artist 4" />
-                        <Entry id="5" title="Album 5" artist="Artist 5" />
                     </div>
                 </section>
                 <section className="col-span-2 fade-in">

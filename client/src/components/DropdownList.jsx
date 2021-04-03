@@ -1,22 +1,27 @@
 import DropdownItem from "../components/DropdownItem"
+import SimpleBarReact from "simplebar-react"
+import "simplebar/src/simplebar.css"
 
 const DropdownList = (props) => {
+
+    var years = []
+    
+    for (let y = 2020; y >= 1970; y--) {
+        years.push(y)
+    }
+
     return (
         <div className="absolute mt-4 py-2 w-44 bg-dark rounded-2xl shadow-xl font-bold text-center justify-center">
-            <DropdownItem onSwitch={props.onSwitch} year={2020}/>
-            <DropdownItem onSwitch={props.onSwitch} year={2019}/>
-            <DropdownItem onSwitch={props.onSwitch} year={2018}/>
-            <DropdownItem onSwitch={props.onSwitch} year={2017}/>
-            <DropdownItem onSwitch={props.onSwitch} year={2016}/>
-            <DropdownItem onSwitch={props.onSwitch} year={2015}/>
-            <DropdownItem onSwitch={props.onSwitch} year={2014}/>
-            <DropdownItem onSwitch={props.onSwitch} year={2013}/>
-            <DropdownItem onSwitch={props.onSwitch} year={2012}/>
-            <DropdownItem onSwitch={props.onSwitch} year={2011}/>
-            <DropdownItem onSwitch={props.onSwitch} year={2010}/>
-            <DropdownItem onSwitch={props.onSwitch} year={2009}/>
-            <DropdownItem onSwitch={props.onSwitch} year={2008}/>
-            <DropdownItem onSwitch={props.onSwitch} year={2007}/>
+            <SimpleBarReact style={{ maxHeight: 250 }}>
+                {years.map((year) => {
+                    return (
+                        <DropdownItem
+                            onSwitch={props.onSwitch}
+                            year={year}
+                        />
+                    )
+                })}
+            </SimpleBarReact>
         </div>
     )
 }
