@@ -48,6 +48,7 @@ const Home = () => {
                             return (
                                 <Entry
                                     key={entry._id}
+                                    id= {entry._id}
                                     rank={getRank(entry.chart_positions)}
                                     year={chartYear}
                                     title={entry.title}
