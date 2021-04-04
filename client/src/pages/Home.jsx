@@ -1,9 +1,8 @@
-import Navbar from "../components/Navbar"
-import fetchData, { fetchAlbum, fetchChartYear } from '../api/index';
-import React, { useState, useEffect } from 'react';
+import { fetchChartYear } from '../api/index';
 import { fetchChart } from "../api";
+import React, { useState, useEffect } from 'react';
 import "../App.css"
-import logo from "../img/icon.png"
+import Navbar from "../components/Navbar"
 import Label from "../components/Label"
 import Dropdown from "../components/Dropdown"
 import Entry from "../components/Entry"
@@ -12,16 +11,27 @@ import GenrePie from "../components/GenrePie"
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
-    const [albumsArray, setAlbumsArray] = useState([ ]);
+    const [chart, setChart] = useState([])
 
     useEffect(() => {
-        let yearChart = fetchChartYear(chartYear).then((res) => {
-            setAlbumsArray(res.data)
-        })
+        fetchChart().then((result) => {
+            fetchChartYear(chartYear).then((res) => {
+                console.log("Fetching chart data..")
+                setChart(res.data)
+            })
+        });
     }, [chartYear])
 
     const onYearChange = (year) => {
         setChartYear(year)
+    }
+
+    const getRank = (chartPositions) => {
+        for (let i = 0; i < chartPositions.length; i++) {
+            if (parseInt(chartPositions[i].year) === chartYear) {
+                return chartPositions[i].rank
+            }
+        }
     }
 
     return (
@@ -32,16 +42,19 @@ const Home = () => {
                     <Label text="Billboard Top Albums" />
 
                     {/* Chart */}
-                    <Dropdown year={chartYear} onChange={onYearChange}/>
+                    <Dropdown year={chartYear} onChange={onYearChange} />
                     <div className="flex flex-col p-5">
-                        {albumsArray.slice(0,10).map((album, index) => {
-                            return (                            
+                        {chart.slice(0, 10).map((entry) => {
+                            return (
                                 <Entry
-                                id={index}
-                                title={album.title}
-                                artist={album.artist}
-                            />)
-
+                                    key={entry._id}
+                                    rank={getRank(entry.chart_positions)}
+                                    year={chartYear}
+                                    title={entry.title}
+                                    artist={entry.artist}
+                                    cover={entry.img}
+                                />
+                            )
                         })}
                     </div>
                 </section>
@@ -50,7 +63,7 @@ const Home = () => {
                     <Fact />
                     <Fact />
                     <Label text="Top 100 Albums by Genre" />
-                    <GenrePie year = {chartYear} albums = {albumsArray}/>
+                    <GenrePie year = {chartYear} albums = {chart}/>
                 </section>
             </div>
         </div>
