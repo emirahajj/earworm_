@@ -27,4 +27,13 @@ export const fetchArtist = (id) => {
 export const fetchChartYear = (year) => { 
     return axios.get(`${url}/charts/${year}`)
   };
+export const fetchGenre = (genre) => { 
+    return axios.get(`${url}/genres/${genre}`)
+  };
 
+  export const fetsGenreHistory = (genre) => { 
+    return axios.get(`${url}/genres/all/${genre}`)
+  };
+  export const fetchChartYearByGenre = (genre, year) => { 
+    return axios.get(`${url}/charts/${year}/${genre}`)
+  };

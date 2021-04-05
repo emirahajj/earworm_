@@ -8,18 +8,17 @@ import Dropdown from "../components/Dropdown"
 import Entry from "../components/Entry"
 import Fact from "../components/Fact"
 import GenrePie from "../components/GenrePie"
+import GenreOverTime from '../components/GenreOverTime';
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
     const [chart, setChart] = useState([])
 
     useEffect(() => {
-        fetchChart().then((result) => {
-            fetchChartYear(chartYear).then((res) => {
-                console.log("Fetching chart data..")
-                setChart(res.data)
-            })
-        });
+        fetchChartYear(chartYear).then((res) => {
+            console.log("Fetching chart data..")
+            setChart(res.data)
+        })
     }, [chartYear])
 
     const onYearChange = (year) => {
@@ -41,7 +40,7 @@ const Home = () => {
                 <section className="ml-10 w-96 fade-in">
                     <Label text="Billboard Top Albums" />
 
-                    {/* Chart */}
+                    {/* Chart  */}
                     <Dropdown year={chartYear} onChange={onYearChange} />
                     <div className="flex flex-col p-5">
                         {chart.slice(0, 10).map((entry) => {

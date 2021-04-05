@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../components/Navbar"
+import {useState} from "react"
+import Label from "../components/Label"
+import GenreOverTime from "../components/GenreOverTime"
+import Chart from "../components/Chart"
+import {fetchGenre} from "../api/index"
 
 const IndividualGenre = ({match:{params:{genreId}}}) => {
+
     return (
         <div>
             <Navbar />
@@ -11,18 +17,17 @@ const IndividualGenre = ({match:{params:{genreId}}}) => {
                         <img className= "w-32 rounded-full" src="https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg" alt=""/>
                         <div className="ml-4">
                             <h1 className="text-3xl font-bold">{genreId}</h1>
-                            <p>This is the genre description</p>
+                            <p>A description goes here</p>
                         </div>
                     </div>
                     <div>
-                        <p>This is where the fun graph will go</p>
+                        <GenreOverTime genre = {genreId}/>
                     </div>
-
-
                 </div>
 
                 <div className="lg:col-span-2">
-                    <p>This is where the chart portion will go</p>
+                <Chart type= "byGenre" genre= {genreId}/>
+
                 </div>
             </div>
         </div>
