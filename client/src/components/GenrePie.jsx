@@ -1,11 +1,11 @@
 import "../App.css"
 import {useEffect, useState} from 'react'
-import { fetchAlbum } from "../api";
+import { fetchAlbum, fetchChart, fetchChartYear } from "../api";
 import { Link } from "react-router-dom";
 import {ResponsiveContainer, PieChart, Pie, Cell, Legend} from 'recharts'
 
 var colors = [
-    "#F95470",
+    "#F97470",
     "#E7B966",
     "#C890EA",
     "#F88C6C",
@@ -22,23 +22,35 @@ var colors = [
   ];
 
 const GenrePie = (props) => {
-    const [albumFullArray, setAlbumFullArray] = useState([])
+    const [albumFullArray, setAlbumFullArray] = useState(props.chartyear)
     const [stat, setStat] = useState([])
 
 
     //make two different API calls depending on the value of
     //props.type: yearly = fetchChartYear allTime = fetchChart
 
+    // useEffect(() => {
+    //   if (props.type==="yearly") {
+    //     fetchChartYear(props.year).then((res)=> {
+    //       console.log(res.data);
+    //       setAlbumFullArray(res.data);
+    //     })
+    //   } else {
+    //     fetchChart().then((res)=>{
+    //       console.log(res.data);
+    //       setAlbumFullArray(res.data)
+    //     })
+    //   }
+    // }, [props])
     useEffect(() => {
-        setAlbumFullArray(props.albums)
-
+      setAlbumFullArray(props.chartyear);
 
     }, [props])
 
     useEffect(() => {
         const grouped = albumFullArray.reduce((groups, cur)=> {
             const key = cur.album.genre;
-            console.log(key)
+            //console.log(key)
             groups[key] = (groups[key] || 0) + 1;
             return groups;
         }, {});
@@ -59,7 +71,6 @@ const GenrePie = (props) => {
                 nameKey="genre"
                 cx="50%"
                 cy="50%"
-                labelLine={false}
                 label
                 outerRadius={100}>
                 {stat.map((entry, index) => (

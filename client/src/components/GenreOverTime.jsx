@@ -1,13 +1,21 @@
 import "../App.css"
 import {useEffect, useState} from 'react'
 import { fetsGenreHistory, fetchAllAlbumsInGenre } from "../api";
-import {ResponsiveContainer, AreaChart, XAxis, YAxis, Tooltip, Area} from 'recharts'
+import {ResponsiveContainer, AreaChart, XAxis, YAxis, Tooltip, Area, BarChart} from 'recharts'
+import BarGenreChart from "./BarGenreChart";
 
 
 const GenreOverTime = (props) => {
-    const [value, setValue] = useState(props.genre);
+    const [genreName, setGenreName] = useState(props.genre);
+
+    //shows how many albums of a genre appeared over the years
     const [history, setHistory] = useState([]);
+    
+    //number of albms of that genre
     const [number, setNumber] = useState(0);
+
+    //formatted data to feed to graph component:
+    // [{year: "1970", count: 17}...etc]
     const [condensedHistory, setCondensedHistory] = useState([]);
 
     const makeArray = () =>{
@@ -15,20 +23,20 @@ const GenreOverTime = (props) => {
     }
 
     useEffect(() => {
-      fetchAllAlbumsInGenre(value).then((res)=>{
+      //returns
+      fetchAllAlbumsInGenre(genreName).then((res)=>{
         setNumber(res.data.length);
       })
 
-    }, [value])
+    }, [genreName])
 
-          
     useEffect(() => {
-      fetsGenreHistory(value).then((res)=>{
+      fetsGenreHistory(genreName).then((res)=>{
         setHistory(res.data);
 
 
       })
-      }, [value])
+      }, [genreName])
 
       useEffect(() => {
 
@@ -51,6 +59,7 @@ const GenreOverTime = (props) => {
         const result = Object.keys(grouped).map(key => ({year: key, count: grouped[key]}));
 
         const newResult = addMissingYearStat(yearArray, result)
+        console.log(newResult);
         
         setCondensedHistory(newResult);
         
@@ -59,7 +68,7 @@ const GenreOverTime = (props) => {
       return (
         <div className="mt-4">
 
-          <h1 className="text-3xl mt-3 font-bold mb-3 text-white text-center">{value} by Year</h1>
+          <h1 className="text-3xl mt-3 font-bold mb-3 text-white text-center">{genreName} by Year</h1>
           <ResponsiveContainer width="100%" height={400}>
             <AreaChart
               data={condensedHistory}>
@@ -83,8 +92,8 @@ const GenreOverTime = (props) => {
               <Area type="natural" dataKey="count" strokeWidth={2} stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)"/>
             </AreaChart>
           </ResponsiveContainer>
-          <p>{value} albums account for {Math.floor((history.length/7700)*100)}% of all chart entries on this chart</p>
-          <p>Out of 5778 unique albums, {value} albums number {number}</p>
+          <p>Out of 5778 unique albums, {genreName} albums number {number}, or {Math.floor(number/5778*100)}% of all unique albums appearing on this chart</p>
+          <BarGenreChart currentGenre = {genreName}/>
         </div>
     
       );
