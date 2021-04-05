@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/", async (req,res)=> {
     try {
-        const data =  await Chart.find();
+        const data =  await Chart.find({}).populate({path: "album"});
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(data);
     } catch (error) {
@@ -17,19 +17,28 @@ router.get("/", async (req,res)=> {
 
 router.get("/:year", async (req,res)=> {
     try {
-        const data =  await Chart.find({year: req.params.year}).sort({rank: "ascending"});
-        let newdata = data.map(async element => {
-            let id = new mongoose.Types.ObjectId(element.album)
-            let obj = await Albums.find({_id: id})
-            return obj[0];
-        })
-        let results = await Promise.all(newdata);
-        console.log(results);
+        const data =  await Chart.find({year: req.params.year}).populate({path: "album"}).sort({rank: "ascending"});
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-        res.status(200).json(results);
+        res.status(200).json(data);
+    } catch (error) {
+        console.log(error)
+        res.status(404).json({message: error.message});
+    }
+});
+
+
+
+//returns top <genre here> albums of that chart year.
+router.get("/:year/:genre", async (req,res)=> {
+    try {
+        const data =  await Chart.find({year: req.params.year}).populate({path: "album"}).sort({rank: "ascending"});
+        let result = data.filter((element)=> element.album.genre === req.params.genre);
+        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+        res.status(200).json(result);
     } catch (error) {
         res.status(404).json({message: error.message});
     }
 });
+
 
 export default router;
