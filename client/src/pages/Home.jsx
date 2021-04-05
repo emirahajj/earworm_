@@ -25,14 +25,6 @@ const Home = () => {
         setChartYear(year)
     }
 
-    const getRank = (chartPositions) => {
-        for (let i = 0; i < chartPositions.length; i++) {
-            if (parseInt(chartPositions[i].year) === chartYear) {
-                return chartPositions[i].rank
-            }
-        }
-    }
-
     return (
         <div>
             <Navbar />
@@ -47,12 +39,12 @@ const Home = () => {
                             return (
                                 <Entry
                                     key={entry._id}
-                                    id= {entry._id}
-                                    rank={getRank(entry.chart_positions)}
+                                    id= {entry["album"]._id}
+                                    rank={entry.rank}
                                     year={chartYear}
-                                    title={entry.title}
-                                    artist={entry.artist}
-                                    cover={entry.img}
+                                    title={entry["album"].title}
+                                    artist={entry["album"].artist}
+                                    cover={entry["album"].img}
                                 />
                             )
                         })}
@@ -63,7 +55,7 @@ const Home = () => {
                     <Fact />
                     <Fact />
                     <Label text="Top 100 Albums by Genre" />
-                    <GenrePie year = {chartYear} albums = {chart}/>
+                    <GenrePie type= "yearly" year = {chartYear} albums = {chart}/>
                 </section>
             </div>
         </div>

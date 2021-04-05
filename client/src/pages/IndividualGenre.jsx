@@ -5,6 +5,7 @@ import Label from "../components/Label"
 import GenreOverTime from "../components/GenreOverTime"
 import Chart from "../components/Chart"
 import {fetchGenre} from "../api/index"
+import GenrePie from "../components/GenrePie";
 
 const IndividualGenre = ({match:{params:{genreId}}}) => {
 
@@ -22,6 +23,7 @@ const IndividualGenre = ({match:{params:{genreId}}}) => {
                     </div>
                     <div>
                         <GenreOverTime genre = {genreId}/>
+                        {/* <GenrePie albums= {}/> */}
                     </div>
                 </div>
 

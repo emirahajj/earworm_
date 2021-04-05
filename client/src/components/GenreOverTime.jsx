@@ -1,22 +1,32 @@
 import "../App.css"
 import {useEffect, useState} from 'react'
-import { fetsGenreHistory } from "../api";
+import { fetsGenreHistory, fetchAllAlbumsInGenre } from "../api";
 import {ResponsiveContainer, AreaChart, XAxis, YAxis, Tooltip, Area} from 'recharts'
 
 
 const GenreOverTime = (props) => {
     const [value, setValue] = useState(props.genre);
     const [history, setHistory] = useState([]);
+    const [number, setNumber] = useState(0);
     const [condensedHistory, setCondensedHistory] = useState([]);
 
     const makeArray = () =>{
       return Array.from({length : 51}, (_, i)=> i + 1970);
     }
 
+    useEffect(() => {
+      fetchAllAlbumsInGenre(value).then((res)=>{
+        setNumber(res.data.length);
+      })
+
+    }, [value])
+
           
     useEffect(() => {
       fetsGenreHistory(value).then((res)=>{
         setHistory(res.data);
+
+
       })
       }, [value])
 
@@ -49,7 +59,7 @@ const GenreOverTime = (props) => {
       return (
         <div className="mt-4">
 
-          <h1 className="text-3xl mt-3 mb-3 text-white text-center">{value} by Year</h1>
+          <h1 className="text-3xl mt-3 font-bold mb-3 text-white text-center">{value} by Year</h1>
           <ResponsiveContainer width="100%" height={400}>
             <AreaChart
               data={condensedHistory}>
@@ -60,7 +70,7 @@ const GenreOverTime = (props) => {
                 </linearGradient>
               </defs>
     
-              <XAxis dataKey="year" interval={5} dx={50}/>
+              <XAxis dataKey="year" interval={4} dx={50}/>
               <YAxis type="number" domain={[0, 60]}/>
               <Tooltip
                 contentStyle={{
@@ -73,6 +83,8 @@ const GenreOverTime = (props) => {
               <Area type="natural" dataKey="count" strokeWidth={2} stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)"/>
             </AreaChart>
           </ResponsiveContainer>
+          <p>{value} albums account for {Math.floor((history.length/7700)*100)}% of all chart entries on this chart</p>
+          <p>Out of 5778 unique albums, {value} albums number {number}</p>
         </div>
     
       );

@@ -35,14 +35,6 @@ const Chart = (props) => {
         setChartYear(year)
     }
 
-    const getRank = (chartPositions) => {
-        for (let i = 0; i < chartPositions.length; i++) {
-            if (parseInt(chartPositions[i].year) === chartYear) {
-                return chartPositions[i].rank
-            }
-        }
-    }
-
     return(
         <section className="ml-10 w-96 fade-in">
         <Label text={(props.type === "byYear") ? "Billboard 200 Albums": `Top ${props.genre} Albums`} />
@@ -52,12 +44,12 @@ const Chart = (props) => {
                 return (
                     <Entry
                         key={entry._id}
-                        id= {entry._id}
-                        rank={getRank(entry.chart_positions)}
+                        id= {entry["album"]._id}
+                        rank={entry.rank}
                         year={chartYear}
-                        title={entry.title}
-                        artist={entry.artist}
-                        cover={entry.img}
+                        title={entry["album"].title}
+                        artist={entry["album"].artist}
+                        cover={entry["album"].img}
                     />
                 )
             })}

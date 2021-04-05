@@ -12,7 +12,7 @@ export const fetchArtists = () => {
 export const fetchGenres = () => { 
     return axios.get(`${url}/genres`)
   };
-export const fetchChart = (year) => { 
+export const fetchChart = () => { 
     return axios.get(`${url}/charts`)
   };
 
@@ -30,6 +30,10 @@ export const fetchChartYear = (year) => {
 export const fetchGenre = (genre) => { 
     return axios.get(`${url}/genres/${genre}`)
   };
+export const fetchAllAlbumsInGenre = (genre) => { 
+    return axios.get(`${url}/albums/all/${genre}`)
+  };
+
 
   export const fetsGenreHistory = (genre) => { 
     return axios.get(`${url}/genres/all/${genre}`)

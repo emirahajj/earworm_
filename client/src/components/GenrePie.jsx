@@ -22,21 +22,23 @@ var colors = [
   ];
 
 const GenrePie = (props) => {
-    //const [albumIDArray, setAlbumIDArray] = useState(props)
-    const [albumFullArray, setAlbumFullArray] = useState([props.albums])
+    const [albumFullArray, setAlbumFullArray] = useState([])
     const [stat, setStat] = useState([])
-    //let array = props.albums;
+
+
+    //make two different API calls depending on the value of
+    //props.type: yearly = fetchChartYear allTime = fetchChart
 
     useEffect(() => {
         setAlbumFullArray(props.albums)
-        //let myStatObj = createStat();
-        //console.log(myStatObj)
+
 
     }, [props])
 
     useEffect(() => {
         const grouped = albumFullArray.reduce((groups, cur)=> {
-            const key = cur.genre;
+            const key = cur.album.genre;
+            console.log(key)
             groups[key] = (groups[key] || 0) + 1;
             return groups;
         }, {});

@@ -26,4 +26,14 @@ router.get("/:id", async (req,res)=> {
     }
 });
 
+router.get("/all/:genre", async (req,res)=> {
+    try {
+        const data =  await Album.find({genre: req.params.genre});
+        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(404).json({message: error.message});
+    }
+});
+
 export default router;

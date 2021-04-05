@@ -34,11 +34,10 @@ returns an array like : [
     {"year": 1970, "genre": Pop}
 ]
 */
-
 router.get("/all/:genre", async (req,res)=> {
     try {
         const data =  await Chart.find().sort({year: -1, rank: 1}).populate({path: 'album'});
-        let newdata = data.map(async element => {
+        let newdata = data.map(element => {
             let genre = element["album"]["genre"]
             let newObj = {
                 year: element.year,
@@ -46,8 +45,7 @@ router.get("/all/:genre", async (req,res)=> {
             }
             return (genre === req.params.genre) ? newObj : false;
         })
-         let results = await Promise.all(newdata);
-         let newresults = results.filter(Boolean);
+         let newresults = newdata.filter(Boolean);
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(newresults);
     } catch (error) {
