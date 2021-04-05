@@ -70,7 +70,7 @@ const BarGenreChart = (props) => {
                 </linearGradient>
               </defs>
               <XAxis hide={true} type="number" domain={[0, 'dataMax']}/>
-              <YAxis hide={true} type="category" dataKey="genre"/>
+              <YAxis hide={true} type="category" dataKey="genre" domain={[0, 'dataMax']}/>
               <Bar barSize={60} dataKey="count" radius={8}>
                 <LabelList dataKey="genre" position="right" fill="#FFFFFF"/>
                 <LabelList dataKey="count" position="left" fill="#FFFFFF"/> {stat.map((entry, index) => (

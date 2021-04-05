@@ -22,19 +22,17 @@ const GenreOverTime = (props) => {
       return Array.from({length : 51}, (_, i)=> i + 1970);
     }
 
-    useEffect(() => {
-      //returns
-      fetchAllAlbumsInGenre(genreName).then((res)=>{
-        setNumber(res.data.length);
-      })
+    // useEffect(() => {
+    //   //returns
+    //   fetchAllAlbumsInGenre(genreName).then((res)=>{
+    //     setNumber(res.data.length);
+    //   })
 
-    }, [genreName])
+    // }, [genreName])
 
     useEffect(() => {
       fetsGenreHistory(genreName).then((res)=>{
         setHistory(res.data);
-
-
       })
       }, [genreName])
 
@@ -80,7 +78,7 @@ const GenreOverTime = (props) => {
               </defs>
     
               <XAxis dataKey="year" interval={4} dx={50}/>
-              <YAxis type="number" domain={[0, 60]}/>
+              <YAxis type="number" domain={[0, 15]}/>
               <Tooltip
                 contentStyle={{
                 backgroundColor: "transparent",
@@ -89,11 +87,9 @@ const GenreOverTime = (props) => {
                 labelStyle={{
                 color: "#FFFFFF"
               }}/>
-              <Area type="natural" dataKey="count" strokeWidth={2} stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)"/>
+              <Area type="basis" dataKey="count" strokeWidth={2} stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)"/>
             </AreaChart>
           </ResponsiveContainer>
-          <p>Out of 5778 unique albums, {genreName} albums number {number}, or {Math.floor(number/5778*100)}% of all unique albums appearing on this chart</p>
-          <BarGenreChart currentGenre = {genreName}/>
         </div>
     
       );

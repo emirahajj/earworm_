@@ -26,22 +26,6 @@ const GenrePie = (props) => {
     const [stat, setStat] = useState([])
 
 
-    //make two different API calls depending on the value of
-    //props.type: yearly = fetchChartYear allTime = fetchChart
-
-    // useEffect(() => {
-    //   if (props.type==="yearly") {
-    //     fetchChartYear(props.year).then((res)=> {
-    //       console.log(res.data);
-    //       setAlbumFullArray(res.data);
-    //     })
-    //   } else {
-    //     fetchChart().then((res)=>{
-    //       console.log(res.data);
-    //       setAlbumFullArray(res.data)
-    //     })
-    //   }
-    // }, [props])
     useEffect(() => {
       setAlbumFullArray(props.chartyear);
 
