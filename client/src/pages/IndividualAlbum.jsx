@@ -1,15 +1,21 @@
 import React from "react";
 import Navbar from "../components/Navbar"
 import {useState, useEffect} from 'react'
-import {fetchAlbum, fetchArtist} from '../api/index'
+import {fetchAlbum, fetchArtist, fetchToken} from '../api/index'
 import AlbumModal from '../components/AlbumModal'
+import SpotifyWebApi from 'spotify-web-api-js'
+
+
+
 
 const IndividualAlbum = ({match:{params:{albumId}}}) => {
+
    const [artistName, setArtistName] = useState(" ");
    const [albumName, setAlbumName] = useState(" ");
    const [genre, setGenre] = useState(" ");
    const [date, setDate] = useState(0);
    const [image, setImage] = useState(" ");
+   const [spotifyID, setSpotifyID] = useState(" ");
 
    useEffect(()=>{
        fetchAlbum(albumId).then((res)=>{
@@ -20,6 +26,20 @@ const IndividualAlbum = ({match:{params:{albumId}}}) => {
            setImage(res.data[0].img);
        })
    }, []);
+
+   useEffect(()=>{
+       fetchToken().then((res)=> {
+           let spotify = new SpotifyWebApi();
+           spotify.setAccessToken(res.data.body["access_token"]);
+           console.log(res.data.body["access_token"])
+           spotify.searchAlbums(`${albumName}, ${artistName}`).then((data)=>{
+               setSpotifyID(data.albums.items[0].id);
+           }).catch((err)=>{
+               console.log(err);
+           })
+       })
+    }, [albumName, artistName]);
+   
     return (
         <div>
             <Navbar />
@@ -36,7 +56,7 @@ const IndividualAlbum = ({match:{params:{albumId}}}) => {
 
                 <div className="">
                     <div>
-                        <h1>Spotify widget goes here</h1>
+                    <iframe src={"https://open.spotify.com/embed/album/" + spotifyID} width="392" height="472" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                     </div>
                     
                     <div>

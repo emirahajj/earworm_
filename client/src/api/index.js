@@ -60,5 +60,7 @@ export const fetchChartYearByGenre = (genre, year) => {
 };
 
 
-
+export const fetchToken = () => { 
+  return axios.get(`${url}/token`)
+};
 

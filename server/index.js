@@ -7,10 +7,13 @@ import artistRoutes from './routes/artists.js'
 import genreRoutes from './routes/genres.js'
 import chartRoutes from './routes/chartYear.js'
 import dotenv from 'dotenv'
+import SpotifyWebApi from 'spotify-web-api-node'
 
 
 const app = express();
 dotenv.config();
+
+
 
 app.use('/artists', artistRoutes);
 app.use('/albums', albumRoutes);
@@ -25,6 +28,9 @@ app.use(cors());
 //we're going to use mongodb atlas
 const PORT = process.env.port || 5000;
 
+
+
+
 const connectionparams = {useNewUrlParser: true, useUnifiedTopology: true}
 
 const connection = mongoose.connect(process.env.CONNECTION_URL, connectionparams)
@@ -34,6 +40,34 @@ const connection = mongoose.connect(process.env.CONNECTION_URL, connectionparams
 .catch((error)=> console.log(error.message));
 
 mongoose.set('useFindAndModify', false);
+
+var clientId = 'e72f5c3554b441d19f96a0c1154048bb',
+  clientSecret = '66fbca7985d84036a86a01f0d5cb8b41';
+
+
+var sAPI = new SpotifyWebApi({
+    clientId: clientId,
+    clientSecret: clientSecret
+});
+// Create the api object with the credentials
+// Retrieve an access token.
+
+
+app.use("/token", (req,res)=> {
+    sAPI.clientCredentialsGrant().then(
+        function(data) {
+            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+            res.status(200).json(data);
+      
+          // Save the access token so that it's used in future calls
+          sAPI.setAccessToken(data.body['access_token']);
+        },
+        function(err) {
+            res.status(404).json({message: error.message});
+        }
+      );
+});
+
 
 // let alby = [];
 // let albums = async () => {
