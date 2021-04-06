@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import logo from "../img/icon.png"
 
-const ArtistsThumbImg = (props) => {
-    const [artistImg, setArtistImg] = useState(null);
+const ArtistBio = (props) => {
+    const [artistBio, setArtistBio] = useState(null);
     let artist_name = props.name.replace(" ", "%20");
     const artist_url = "https://theaudiodb.p.rapidapi.com/search.php?s=" + artist_name;
     useEffect(() => {
@@ -16,7 +16,7 @@ const ArtistsThumbImg = (props) => {
             .then((response) => response.json())
             .then(jsonResponse => {
                 if (jsonResponse['artists'] !== null) {
-                    setArtistImg(jsonResponse['artists']['0'].strArtistThumb)
+                    setArtistBio(jsonResponse['artists']['0'].strBiographyEN)
                 }
             })
             .catch(err => {
@@ -27,10 +27,10 @@ const ArtistsThumbImg = (props) => {
 
     return (
         <div>
-            {(artistImg ?
-                <img src={artistImg} alt="N/A"></img>
+            {(artistBio ?
+                <p className="text-justify">{artistBio}</p>
                 :
-                <img src={logo} alt="Album Cover"></img>
+                <p> Bio Not Available</p>
             )}
         </div>
     );
@@ -39,4 +39,4 @@ const ArtistsThumbImg = (props) => {
 
 }
 
-export default ArtistsThumbImg
+export default ArtistBio
