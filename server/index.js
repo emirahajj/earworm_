@@ -41,8 +41,8 @@ const connection = mongoose.connect(process.env.CONNECTION_URL, connectionparams
 
 mongoose.set('useFindAndModify', false);
 
-var clientId = 'e72f5c3554b441d19f96a0c1154048bb',
-  clientSecret = '66fbca7985d84036a86a01f0d5cb8b41';
+var clientId = process.env.SPOTIFY_CLIENT_ID,
+  clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
 
 var sAPI = new SpotifyWebApi({
