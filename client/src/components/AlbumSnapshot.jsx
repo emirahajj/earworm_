@@ -14,7 +14,7 @@ const AlbumSnapshot = ({image, albumName, date, artistName}) => {
                 </span>
             </div>
         </div>
-        <h1 className="text-2xl text-gray-400">{artistName}</h1>
+        <Link className="text-2xl text-gray-400" to={"/artists/"+ artistName.replace(" ", "-")}> {artistName}</Link>
         <p>brief description here</p>
     </div>
     )
