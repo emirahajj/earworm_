@@ -14,15 +14,17 @@ router.get("/", async (req, res) => {
     }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:name", async (req, res) => {
     try {
-        let id = new mongoose.Types.ObjectId(req.params.id)
-        const data = await Artist.find({ _id: id });
+        let formattedName = req.params.name.replace('%20', ' ')
+        const data = await Artist.find({ name: formattedName });
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(data);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
 });
+
+
 
 export default router;

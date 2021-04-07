@@ -7,8 +7,10 @@ const Entry = (props) => {
             <h1 className="bg-dark text-center mr-5 py-1 px-4 rounded-full font-bold shadow-md">{props.rank}</h1>
             <Image source={props.cover} />
             <div className="ml-5">
-                <Link className="font-bold" to={"/albums/" + props.id}>{props.title}</Link>
-                <p>{props.artist}</p>
+                <Link className="font-bold block" to={"/albums/" + props.id}>{props.title}</Link>
+                <Link className="text-gray-400" to={"/artists/" + props.artist.replace(' ', '-')}>{props.artist}</Link>
+
+                {/* <p className="text-gray-400">{props.artist}</p> */}
             </div>
         </div>
     )

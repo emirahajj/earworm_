@@ -38,7 +38,7 @@ const IndividualGenre = ({match:{params:{genreId}}}) => {
 
                         <div className="ml-4">
                             <h1 className="text-3xl  font-bold">{genreId}</h1>
-                            <p className= "">{genreObject.description}</p>
+                            <p className= "">{genreObject.desc}</p>
                         </div>
                     </div>
                     <div>

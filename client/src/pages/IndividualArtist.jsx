@@ -6,13 +6,13 @@ import AlbumModal from '../components/AlbumModal'
 import ArtistsThumbImg from "../components/ArtistsThumbImg"
 import ArtistsBio from "../components/ArtistBio"
 
-const IndividualArtist = ({ match: { params: { artistId } } }) => {
+const IndividualArtist = ({ match: { params: { artist_name } } }) => {
     const [artistName, setArtistName] = useState(" ");
     const [albumIdArray, setAlbumIdArray] = useState([]);
     const [genreArray, setGenreArray] = useState([]);
 
     useEffect(() => {
-        fetchArtist(artistId).then((res) => {
+        fetchArtist(artist_name.replace('-', '%20')).then((res) => {
             setArtistName(res.data[0].name);
             setAlbumIdArray(res.data[0].albums);
             setGenreArray(res.data[0].genres);

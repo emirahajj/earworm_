@@ -24,8 +24,8 @@ export const fetchArtists = () => {
   return axios.get(`${url}/artists`)
 };
 //returns one unique artist
-export const fetchArtist = (id) => { 
-    return axios.get(`${url}/artists/${id}`)
+export const fetchArtist = (name) => { 
+    return axios.get(`${url}/artists/${name}`)
 };
 
 //-------GENRES ROUTES--------------//
@@ -58,8 +58,6 @@ export const fetchChartYear = (year) => {
 export const fetchChartYearByGenre = (genre, year) => { 
   return axios.get(`${url}/charts/${year}/${genre}`)
 };
-
-
 export const fetchToken = () => { 
   return axios.get(`${url}/token`)
 };

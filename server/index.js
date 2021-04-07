@@ -8,7 +8,11 @@ import genreRoutes from './routes/genres.js'
 import chartRoutes from './routes/chartYear.js'
 import dotenv from 'dotenv'
 import SpotifyWebApi from 'spotify-web-api-node'
-
+import entries from './final.js'
+import Album from './models/Albums.js'
+import Artist from './models/Artists.js'
+import Chart from './models/Charts.js'
+import Genre from './models/Genres.js'
 
 const app = express();
 dotenv.config();
@@ -104,6 +108,7 @@ app.use("/token", (req,res)=> {
 //       duration: number,
 //       release: b,
 //       styles: element.subgenres,
+//       awards: element.awards,
 //       $addToSet: {chart_positions: newChartPos}
 //     }
 //     //search for album using artist and title
