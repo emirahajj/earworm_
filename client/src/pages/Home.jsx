@@ -9,6 +9,7 @@ import Entry from "../components/Entry"
 import Fact from "../components/Fact"
 import GenrePie from "../components/GenrePie"
 import GenreOverTime from '../components/GenreOverTime';
+import Chart from '../components/Chart';
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
@@ -29,10 +30,9 @@ const Home = () => {
         <div>
             <Navbar />
             <div className="grid grid-flow-col gap-20">
+                
                 <section className="ml-10 w-96 fade-in">
                     <Label text="Billboard Top Albums" />
-
-                    {/* Chart  */}
                     <Dropdown year={chartYear} onChange={onYearChange} />
                     <div className="flex flex-col p-5">
                         {chart.slice(0, 10).map((entry) => {
@@ -50,6 +50,7 @@ const Home = () => {
                         })}
                     </div>
                 </section>
+
                 <section className="col-span-2 fade-in">
                     <Label text="Statistics" />
                     <Fact />

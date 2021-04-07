@@ -21,7 +21,10 @@ module.exports = {
             },
             fontFamily: {
                 'montserrat': ['Montserrat'],
-            }
+            },
+            spacing: {
+                '100': '448px',
+              }
         },
     },
     variants: {

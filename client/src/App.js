@@ -18,7 +18,7 @@ const App = () => {
                     <Route path="/" exact component={Landing} />
                     <Route path="/home" component={Home} />
                     <Route exact path="/artists" component={Artists} />
-                    <Route path="/artists/:artistId" component={IndividualArtist} />
+                    <Route path="/artists/:artist_name" component={IndividualArtist} />
                     <Route path="/about" component={About} />
                     <Route exact path="/genres" component={Genres} />
                     <Route path="/genres/:genreId" component={IndividualGenre} />
