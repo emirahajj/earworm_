@@ -9,7 +9,7 @@ const ArtistsThumbImg = (props) => {
         fetch(artist_url, {
             "method": "GET",
             "headers": {
-                "x-rapidapi-key": "PASS", //PASSWORD HERE!
+                "x-rapidapi-key": "3ed5717cfamsh84335cd3dde52fcp14b904jsn0282abb98094", //PASSWORD HERE!
                 "x-rapidapi-host": "theaudiodb.p.rapidapi.com"
             }
         })
@@ -30,7 +30,7 @@ const ArtistsThumbImg = (props) => {
             {(artistImg ?
                 <img src={artistImg} alt="N/A"></img>
                 :
-                <img src={logo} alt="Album Cover"></img>
+                <img className="m-auto" src={logo} alt="Album Cover"></img>
             )}
         </div>
     );
