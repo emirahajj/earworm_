@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import logo from "../img/icon.png"
+
 
 const ArtistBio = (props) => {
     const [artistBio, setArtistBio] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
+
     let artist_name = props.name.replace(" ", "%20");
     const artist_url = "https://theaudiodb.p.rapidapi.com/search.php?s=" + artist_name;
     useEffect(() => {
@@ -26,12 +28,16 @@ const ArtistBio = (props) => {
 
 
     return (
-        <div>
-            {(artistBio ?
-                <p className="text-justify">{artistBio}</p>
-                :
-                <p> Bio Not Available</p>
-            )}
+        <div className="collapsible">
+            <button className="toggle" onClick={() => setIsOpen(!isOpen)}>Toggle</button>
+            {isOpen &&
+                <div className="content">
+                    {(artistBio ?
+                        <p className="text-justify">{artistBio}</p>
+                        :
+                        <p> Bio Not Available</p>
+                    )}
+                </div>}
         </div>
     );
 
