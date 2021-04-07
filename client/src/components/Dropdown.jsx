@@ -9,9 +9,9 @@ const Dropdown = ({ year, onChange }) => {
     const [open, setOpen] = useState(false)
     const transition = useTransition(open, {
         from: { 
-            position: 'absolute',
-            top: '208px',
-            left: '144px',
+            position: 'relative',
+            top: 10,
+            left: -176,
             opacity: 0, 
             transform: 'translate3d(0px,-5px,0px)',
             pointerEvents: 'none' 

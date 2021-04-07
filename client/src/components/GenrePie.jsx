@@ -32,7 +32,7 @@ const GenrePie = (props) => {
     }, [props])
 
     useEffect(() => {
-        const grouped = albumFullArray.reduce((groups, cur)=> {
+        const grouped = albumFullArray.filter((element)=> element.rank < 101).reduce((groups, cur)=> {
             const key = cur.album.genre;
             //console.log(key)
             groups[key] = (groups[key] || 0) + 1;
