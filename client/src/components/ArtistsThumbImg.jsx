@@ -30,7 +30,7 @@ const ArtistsThumbImg = (props) => {
             {(artistImg ?
                 <img src={artistImg} alt="N/A"></img>
                 :
-                <img src={logo} alt="Album Cover"></img>
+                <img className="m-auto" src={logo} alt="Album Cover"></img>
             )}
         </div>
     );

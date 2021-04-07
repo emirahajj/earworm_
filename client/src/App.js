@@ -11,7 +11,7 @@ import IndividualAlbum from './pages/IndividualAlbum';
 
 const App = () => {
     return (
-        
+
         <Router>
             <div>
                 <Switch>

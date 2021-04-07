@@ -6,10 +6,14 @@ import AlbumModal from '../components/AlbumModal'
 import ArtistsThumbImg from "../components/ArtistsThumbImg"
 import ArtistsBio from "../components/ArtistBio"
 
+
+
 const IndividualArtist = ({ match: { params: { artistId } } }) => {
     const [artistName, setArtistName] = useState(" ");
     const [albumIdArray, setAlbumIdArray] = useState([]);
     const [genreArray, setGenreArray] = useState([]);
+
+
 
     useEffect(() => {
         fetchArtist(artistId).then((res) => {
@@ -24,7 +28,7 @@ const IndividualArtist = ({ match: { params: { artistId } } }) => {
             <div className="grid grid-cols-1 lg:grid-cols-6">
                 <div className="flex flex-col mx-4 lg:col-span-4">
                     <div className="flex flex-row">
-                        <div className="rounded-full w-96">
+                        <div className="flex-none w-72 h-72 rounded-full overflow-hidden shadow-md ml-12">
                             <ArtistsThumbImg name={artistName} />
                         </div>
                         <div className="ml-4">
@@ -35,9 +39,10 @@ const IndividualArtist = ({ match: { params: { artistId } } }) => {
                         </div>
 
                     </div>
-                    <div className="flex justify-center mt-6">
+                    <div className="flex justify-center mt-6 ml-12">
                         <ArtistsBio name={artistName} />
                     </div>
+
                     <div className="flex justify-center mt-6">
                         <div>
                             <h1 className="text-4xl font-bold mb-5">Albums</h1>
@@ -54,7 +59,7 @@ const IndividualArtist = ({ match: { params: { artistId } } }) => {
 
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
 
