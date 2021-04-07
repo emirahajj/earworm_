@@ -1,5 +1,9 @@
 import React from "react";
 import Navbar from "../components/Navbar"
+import GrammyRecap from "../components/GrammyRecap"
+import ChartPosRecap from "../components/ChartPosRecap"
+import AlbumSnapshot from "../components/AlbumSnapshot"
+import SpotifyWidget from "../components/SpotifyWidget"
 import {useState, useEffect} from 'react'
 import {fetchAlbum, fetchArtist, fetchToken} from '../api/index'
 import AlbumModal from '../components/AlbumModal'
@@ -21,6 +25,7 @@ const IndividualAlbum = ({match:{params:{albumId}}}, props) => {
    const [image, setImage] = useState(" ");
    const [spotifyID, setSpotifyID] = useState("");
    const [awards, setAwards] = useState([]);
+   const [chartPos, setChartPos] = useState([]);
 
    useEffect(()=>{
        fetchAlbum(albumId).then((res)=>{
@@ -31,6 +36,7 @@ const IndividualAlbum = ({match:{params:{albumId}}}, props) => {
            setDate(object.release);
            setImage(object.img);
            setAwards(object.awards);
+           setChartPos(object.chart_positions);
            console.log(object)
 
            fetchToken().then((res)=> {
@@ -52,33 +58,12 @@ const IndividualAlbum = ({match:{params:{albumId}}}, props) => {
     return (
         <div>
             <Navbar />
-            <div className="grid grid-cols-1 gap-10 md:grid-cols-7">
-                <div className="album-side col-span-3 ml-10 flex flex-col">
-                    <img className="rounded-3xl w-auto" src={image} alt=""/>
-                    <div className="flex flex-row w-full mt-3 justify-between">
-                        <h1 className="text-5xl font-bold">{albumName}</h1>
-                        <span>
-                        <h1 className="text-4xl font-light" >{date}</h1>
-                        </span>
-                    </div>
-                    <h1 className="text-2xl mt-1 text-gray-400">{artistName}</h1>
-                    <p>brief description here</p>
-                    {awards.length > 0 ?  
-                    <p>{albumName} garnered {awards.length} Grammy's for {artistName}</p> : <p></p>
-                    }
-                </div>
-
-                <div className="spotify-side col-span-4">
-                    <div className= "flex justify-center">
-                    {spotifyID !== "" ? 
-                        (<iframe src={spotifyID} width="392" height="472" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>)
-                        : (<p></p>)
-                    }
-                    </div>
-                    
-                    <div>
-                        <h1>More albums by {artistName}: </h1>
-                    </div>
+            <div className="flex flex-col justify-around lg:flex-row mt-20">
+                <AlbumSnapshot image={image} albumName={albumName} date= {date} artistName={artistName}/>
+                <div className="spotify-side w-100">
+                    <SpotifyWidget spotifyID= {spotifyID}/>                    
+                    <ChartPosRecap positions={chartPos}/>
+                    <GrammyRecap awards= {awards} artist= {artistName}/>
                 </div>
             </div>
 
