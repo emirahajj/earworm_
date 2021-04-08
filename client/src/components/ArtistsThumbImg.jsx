@@ -9,7 +9,7 @@ const ArtistsThumbImg = (props) => {
         fetch(artist_url, {
             "method": "GET",
             "headers": {
-                "x-rapidapi-key": "<pass>", //PASSWORD HERE!
+                "x-rapidapi-key": "PASS", //PASSWORD HERE!
                 "x-rapidapi-host": "theaudiodb.p.rapidapi.com"
             }
         })
