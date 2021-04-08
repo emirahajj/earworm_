@@ -6,7 +6,7 @@ const ArtistsThumb = (props) => {
         <Link to={"/artists/" + props.name.replace(' ', '-')}>
             <div className="flex justify-start items-center ml-5 mb-8">
                 <div className="flex-none w-24 h-24 rounded-2xl overflow-hidden shadow-md ml-12">
-                    <ArtistsThumbImg name={props.name.replace(' ', '-')} />
+                    <ArtistsThumbImg name={props.name} />
                 </div>
                 <div>
                     <p className="ml-6 w-5">{props.name}</p>
