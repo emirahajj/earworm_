@@ -6,8 +6,10 @@ import albumRoutes from './routes/albums.js'
 import artistRoutes from './routes/artists.js'
 import genreRoutes from './routes/genres.js'
 import chartRoutes from './routes/chartYear.js'
+import audiodbRoutes from './routes/audiodb.js'
 import dotenv from 'dotenv'
 import SpotifyWebApi from 'spotify-web-api-node'
+import axios from 'axios'
 import entries from './final.js'
 import Album from './models/Albums.js'
 import Artist from './models/Artists.js'
@@ -23,6 +25,7 @@ app.use('/artists', artistRoutes);
 app.use('/albums', albumRoutes);
 app.use('/charts', chartRoutes);
 app.use('/genres', genreRoutes);
+app.use('/audiodb', audiodbRoutes);
 
 //setting up body parser so we can send requests
 app.use(bodyParser.json({limit: "30mb", extended: true}));
@@ -31,10 +34,6 @@ app.use(cors());
 
 //we're going to use mongodb atlas
 const PORT = process.env.port || 5000;
-
-
-
-
 const connectionparams = {useNewUrlParser: true, useUnifiedTopology: true}
 
 const connection = mongoose.connect(process.env.CONNECTION_URL, connectionparams)

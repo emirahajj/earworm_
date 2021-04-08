@@ -5,18 +5,13 @@ import ChartPosRecap from "../components/ChartPosRecap"
 import AlbumSnapshot from "../components/AlbumSnapshot"
 import SpotifyWidget from "../components/SpotifyWidget"
 import {useState, useEffect} from 'react'
-import {fetchAlbum, fetchArtist, fetchToken} from '../api/index'
-import AlbumModal from '../components/AlbumModal'
+import {fetchAlbum, fetchAudiodbAlbum, fetchToken} from '../api/index'
 import SpotifyWebApi from 'spotify-web-api-js'
 
 
 
 
 const IndividualAlbum = ({match:{params:{albumId}}}, props) => {
-
-//    const [artistObj, setArtistObj] = useState({
-//        name: 
-//    }) 
 
    const [artistName, setArtistName] = useState(" ");
    const [albumName, setAlbumName] = useState(" ");
@@ -26,6 +21,7 @@ const IndividualAlbum = ({match:{params:{albumId}}}, props) => {
    const [spotifyID, setSpotifyID] = useState("");
    const [awards, setAwards] = useState([]);
    const [chartPos, setChartPos] = useState([]);
+   const [desc, setDesc] = useState(" ")
 
    useEffect(()=>{
        fetchAlbum(albumId).then((res)=>{
@@ -37,6 +33,14 @@ const IndividualAlbum = ({match:{params:{albumId}}}, props) => {
            setImage(object.img);
            setAwards(object.awards);
            setChartPos(object.chart_positions);
+
+           fetchAudiodbAlbum(object.artist, object.title).then((res)=>{
+            //
+            if (res.data['album'] !== null ){
+                setDesc(res.data['album'][0].strDescriptionEN);
+            }
+           })
+           
            console.log(object)
 
            fetchToken().then((res)=> {
@@ -52,6 +56,7 @@ const IndividualAlbum = ({match:{params:{albumId}}}, props) => {
             })
         })
        })
+
    }, [albumId]);
 
    
@@ -59,7 +64,7 @@ const IndividualAlbum = ({match:{params:{albumId}}}, props) => {
         <div>
             <Navbar />
             <div className="flex flex-col justify-around lg:flex-row mt-20">
-                <AlbumSnapshot image={image} albumName={albumName} date= {date} artistName={artistName}/>
+                <AlbumSnapshot image={image} albumName={albumName} date= {date} artistName={artistName} genre= {genre} description={desc}/>
                 <div className="spotify-side w-100">
                     <SpotifyWidget spotifyID= {spotifyID}/>                    
                     <ChartPosRecap positions={chartPos}/>

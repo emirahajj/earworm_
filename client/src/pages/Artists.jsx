@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/Navbar"
-import fetchData, { fetchArtists } from '../api/index';
+import { fetchArtists } from '../api/index';
 import "../App.css";
 import ArtistsThumb from "../components/ArtistsThumb";
-import ArtistsThumbImg from "../components/ArtistsThumbImg";
 
 const Artists = () => {
 

@@ -5,9 +5,6 @@ import "../App.css"
 import Label from "../components/Label"
 import Dropdown from "../components/Dropdown"
 import Entry from "../components/Entry"
-import Fact from "../components/Fact"
-import GenrePie from "../components/GenrePie"
-import GenreOverTime from '../components/GenreOverTime';
 
 const Chart = (props) => {
     //year integer

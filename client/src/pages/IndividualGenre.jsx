@@ -1,12 +1,9 @@
 import React, { useEffect } from "react";
 import Navbar from "../components/Navbar"
 import {useState} from "react"
-import Label from "../components/Label"
 import GenreOverTime from "../components/GenreOverTime"
 import Chart from "../components/Chart"
-import Button from "../components/Button"
 import {fetchAllAlbumsInGenre, fetchGenre} from "../api/index"
-import BarGenreChart from "../components/BarGenreChart";
 import Collapse from "@material-ui/core/Collapse"
 
 const IndividualGenre = ({match:{params:{genreId}}}) => {

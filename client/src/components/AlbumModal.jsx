@@ -12,7 +12,8 @@ const AlbumModal = (props) => {
             setAlbumTitle(res.data[0]["title"]);
             setAlbumImage(res.data[0]["img"]);
         })
-    }, [])
+    }, [props.id])
+
     return (
         <div className="w-32">
             <img className= "h-32 rounded-lg" src={AlbumImage} alt=""/>

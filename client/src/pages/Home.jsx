@@ -1,5 +1,4 @@
 import { fetchChartYear } from '../api/index';
-import { fetchChart } from "../api";
 import React, { useState, useEffect } from 'react';
 import "../App.css"
 import Navbar from "../components/Navbar"
@@ -8,8 +7,6 @@ import Dropdown from "../components/Dropdown"
 import Entry from "../components/Entry"
 import Fact from "../components/Fact"
 import GenrePie from "../components/GenrePie"
-import GenreOverTime from '../components/GenreOverTime';
-import Chart from '../components/Chart';
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);

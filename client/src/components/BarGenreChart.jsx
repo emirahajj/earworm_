@@ -1,27 +1,9 @@
 import "../App.css"
 import {useEffect, useState} from 'react'
-import { fetchAlbum, fetchChart, fetchChartYear } from "../api";
-import { Link } from "react-router-dom";
+import { fetchChart } from "../api";
 import {ResponsiveContainer, XAxis, YAxis, LabelList, Cell, Bar, BarChart} from 'recharts'
 
-var colors = [
-    "#F97470",
-    "#E7B966",
-    "#C890EA",
-    "#F88C6C",
-    "#81A8FF",
-    "#C2E98D",
-    "#8086A0",
-    "#3A7F5F",
-    "#87DCFF",
-    "#3377C6",
-    "#BD3BBC",
-    "#F19D38",
-    "#74B5AA",
-    "#5BB481"
-  ];
-
-const BarGenreChart = (props) => {
+const BarGenreChart = () => {
     const [wholeChart, setWholeChart] = useState([])
     const [stat, setStat] = useState([])
 
@@ -54,7 +36,7 @@ const BarGenreChart = (props) => {
     return (
         <div>
         <h1>Chart position breakdown:</h1>
-                  <ResponsiveContainer width="100%" height={800}>
+          <ResponsiveContainer width="100%" height={800}>
             <BarChart
               data={stat}
               layout="vertical"
