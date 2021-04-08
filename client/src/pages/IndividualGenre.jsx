@@ -32,8 +32,8 @@ const IndividualGenre = ({match:{params:{genreId}}}) => {
                     <div className="flex flex-col">
                         <div class="font-bold text-8xl">{genreId}</div>
                         <div class = "flex flex-col">
-                        <Collapse collapsedHeight={220} in={open}>
-                            {genreObject ? <p className= "font-light mt-10 text-gray-200" id= "drop">{genreObject.desc}</p>: <p></p>}
+                        <Collapse collapsedHeight={225} in={open}>
+                            {genreObject ? <p className= "font-light mt-4 text-gray-200" id= "drop">{genreObject.desc}</p>: <p></p>}
                         </Collapse>
                         <p className=" text-gray-400 text-right inline font-bold" onClick={() => setOpen(!open)} variant="custom" 
                             aria-controls="drop"

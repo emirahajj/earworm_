@@ -1,7 +1,5 @@
 import "../App.css"
 import {useEffect, useState} from 'react'
-import { fetchAlbum, fetchChart, fetchChartYear } from "../api";
-import { Link } from "react-router-dom";
 import {ResponsiveContainer, PieChart, Pie, Cell, Legend} from 'recharts'
 
 var colors = [
