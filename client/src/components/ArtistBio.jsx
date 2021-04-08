@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import {fetchAudiodbArtist} from '../api/index'
+
 import Collapse from "@material-ui/core/Collapse"
 
 const ArtistBio = (props) => {
@@ -6,26 +8,14 @@ const ArtistBio = (props) => {
     const [open, setOpen] = useState(false);
 
     let artist_name = props.name.replace(" ", "%20");
-    const artist_url = "https://theaudiodb.p.rapidapi.com/search.php?s=" + artist_name;
     useEffect(() => {
-        fetch(artist_url, {
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-key": "PASS", //PASSWORD HERE!
-                "x-rapidapi-host": "theaudiodb.p.rapidapi.com"
+        fetchAudiodbArtist(artist_name).then((res)=>{
+            if (res.data['artists'] !== null ){
+                setArtistBio(res.data['artists']['0'].strBiographyEN)
             }
-        })
-            .then((response) => response.json())
-            .then(jsonResponse => {
-                if (jsonResponse['artists'] !== null) {
-                    //Retrieving biography from audiodb 
-                    setArtistBio(jsonResponse['artists']['0'].strBiographyEN)
-                }
-            })
-            .catch(err => {
-                console.error(err);
-            });
-    }, [artist_url])
+        });
+    }, [artist_name])
+
 
 
     return (

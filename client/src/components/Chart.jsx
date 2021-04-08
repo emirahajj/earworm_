@@ -5,9 +5,6 @@ import "../App.css"
 import Label from "../components/Label"
 import Dropdown from "../components/Dropdown"
 import Entry from "../components/Entry"
-import Fact from "../components/Fact"
-import GenrePie from "../components/GenrePie"
-import GenreOverTime from '../components/GenreOverTime';
 
 const Chart = (props) => {
     //year integer
@@ -53,6 +50,8 @@ const Chart = (props) => {
                     />
                 )
             })}
+            {chart.length === 0 ? <p className="text-center mt-20 text-xl">No {props.genre} albums this chart year...</p> : <p></p> }
+
         </div>
     </section>
     )

@@ -18,7 +18,7 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
             setAlbumIdArray(res.data[0].albums);
             setGenreArray(res.data[0].genres);
         })
-    }, []);
+    }, [artist_name]);
     return (
         <div>
             <Navbar />

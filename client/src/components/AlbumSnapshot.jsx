@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-const AlbumSnapshot = ({image, albumName, date, artistName}) => {
+const AlbumSnapshot = ({image, albumName, date, artistName, genre, description}) => {
     return (
         <div className="album-side flex flex-col max-w-md">
         <div className="">
@@ -15,7 +15,7 @@ const AlbumSnapshot = ({image, albumName, date, artistName}) => {
             </div>
         </div>
         <Link className="text-2xl text-gray-400" to={"/artists/"+ artistName.replace(" ", "-")}> {artistName}</Link>
-        <p>brief description here</p>
+        <p className="mt-4">{description}</p>
     </div>
     )
 }

@@ -62,3 +62,13 @@ export const fetchToken = () => {
   return axios.get(`${url}/token`)
 };
 
+
+//-------AUDIODB ROUTE--------------//
+
+export const fetchAudiodbArtist = (query) => {
+  return axios.get(`${url}/audiodb/${query}`)
+}
+export const fetchAudiodbAlbum = (artist, album) => {
+  return axios.get(`${url}/audiodb/album/${artist}/${album}`)
+}
+
