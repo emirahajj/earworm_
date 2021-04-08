@@ -50,6 +50,8 @@ const Chart = (props) => {
                     />
                 )
             })}
+            {chart.length === 0 ? <p className="text-center mt-20 text-xl">No {props.genre} albums this chart year...</p> : <p></p> }
+
         </div>
     </section>
     )

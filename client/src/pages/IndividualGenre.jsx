@@ -29,11 +29,11 @@ const IndividualGenre = ({match:{params:{genreId}}}) => {
             <Navbar />
             <div className="grid grid-cols-1 mt-10 ml-10 lg:grid-cols-5">
                 <div className="flex flex-col lg:col-span-3">
-                    <div className="flex flex-row">
-                        <div class="rounded-full font-bold text-6xl h-64 w-64 flex items-center justify-center bg-gray-700">{genreId}</div>
+                    <div className="flex flex-col">
+                        <div class="font-bold text-8xl">{genreId}</div>
                         <div class = "flex flex-col">
                         <Collapse collapsedHeight={220} in={open}>
-                            {genreObject ? <p className= "ml-5 font-light max-w-md" id= "drop">{genreObject.desc}</p>: <p></p>}
+                            {genreObject ? <p className= "font-light mt-10 text-gray-200" id= "drop">{genreObject.desc}</p>: <p></p>}
                         </Collapse>
                         <p className=" text-gray-400 text-right inline font-bold" onClick={() => setOpen(!open)} variant="custom" 
                             aria-controls="drop"
