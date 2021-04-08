@@ -12,8 +12,6 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
     const [albumIdArray, setAlbumIdArray] = useState([]);
     const [genreArray, setGenreArray] = useState([]);
 
-
-
     useEffect(() => {
         fetchArtist(artist_name.replace('-', '%20')).then((res) => {
             setArtistName(res.data[0].name);
@@ -30,17 +28,25 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
                         <div className="flex-none w-72 h-72 rounded-full overflow-hidden shadow-md ml-12">
                             <ArtistsThumbImg name={artistName} />
                         </div>
+
                         <div className="ml-4">
                             <h1 className="text-3xl font-bold">{artistName}</h1>
                             <h2 className="text-xl"> {genreArray.map((genre, i) =>
                                 (i === genreArray.length - 1) ? genre : genre + ', '
                             )}</h2>
+                            <br />
+                            <ArtistsBio name={artistName} />
                         </div>
 
+                        {  /*<div className="flex flex-row justify-center mt-6 ml-12">                                      </div>*/}
+
+
+
+
                     </div>
-                    <div className="flex justify-center mt-6 ml-12">
-                        <ArtistsBio name={artistName} />
-                    </div>
+
+
+
 
                     <div className="flex justify-center mt-6">
                         <div>
