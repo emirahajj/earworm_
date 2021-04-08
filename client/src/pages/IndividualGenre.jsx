@@ -4,9 +4,10 @@ import {useState} from "react"
 import GenreOverTime from "../components/GenreOverTime"
 import Chart from "../components/Chart"
 import {fetchAllAlbumsInGenre, fetchGenre} from "../api/index"
+
 import Collapse from "@material-ui/core/Collapse"
 
-const IndividualGenre = ({match:{params:{genreId}}}) => {
+const IndividualGenre = ({ match: { params: { genreId } } }) => {
 
 
     const [genreObject, setGenreObject] = useState(null);
@@ -15,10 +16,10 @@ const IndividualGenre = ({match:{params:{genreId}}}) => {
 
 
     useEffect(() => {
-        fetchAllAlbumsInGenre(genreId).then((res)=>{
+        fetchAllAlbumsInGenre(genreId).then((res) => {
             setGenreCount(res.data);
         });
-        fetchGenre(genreId).then((res)=>{
+        fetchGenre(genreId).then((res) => {
             setGenreObject(res.data[0])
         });
     }, [genreId])
@@ -39,19 +40,20 @@ const IndividualGenre = ({match:{params:{genreId}}}) => {
                             aria-controls="drop"
                             aria-expanded={open}>{open? "Less": "More"}
                         </p>
+
                         </div>
 
 
 
                     </div>
                     <div className="mt-16">
-                        <GenreOverTime genre = {genreId}/>
-                        <p>Out of 5778 unique albums apprering on this chart, {genreId} accounts for {genreCount.length} albums, or {Math.floor(genreCount.length/5778 * 100)}% of unique albums</p>
+                        <GenreOverTime genre={genreId} />
+                        <p>Out of 5778 unique albums apprering on this chart, {genreId} accounts for {genreCount.length} albums, or {Math.floor(genreCount.length / 5778 * 100)}% of unique albums</p>
                     </div>
                 </div>
 
                 <div className="lg:col-span-2">
-                <Chart type= "byGenre" genre= {genreId}/>
+                    <Chart type="byGenre" genre={genreId} />
 
                 </div>
             </div>
