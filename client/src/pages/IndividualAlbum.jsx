@@ -11,6 +11,7 @@ import SpotifyWebApi from 'spotify-web-api-js'
 
 
 
+
 const IndividualAlbum = ({ match: { params: { albumId } } }, props) => {
 
     const [artistName, setArtistName] = useState(" ");
@@ -38,11 +39,9 @@ const IndividualAlbum = ({ match: { params: { albumId } } }, props) => {
                 //
                 if (res.data['album'] !== null) {
                     setDesc(res.data['album'][0].strDescriptionEN);
+                    console.log(res.data)
                 }
             })
-
-            console.log(object)
-
             fetchToken().then((res) => {
                 let spotify = new SpotifyWebApi();
                 spotify.setAccessToken(res.data.body["access_token"]);
@@ -64,7 +63,7 @@ const IndividualAlbum = ({ match: { params: { albumId } } }, props) => {
         <div>
             <Navbar />
             <div className="flex flex-col justify-around lg:flex-row mt-10 text-justify">
-                <AlbumSnapshot image={image} albumName={albumName} date={date} artistName={artistName} genre={genre} description={desc} />
+                <AlbumSnapshot image={image} albumName={albumName} date={date} artistName={artistName} genre={genre} description={desc} awards={awards}/>
                 <div className="spotify-side w-100">
                     <SpotifyWidget spotifyID={spotifyID} />
                     <ChartPosRecap positions={chartPos} />
