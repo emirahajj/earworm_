@@ -1,11 +1,12 @@
 import ArtistsThumbImg from "./ArtistsThumbImg"
 import { Link } from "react-router-dom"
+import "../App.css"
 
 const ArtistsThumb = (props) => {
     return (
         <Link to={"/artists/" + props.name.replace(' ', '-')}>
             <div className="flex justify-start items-center ml-5 mb-8">
-                <div className="flex-none w-24 h-24 rounded-2xl overflow-hidden shadow-md ml-12">
+                <div className="flex-none w-24 h-24 rounded-2xl overflow-hidden shadow-md ml-12 fade-in">
                     <ArtistsThumbImg name={props.name} />
                 </div>
                 <div>
