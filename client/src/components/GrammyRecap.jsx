@@ -14,10 +14,8 @@ const GrammyRecap = (props) => {
                 <p className="mb-4 text-center font-thin">This album won {props.awards.length} Grammy's at the {props.awards[0].year} Grammy's</p>
                 {props.awards.map((awardObj)=>{
                     return <div>
-                            
                             <h1 className=" bg-dark-1 text-center mr-5 py-1 px-4 my-2 rounded-2xl w-full shadow-md">{awardObj.award}</h1>
-                    </div>
-                    
+                            </div>
                 })}
             </div>) : <p></p>
             }
