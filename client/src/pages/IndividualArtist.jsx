@@ -5,6 +5,7 @@ import { fetchArtist } from '../api/index'
 import AlbumModal from '../components/AlbumModal'
 import ArtistsThumbImg from "../components/ArtistsThumbImg"
 import ArtistsBio from "../components/ArtistBio"
+import "../App.css"
 
 const IndividualArtist = ({ match: { params: { artist_name } } }) => {
 
@@ -22,7 +23,7 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
     return (
         <div>
             <Navbar />
-            <div className="grid grid-cols-1 lg:grid-cols-6">
+            <div className="grid grid-cols-1 lg:grid-cols-6 fade-in">
                 <div className="flex flex-col mx-4 lg:col-span-4">
                     <div className="flex flex-row">
                         <div className="flex-none w-72 h-72 rounded-full overflow-hidden shadow-md ml-12">
