@@ -1,4 +1,4 @@
-//import svg from '../img/grammy.svg'
+import GrammyComponent from '../components/GrammyComponent'
 
 const GrammyRecap = (props) => {
     return (
@@ -6,9 +6,18 @@ const GrammyRecap = (props) => {
         {props.awards.length > 0 ?  
             (<div>
                 <h1 className="font-bold text-center text-3xl">Awards</h1>
-                <p className="mb-4 font-thin">This album garnered {props.awards.length} Grammy's for {props.artist}</p>
+                <div className="flex flex-row my-4 justify-center">
+                    {props.awards.map(element => {
+                        return <GrammyComponent/>
+                    })}
+                </div>
+                <p className="mb-4 text-center font-thin">This album won {props.awards.length} Grammy's at the {props.awards[0].year} Grammy's</p>
                 {props.awards.map((awardObj)=>{
-                    return <h1 className=" bg-dark-1 bg-opacity-80 text-center mr-5 py-1 px-4 my-2 rounded-full font-bold w-full shadow-md">{awardObj.award} ({awardObj.year})</h1>
+                    return <div>
+                            
+                            <h1 className=" bg-dark-1 text-center mr-5 py-1 px-4 my-2 rounded-2xl w-full shadow-md">{awardObj.award}</h1>
+                    </div>
+                    
                 })}
             </div>) : <p></p>
             }

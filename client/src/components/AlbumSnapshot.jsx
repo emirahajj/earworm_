@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom"
 import Collapse from "@material-ui/core/Collapse"
 import "../App.css"
+import GrammyComponent from '../components/GrammyComponent'
 
-const AlbumSnapshot = ({ image, albumName, date, artistName, genre, description }) => {
+const AlbumSnapshot = ({ image, albumName, date, artistName, genre, description, awards }) => {
     const [open, setOpen] = useState(false);
 
 
@@ -13,19 +14,22 @@ const AlbumSnapshot = ({ image, albumName, date, artistName, genre, description 
                 <img className="rounded-3xl" src={image} alt="" />
             </div>
             <div className="flex flex-row w-full mt-6 justify-between">
-                <h1 className="text-2xl lg:text-5xl font-bold">{albumName}</h1>
+                <h1 className="text-2xl lg:text-4xl text-left font-bold inline">{albumName}</h1>
                 <div className="flex flex-col place-self-center">
                     <span className="">
-                        <h1 className="text-2xl font-light" >{date}</h1>
+                        <h1 className="text-2xl ml-2 font-light" >{date}</h1>
                     </span>
                 </div>
             </div>
-            <Link className="text-2xl text-gray-400" to={"/artists/" + artistName.replace(" ", "-")}> {artistName}</Link>
+            <Link className="text-2xl text-gray-300" to={"/artists/" + artistName.replace(" ", "-")}> {artistName}</Link>
+                <h1 className="text-xl text-gray-400 text-left font-bold ">{genre}</h1>
+
+           
 
             <Collapse collapsedHeight={220} in={open}>
                 <p className="mt-4">{description}</p>
             </Collapse>
-            <p className=" text-gray-400 text-right inline font-bold pb-8" onClick={() => setOpen(!open)} variant="custom"
+            <p className=" text-gray-400 mt-3 justify-end text-right font-bold w-24" onClick={() => setOpen(!open)} variant="custom"
                 aria-controls="drop"
                 aria-expanded={open}>{open ? "See Less..." : "See More..."}
             </p>
