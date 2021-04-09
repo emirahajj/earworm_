@@ -48,7 +48,7 @@ const Home = () => {
                     </div>
                 </section>
 
-                <section className="col-span-2 fade-in">
+                <section className="col-span-2 max-w-md justify-center fade-in">
                     <Label text="Statistics" />
                     {chart.slice(0, 1).map((entry) => {
                         return (
