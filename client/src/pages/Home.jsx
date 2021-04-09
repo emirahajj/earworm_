@@ -23,6 +23,28 @@ const Home = () => {
         setChartYear(year)
     }
 
+    // Creates a new array object
+    const getTopGenre = () => {
+        var count = {}
+        var topGenre = ""
+        var topCount = 0
+        var otherGenres = []
+        chart.slice(0, 10).forEach((entry) => {
+            count[entry["album"].genre] = (count[entry["album"].genre] || 0) + 1
+        })
+
+        for (var key in count) {
+            if (count[key] > topCount) {
+                topCount = count[key]
+                topGenre = key
+            } else {
+                otherGenres.push(key)
+            }
+        }
+
+        return [topGenre, topCount, otherGenres]
+    }
+
     return (
         <div>
             <Navbar />
@@ -62,7 +84,10 @@ const Home = () => {
                             />
                         )
                     })}
-                    <Fact position="right" />
+                    <Fact 
+                        position="right"
+                        topGenre = {getTopGenre()}
+                    />
 
                     <Label text="Top 100 Albums by Genre" />
                     <GenrePie chartyear={chart} />
