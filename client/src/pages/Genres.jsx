@@ -18,10 +18,14 @@ const Genres = () => {
         <div>
             <Navbar />
             <div className="flex justify-center fade-in pb-8">
-                <h2 className="text-center text-3xl bg-dark w-2/5 h-16 ml-10 mt-10 pt-4 pb-4 rounded-full font-bold">List of Genres available </h2>
+                <h2 className="text-center text-md bg-dark w-2/5 h-16 ml-10 mt-10 pt-4 pb-4 rounded-full font-bold sm:text-xl md:text-2xl lg:text-3xl">List of Genres available </h2>
             </div>
             {(genres ?                                                         //If data is fetched via hook,
-                 <div className="container grid grid-cols-6 mx-8 fade-in">
+                 <div className="grid grid-cols-2 ml-8 fade-in 
+                 xl:grid-cols-6 
+                 lg:grid-cols-5
+                 md:grid-cols-4
+                 sm:grid-cols-3">
                     {genres.map((genre, index) => {  
                         console.log(genre);                          //genre = currentElement, index = this
                         return <GenreThumb key={index} genre={genre.name} />;  //props.genre == genre.name(genre being cE and name the object)
