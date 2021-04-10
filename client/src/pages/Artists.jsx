@@ -25,6 +25,7 @@ const Artists = () => {
                     <div className="container grid grid-cols-5 fade-in">
                         {
                             artists.map((artist, index) => {
+                                console.log(artist);
                                 return <ArtistsThumb key={index} name={artist.name} id={artist._id} />;
                             })
                         }
