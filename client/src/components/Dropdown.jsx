@@ -14,10 +14,11 @@ const Dropdown = ({ year, onChange }) => {
             left: -176,
             opacity: 0, 
             transform: 'translate3d(0px,-5px,0px)',
-            pointerEvents: 'none' 
+            pointerEvents: 'none',
+            zIndex: '1'
         },
-        enter: { opacity: 1, transform: 'translate3d(0,0px,0)', pointerEvents: 'auto'  },
-        leave: { opacity: 0, transform: 'translate3d(0,-5px,0)', pointerEvents: 'none'  }
+        enter: { opacity: 1, transform: 'translate3d(0,0px,0)', pointerEvents: 'auto' },
+        leave: { opacity: 0, transform: 'translate3d(0,-5px,0)', pointerEvents: 'none' }
     })
 
     const switchChoice = (year) => {

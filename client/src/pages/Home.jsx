@@ -23,11 +23,33 @@ const Home = () => {
         setChartYear(year)
     }
 
+    // Creates a new array object
+    const getTopGenre = () => {
+        var count = {}
+        var topGenre = ""
+        var topCount = 0
+        var otherGenres = []
+        chart.slice(0, 10).forEach((entry) => {
+            count[entry["album"].genre] = (count[entry["album"].genre] || 0) + 1
+        })
+
+        for (var key in count) {
+            if (count[key] > topCount) {
+                topCount = count[key]
+                topGenre = key
+            } else {
+                otherGenres.push(key)
+            }
+        }
+
+        return [topGenre, topCount, otherGenres]
+    }
+
     return (
         <div>
             <Navbar />
             <div className="grid grid-flow-col gap-20">
-                
+
                 <section className="ml-10 w-96 fade-in">
                     <Label text="Billboard Top Albums" />
                     <Dropdown year={chartYear} onChange={onYearChange} />
@@ -36,7 +58,7 @@ const Home = () => {
                             return (
                                 <Entry
                                     key={entry._id}
-                                    id= {entry["album"]._id}
+                                    id={entry["album"]._id}
                                     rank={entry.rank}
                                     year={chartYear}
                                     title={entry["album"].title}
@@ -48,13 +70,27 @@ const Home = () => {
                     </div>
                 </section>
 
-                <section className="col-span-2 fade-in">
+                <section className="col-span-2 max-w-md justify-center fade-in">
                     <Label text="Statistics" />
-                    <Fact />
-                    <Fact />
+                    {chart.slice(0, 1).map((entry) => {
+                        return (
+                            <Fact
+                                key={entry._id}
+                                title={entry["album"].title}
+                                artist={entry["album"].artist}
+                                genre={entry["album"].genre}
+                                styles={entry["album"].styles}
+                                cover={entry["album"].img}
+                            />
+                        )
+                    })}
+                    <Fact 
+                        position="right"
+                        topGenre = {getTopGenre()}
+                    />
 
                     <Label text="Top 100 Albums by Genre" />
-                    <GenrePie chartyear = {chart}/>
+                    <GenrePie chartyear={chart} />
 
                 </section>
             </div>
