@@ -1,6 +1,7 @@
 import "../App.css"
 import {useEffect, useState} from 'react'
 import {ResponsiveContainer, PieChart, Pie, Cell, Legend} from 'recharts'
+import Chart from "./Chart";
 
 var colors = [
     "#F97470",
@@ -16,32 +17,43 @@ var colors = [
     "#BD3BBC",
     "#F19D38",
     "#74B5AA",
-    "#5BB481"
+    "#E7EC66"
   ];
 
-const GenrePie = (props) => {
-    const [albumFullArray, setAlbumFullArray] = useState(props.chartyear)
+const GenrePie = ({chartyear, type, genreId}) => {
+    const [albumFullArray, setAlbumFullArray] = useState(chartyear)
     const [stat, setStat] = useState([])
+    const [percentage, setPercentage] = useState({
+      [genreId] : 1,
+      other: 99
+  });
 
 
     useEffect(() => {
-      setAlbumFullArray(props.chartyear);
+      setAlbumFullArray(chartyear);
+      //console.log(chartyear)
 
-    }, [props])
+    }, [chartyear])
 
     useEffect(() => {
-        const grouped = albumFullArray.filter((element)=> element.rank < 101).reduce((groups, cur)=> {
-            const key = cur.album.genre;
+        const grouped = (type === "yearly" ? albumFullArray.filter((element)=> element.rank < 101): albumFullArray).reduce((groups, curr)=> {
+            const key = (type === "yearly" ? curr.album.genre: curr.genre);
             //console.log(key)
             groups[key] = (groups[key] || 0) + 1;
             return groups;
         }, {});
 
-        const result = Object.keys(grouped).map(key => ({genre: key, count: grouped[key]}));
+        let result = Object.keys(grouped).map(key => ({genre: key, count: grouped[key]}));
         result.sort((a, b) => b.count - a.count);
+        console.log(result)
+        
+        if (type === "allTime"){
+          // result[1]={genre: "Other", count: 5778-result[0].count}
+          result = result.slice(0,10);
+        }
         setStat(result);
         
-    }, [albumFullArray])
+    }, [albumFullArray, type])
 
     return (
         <div>
@@ -53,15 +65,16 @@ const GenrePie = (props) => {
                 nameKey="genre"
                 cx="50%"
                 cy="50%"
-                label
+                label={{dy:5, offsetRadius: type==="allTime" ? 30: 25} }                
+                labelLine = {{strokeWidth: 2 }}
                 outerRadius={100}>
                 {stat.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
-                    cornerRadius={2}
+                    cornerRadius={3}
                     stroke="#202743"
-                    strokeWidth={0.5}
-                    fill={colors[index]}></Cell>
+                    strokeWidth={0.75}
+                    fill={colors[(type==="yearly" ? index: colors.length-index -1)]}></Cell>
                 ))}
               </Pie>
               <Legend

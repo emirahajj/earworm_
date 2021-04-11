@@ -64,30 +64,34 @@ const GenreOverTime = (props) => {
     }, [history])
     
       return (
-        <div className="mt-4">
+        <div className="my-12">
 
-          <h1 className="text-3xl mt-3 font-bold mb-3 text-white text-center">{genreName} by Year</h1>
-          <ResponsiveContainer width="100%" height={400}>
+          <h1 className="text-4xl mt-3 font-bold mb-3 text-white text-center">{genreName} Albums by Year</h1>
+          <ResponsiveContainer width="100%" height={450}>
             <AreaChart
-              data={condensedHistory}>
+              data={condensedHistory}
+              margin={{ top: 15, right: 30, left: 20, bottom: 30 }}
+
+              >
               <defs>
                 <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
                   <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8}/>
-                  <stop offset="95%" stopColor="#82ca9d" stopOpacity={0}/>
+                  <stop offset="95%" stopColor="#323232" stopOpacity={1}/>
                 </linearGradient>
               </defs>
     
-              <XAxis dataKey="year" interval={4} dx={50}/>
-              <YAxis type="number" domain={[0, 15]}/>
+              <XAxis label={{value: 'Years', dy: 35, fill: '#82ca9d' } }  angle="0" dataKey="year" interval="preserveEnd" dx={0} dy={5} tickCount={10} tick={{ fill: 'gray' }}/>
+              <YAxis label={{value: 'Number of albums', angle: -90, position: 'center', dx: -30,  fill: '#82ca9d'}} type="number" domain={[0, 15]} tickCount={10} tick={{ fill: 'gray' }}/>
               <Tooltip
                 contentStyle={{
                 backgroundColor: "transparent",
                 border: "none"
               }}
                 labelStyle={{
-                color: "#FFFFFF"
+                color: "#FFFFFF",
+                width: "50px"
               }}/>
-              <Area type="basis" dataKey="count" strokeWidth={2} stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)"/>
+              <Area type="basis" animationDuration={2000} dataKey="count" strokeWidth={2} stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)"/>
             </AreaChart>
           </ResponsiveContainer>
         </div>

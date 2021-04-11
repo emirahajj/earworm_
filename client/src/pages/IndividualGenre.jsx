@@ -3,9 +3,10 @@ import Navbar from "../components/Navbar"
 import {useState} from "react"
 import GenreOverTime from "../components/GenreOverTime"
 import Chart from "../components/Chart"
-import {fetchAllAlbumsInGenre, fetchGenre} from "../api/index"
+import {fetchAlbums, fetchAllAlbumsInGenre, fetchGenre} from "../api/index"
 
 import Collapse from "@material-ui/core/Collapse"
+import GenrePie from "../components/GenrePie";
 
 const IndividualGenre = ({ match: { params: { genreId } } }) => {
 
@@ -13,14 +14,25 @@ const IndividualGenre = ({ match: { params: { genreId } } }) => {
     const [genreObject, setGenreObject] = useState(null);
     const [genreCount, setGenreCount] = useState(0);
     const [open, setOpen] = useState(false);
+    const [albumArray, setAlbumArray] = useState(null);
+    // const [percentage, setPercentage] = useState({
+    //     [genreId] : 99,
+    //     other: 1
+    // });
+
+
 
 
     useEffect(() => {
         fetchAllAlbumsInGenre(genreId).then((res) => {
-            setGenreCount(res.data);
+            setGenreCount(res.data[0][`${genreId}`]);
+
         });
         fetchGenre(genreId).then((res) => {
             setGenreObject(res.data[0])
+        });
+        fetchAlbums().then((res) => {
+            setAlbumArray(res.data);
         });
     }, [genreId])
 
@@ -46,9 +58,12 @@ const IndividualGenre = ({ match: { params: { genreId } } }) => {
 
 
                     </div>
-                    <div className="mt-16">
+                    <div className="">
                         <GenreOverTime genre={genreId} />
-                        <p>Out of 5778 unique albums apprering on this chart, {genreId} accounts for {genreCount.length} albums, or {Math.floor(genreCount.length / 5778 * 100)}% of unique albums</p>
+                        <h1 className="text-4xl mt-3 font-bold mb-3 text-white text-center">All Albums by Genre</h1>
+                        {albumArray ?  <GenrePie chartyear={albumArray} genreId={genreId} type="allTime"/> : <p style={{height: 300}}></p> }
+                        <p className="p-3 text-xl text-gray-300">Out of 5778 unique albums apprering on this chart, {genreId} accounts for {genreCount} albums, or {Math.floor(genreCount / 5778 * 100)}% of unique albums</p>
+
                     </div>
                 </div>
 

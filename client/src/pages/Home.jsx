@@ -90,7 +90,7 @@ const Home = () => {
                     />
 
                     <Label text="Top 100 Albums by Genre" />
-                    <GenrePie chartyear={chart} />
+                    <GenrePie chartyear={chart} type="yearly"/>
 
                 </section>
             </div>
