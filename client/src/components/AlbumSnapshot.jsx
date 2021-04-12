@@ -29,7 +29,7 @@ const AlbumSnapshot = ({ image, albumName, date, artistName, genre, description,
                 <p className="mt-4">{description}</p>
             </Collapse>
             {
-                (description.length > 456 ?
+                (description ?
                     <button className="flex text-gray-400 mt-3 justify-start font-bold w-24 focus:outline-none mb-4" onClick={() => setOpen(!open)} variant="custom"
                         aria-controls="drop"
                         aria-expanded={open}>{open ? "Less" : "More"}
