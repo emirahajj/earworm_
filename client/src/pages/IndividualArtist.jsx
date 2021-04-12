@@ -5,6 +5,7 @@ import { fetchArtist } from '../api/index'
 import AlbumModal from '../components/AlbumModal'
 import ArtistsThumbImg from "../components/ArtistsThumbImg"
 import ArtistsBio from "../components/ArtistBio"
+import { Link } from "react-router-dom";
 import "../App.css"
 
 const IndividualArtist = ({ match: { params: { artist_name } } }) => {
@@ -33,7 +34,7 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
                         <div className="ml-4">
                             <h1 className="text-3xl font-bold">{artistName}</h1>
                             <h2 className="text-xl"> {genreArray.map((genre, i) =>
-                                (i === genreArray.length - 1) ? genre : genre + ', '
+                                (i === genreArray.length - 1) ? <Link to={"/genres/" + genre}>{genre}</Link> : <Link to={"/genres/" + genre}>{genre + ', '}</Link>
                             )}</h2>
                             <br />
                             <ArtistsBio name={artistName} />
