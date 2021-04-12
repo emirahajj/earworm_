@@ -14,8 +14,8 @@ let team = [{
     name: "Ahmed Abdalla",
     image: "https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg",
     role: "Frontend",
-    link: "#",
-    bio: "Lorum ipsum"
+    link: "https://github.com/ahmdaa",
+    bio: "Passionate about mobile development, frontend web development and game design"
 }, {
     name: "Shah Isha Redohy",
     image: "https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg",
