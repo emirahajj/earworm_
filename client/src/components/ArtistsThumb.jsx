@@ -4,16 +4,26 @@ import "../App.css"
 
 const ArtistsThumb = (props) => {
     return (
-        <Link to={"/artists/" + props.name.replace(' ', '-')}>
-            <div className="flex justify-start items-center ml-5 mb-8">
-                <div className="flex-none w-24 h-24 rounded-2xl overflow-hidden shadow-md ml-12 fade-in">
-                    <ArtistsThumbImg name={props.name} />
+
+        <div>
+            <div className="flex justify-center">
+                <div className="flex-none w-48 h-48 rounded-2xl overflow-hidden shadow-md fade-in">
+                    <Link to={"/artists/" + props.name.replace(' ', '-')}>
+                        <ArtistsThumbImg name={props.name} />
+                    </Link>
                 </div>
-                <div>
-                    <p className="ml-6 w-5">{props.name}</p>
-                </div>
+
+
             </div>
-        </Link>
+            <div className="flex justify-center mb-7">
+                <Link to={"/artists/" + props.name.replace(' ', '-')}>
+                    <p className="mt-4 text-lg font-bold">{props.name}</p>
+                </Link>
+            </div>
+        </div>
+
+
+
     )
 }
 

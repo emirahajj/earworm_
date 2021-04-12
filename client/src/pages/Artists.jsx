@@ -22,7 +22,7 @@ const Artists = () => {
             </div>
             {
                 (artists ?
-                    <div className="container grid grid-cols-5 fade-in">
+                    <div className="flex justify-center container grid grid-cols-5 fade-in">
                         {
                             artists.map((artist, index) => {
                                 console.log(artist);
