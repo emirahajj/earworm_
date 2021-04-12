@@ -9,7 +9,7 @@ let team = [{
     image: "https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg",
     role: "Frontend",
     link: "https://www.instagram.com/fredo_morales/",
-    bio: "My name's not Daniel (Dw I will change this after)."
+    bio: "Solvitur Ambulando. I like to code and stuff..."
 }, {
     name: "Ahmed Abdalla",
     image: "https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg",

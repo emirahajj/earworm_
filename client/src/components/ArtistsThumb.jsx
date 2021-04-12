@@ -6,7 +6,7 @@ const ArtistsThumb = (props) => {
     return (
         <div>
             <div className="flex justify-center">
-                <div className="flex-none w-48 h-48 rounded-2xl overflow-hidden shadow-md fade-in">
+                <div className="flex-none w-48 h-48 rounded-2xl overflow-hidden shadow-md fade-in transition duration-500 ease-in-out transform hover:scale-110">
                     <Link to={"/artists/" + props.name.replace(' ', '-')}>
                         <ArtistsThumbImg name={props.name} />
                     </Link>
