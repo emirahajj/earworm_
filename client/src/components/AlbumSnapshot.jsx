@@ -22,17 +22,22 @@ const AlbumSnapshot = ({ image, albumName, date, artistName, genre, description,
                 </div>
             </div>
             <Link className="text-2xl text-gray-300" to={"/artists/" + artistName.replace(" ", "-")}> {artistName}</Link>
-                <Link to={`/genres/${genre}`}className="text-xl text-gray-400 text-left font-bold ">{genre}</Link>
+            <Link to={`/genres/${genre}`} className="text-xl text-gray-400 text-left font-bold ">{genre}</Link>
 
-           
 
             <Collapse collapsedHeight={220} in={open}>
                 <p className="mt-4">{description}</p>
             </Collapse>
-            <p className=" text-gray-400 mt-3 justify-end text-right font-bold w-24" onClick={() => setOpen(!open)} variant="custom"
-                aria-controls="drop"
-                aria-expanded={open}>{open ? "See Less..." : "See More..."}
-            </p>
+            {
+                (description.length > 456 ?
+                    <button className="flex text-gray-400 mt-3 justify-start font-bold w-24 focus:outline-none mb-4" onClick={() => setOpen(!open)} variant="custom"
+                        aria-controls="drop"
+                        aria-expanded={open}>{open ? "Less" : "More"}
+                    </button>
+                    :
+                    <p></p>
+                )
+            }
         </div>
     )
 }

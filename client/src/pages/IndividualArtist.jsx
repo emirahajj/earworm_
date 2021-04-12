@@ -24,7 +24,7 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
     return (
         <div>
             <Navbar />
-            <div className="grid grid-cols-1 lg:grid-cols-6 fade-in">
+            <div className="grid grid-cols-1 lg:grid-cols-5 fade-in">
                 <div className="flex flex-col mx-4 lg:col-span-4">
                     <div className="flex flex-row">
                         <div className="flex-none w-72 h-72 rounded-full overflow-hidden shadow-md ml-12">
@@ -51,20 +51,22 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
 
 
                     <div className="flex justify-center mt-6">
+
                         <div>
                             <h1 className="text-4xl font-bold mb-5">Albums</h1>
-                            <div className="grid grid-cols-4 gap-5">
+                            <div className="mb-8 font-bold">
+                                <p>{artistName} has {albumIdArray.length} albums on the Billboard 200 End of Year charts. </p>
+
+                            </div>
+                            <div className="grid grid-cols-4 gap-5 mb-6">
                                 {albumIdArray.map((album) => <AlbumModal id={album} />
                                 )}
                             </div>
+
                         </div>
                     </div>
                 </div>
 
-                <div className="lg:col-span-2 mx-5">
-                    <p>{artistName} has {albumIdArray.length} albums on the Billboard 200 End of Year charts. </p>
-
-                </div>
             </div>
         </div >
     );

@@ -36,12 +36,11 @@ const ArtistBio = (props) => {
 
                         </Collapse>
                         {
-                            (artistBio.length > 540 ?
-                                <p className=" text-gray-400 text-right inline font-bold mt-3" onClick={() => setOpen(!open)} variant="custom"
+                            (artistBio.length > 800 ?
+                                <button className=" text-gray-400 text-right inline font-bold mt-3 focus:outline-none" onClick={() => setOpen(!open)} variant="custom"
                                     aria-controls="drop"
-                                    aria-expanded={open}>{open ? "See Less..." : "See More..."}
-                                </p>
-
+                                    aria-expanded={open}>{open ? "Less" : "More"}
+                                </button>
                                 :
                                 <p></p>
                             )

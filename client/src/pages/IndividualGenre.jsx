@@ -1,16 +1,13 @@
 import React, { useEffect } from "react";
 import Navbar from "../components/Navbar"
-import {useState} from "react"
+import { useState } from "react"
 import GenreOverTime from "../components/GenreOverTime"
 import Chart from "../components/Chart"
-import {fetchAlbums, fetchAllAlbumsInGenre, fetchGenre} from "../api/index"
-
+import { fetchAlbums, fetchAllAlbumsInGenre, fetchGenre } from "../api/index"
 import Collapse from "@material-ui/core/Collapse"
 import GenrePie from "../components/GenrePie";
 
 const IndividualGenre = ({ match: { params: { genreId } } }) => {
-
-
     const [genreObject, setGenreObject] = useState(null);
     const [genreCount, setGenreCount] = useState(0);
     const [open, setOpen] = useState(false);
@@ -19,9 +16,6 @@ const IndividualGenre = ({ match: { params: { genreId } } }) => {
     //     [genreId] : 99,
     //     other: 1
     // });
-
-
-
 
     useEffect(() => {
         fetchAllAlbumsInGenre(genreId).then((res) => {
@@ -44,14 +38,14 @@ const IndividualGenre = ({ match: { params: { genreId } } }) => {
                 <div className="flex flex-col lg:col-span-3">
                     <div className="flex flex-col">
                         <div class="font-bold text-8xl">{genreId}</div>
-                        <div class = "flex flex-col">
-                        <Collapse collapsedHeight={225} in={open}>
-                            {genreObject ? <p className= "font-light mt-4 text-gray-200" id= "drop">{genreObject.desc}</p>: <p></p>}
-                        </Collapse>
-                        <p className=" text-gray-400 text-right inline font-bold" onClick={() => setOpen(!open)} variant="custom" 
-                            aria-controls="drop"
-                            aria-expanded={open}>{open? "Less": "More"}
-                        </p>
+                        <div class="flex flex-col">
+                            <Collapse collapsedHeight={220} in={open}>
+                                {genreObject ? <p className="font-light mt-4 text-gray-200 text-justify" id="drop">{genreObject.desc}</p> : <p></p>}
+                            </Collapse>
+                            <p className=" text-gray-400 text-right inline font-bold mt-4" onClick={() => setOpen(!open)} variant="custom"
+                                aria-controls="drop"
+                                aria-expanded={open}>{open ? "Less" : "More"}
+                            </p>
 
                         </div>
 
@@ -61,7 +55,7 @@ const IndividualGenre = ({ match: { params: { genreId } } }) => {
                     <div className="">
                         <GenreOverTime genre={genreId} />
                         <h1 className="text-4xl mt-3 font-bold mb-3 text-white text-center">All Albums by Genre</h1>
-                        {albumArray ?  <GenrePie chartyear={albumArray} genreId={genreId} type="allTime"/> : <p style={{height: 300}}></p> }
+                        {albumArray ? <GenrePie chartyear={albumArray} genreId={genreId} type="allTime" /> : <p style={{ height: 300 }}></p>}
                         <p className="p-3 text-xl text-gray-300">Out of 5778 unique albums apprering on this chart, {genreId} accounts for {genreCount} albums, or {Math.floor(genreCount / 5778 * 100)}% of unique albums</p>
 
                     </div>
