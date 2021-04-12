@@ -6,6 +6,7 @@ import Chart from "../components/Chart"
 import { fetchAlbums, fetchAllAlbumsInGenre, fetchGenre } from "../api/index"
 import Collapse from "@material-ui/core/Collapse"
 import GenrePie from "../components/GenrePie";
+import "../App.css"
 
 const IndividualGenre = ({ match: { params: { genreId } } }) => {
     const [genreObject, setGenreObject] = useState(null);
@@ -34,7 +35,7 @@ const IndividualGenre = ({ match: { params: { genreId } } }) => {
     return (
         <div>
             <Navbar />
-            <div className="grid grid-cols-1 mt-10 ml-10 lg:grid-cols-5">
+            <div className="grid grid-cols-1 mt-10 ml-10 lg:grid-cols-5 fade-in">
                 <div className="flex flex-col lg:col-span-3">
                     <div className="flex flex-col">
                         <div class="font-bold text-8xl">{genreId}</div>
@@ -42,10 +43,21 @@ const IndividualGenre = ({ match: { params: { genreId } } }) => {
                             <Collapse collapsedHeight={220} in={open}>
                                 {genreObject ? <p className="font-light mt-4 text-gray-200 text-justify" id="drop">{genreObject.desc}</p> : <p></p>}
                             </Collapse>
-                            <p className=" text-gray-400 text-right inline font-bold mt-4" onClick={() => setOpen(!open)} variant="custom"
-                                aria-controls="drop"
-                                aria-expanded={open}>{open ? "Less" : "More"}
-                            </p>
+                            {
+                                (genreObject ?
+                                    (genreObject.desc.length > 1075 ?
+                                        <button className=" text-gray-400 text-right inline font-bold mt-4 focus:outline-none" onClick={() => setOpen(!open)} variant="custom"
+                                            aria-controls="drop"
+                                            aria-expanded={open}>{open ? "Less" : "More"}
+
+                                        </button>
+                                        :
+                                        <p></p>
+                                    )
+                                    :
+                                    <p> Description not Available</p>
+                                )
+                            }
 
                         </div>
 

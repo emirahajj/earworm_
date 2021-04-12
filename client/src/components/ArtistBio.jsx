@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { fetchAudiodbArtist } from '../api/index'
-
 import Collapse from "@material-ui/core/Collapse"
 
 const ArtistBio = (props) => {
@@ -18,10 +17,6 @@ const ArtistBio = (props) => {
         });
     }, [artist_name])
 
-
-
-
-
     return (
         <div>
             {
@@ -36,7 +31,7 @@ const ArtistBio = (props) => {
 
                         </Collapse>
                         {
-                            (artistBio.length > 800 ?
+                            (artistBio.length > 820 ?
                                 <button className=" text-gray-400 text-right inline font-bold mt-3 focus:outline-none" onClick={() => setOpen(!open)} variant="custom"
                                     aria-controls="drop"
                                     aria-expanded={open}>{open ? "Less" : "More"}
