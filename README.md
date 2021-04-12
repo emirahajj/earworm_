@@ -7,4 +7,4 @@ At the end of every year, Billboard releases its Billboard 200 Year End Charts a
 ## How to Run
 #### 1. npm i in /server and /client ####
 #### 2. start server in /server: nodemon index.js or npx nodemon index.js ####
-#### 2. start client in /client: npm start ####
+#### 3. start client in /client: npm start ####
