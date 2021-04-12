@@ -21,13 +21,15 @@ const Artists = () => {
             </div>
             {
                 (artists ?
-                    <div className="flex justify-center container grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 fade-in">
-                        {
-                            artists.map((artist, index) => {
-                                console.log(artist);
-                                return <ArtistsThumb key={index} name={artist.name} id={artist._id} />;
-                            })
-                        }
+                    <div className="flex justify-center">
+                        <div className="justify-center container grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 fade-in">
+                            {
+                                artists.map((artist, index) => {
+                                    console.log(artist);
+                                    return <ArtistsThumb key={index} name={artist.name} id={artist._id} />;
+                                })
+                            }
+                        </div>
                     </div>
                     :
                     <h3 className="text-center">No Results</h3>
