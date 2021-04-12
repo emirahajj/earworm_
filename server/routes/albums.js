@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.get("/", async (req,res)=> {
     try {
-        const data =  await Album.find().limit(20);
+        const data =  await Album.find().limit();
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(data);
     } catch (error) {
@@ -28,7 +28,17 @@ router.get("/:id", async (req,res)=> {
 
 router.get("/all/:genre", async (req,res)=> {
     try {
-        const data =  await Album.find({genre: req.params.genre});
+        //const data =  await Album.find({genre: req.params.genre});
+        const data =  await Album.aggregate([
+            {
+              '$match': {
+                'genre': req.params.genre
+              }
+            }, {
+              '$count': req.params.genre
+            }
+          ]);
+          data[1] = await Album.find({genre: req.params.genre});
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(data);
     } catch (error) {
