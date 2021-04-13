@@ -25,15 +25,15 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
         <div>
             <Navbar />
             <div className="grid grid-cols-1 lg:grid-cols-5 fade-in">
-                <div className="flex flex-col mx-4 lg:col-span-4">
-                    <div className="flex flex-row">
-                        <div className="flex-none w-72 h-72 rounded-full overflow-hidden shadow-md ml-12">
+                <div className="flex flex-col lg:col-span-4">
+                    <div className="flex flex-row mt-10">
+                        <div className="flex-none w-72 h-72 rounded-full overflow-hidden shadow-md mx-8">
                             <ArtistsThumbImg name={artistName} />
                         </div>
 
-                        <div className="ml-4">
-                            <h1 className="text-3xl font-bold">{artistName}</h1>
-                            <h2 className="text-xl"> {genreArray.map((genre, i) =>
+                        <div className=" w-full">
+                            <h1 className="text-5xl font-bold">{artistName}</h1>
+                            <h2 className="text-xl text-gray-400 font-bold"> {genreArray.map((genre, i) =>
                                 (i === genreArray.length - 1) ? <Link to={"/genres/" + genre}>{genre}</Link> : <Link to={"/genres/" + genre}>{genre + ', '}</Link>
                             )}</h2>
                             <br />
@@ -50,15 +50,15 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
 
 
 
-                    <div className="flex justify-center mt-6">
+                    <div className="flex justify-center mt-6 mx-8">
 
                         <div>
-                            <h1 className="text-4xl font-bold mb-5">Albums</h1>
-                            <div className="mb-8 font-bold">
+                            <h1 className="text-4xl font-bold mb-1">Albums</h1>
+                            <div className="mb-8">
                                 <p>{artistName} has {albumIdArray.length} albums on the Billboard 200 End of Year charts. </p>
 
                             </div>
-                            <div className="grid grid-cols-4 gap-5 mb-6">
+                            <div className="grid xl:grid-cols-6 lg:grid-cols-4 gap-5 mb-6">
                                 {albumIdArray.map((album) => <AlbumModal id={album} />
                                 )}
                             </div>
