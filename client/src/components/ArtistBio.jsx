@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchAudiodbArtist } from '../api/index'
 import Collapse from "@material-ui/core/Collapse"
+import LoadingRing from "../components/LoadingRing"
 
 const ArtistBio = (props) => {
     const [artistBio, setArtistBio] = useState(null);
@@ -26,7 +27,7 @@ const ArtistBio = (props) => {
                     <div class="flex flex-col">
                         <Collapse collapsedHeight={220} in={open}>
 
-                            <p className="text-justify">{artistBio}</p>
+                            <p className="text-justify fade-in">{artistBio}</p>
 
 
                         </Collapse>
@@ -43,7 +44,10 @@ const ArtistBio = (props) => {
 
                     </div>
                     :
-                    <p> Bio Not Available</p>
+                    <div className= "flex flex-row mt-10 justify-center font-bold text-gray-300 items-center">
+                        <LoadingRing/>
+                        <p className="mx-3">Loading</p>
+                    </div>
 
                 )
 
