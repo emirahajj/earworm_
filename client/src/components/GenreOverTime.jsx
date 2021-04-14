@@ -9,59 +9,234 @@ const GenreOverTime = (props) => {
     const [genreName, setGenreName] = useState(props.genre);
 
     //shows how many albums of a genre appeared over the years
-    const [history, setHistory] = useState([]);
-    
-    //number of albms of that genre
-    const [number, setNumber] = useState(0);
-
-    //formatted data to feed to graph component:
-    // [{year: "1970", count: 17}...etc]
-    const [condensedHistory, setCondensedHistory] = useState([]);
+    const [history, setHistory] = useState(
+      [
+        {
+          "_id": 2020,
+          "count": 0
+        },
+        {
+          "_id": 2019,
+          "count": 0
+        },
+        {
+          "_id": 2018,
+          "count": 0
+        },
+        {
+          "_id": 2017,
+          "count": 0
+        },
+        {
+          "_id": 2016,
+          "count": 0
+        },
+        {
+          "_id": 2015,
+          "count": 0
+        },
+        {
+          "_id": 2014,
+          "count": 0
+        },
+        {
+          "_id": 2013,
+          "count": 0
+        },
+        {
+          "_id": 2012,
+          "count": 0
+        },
+        {
+          "_id": 2011,
+          "count": 0
+        },
+        {
+          "_id": 2010,
+          "count": 0
+        },
+        {
+          "_id": 2009,
+          "count": 0
+        },
+        {
+          "_id": 2008,
+          "count": 0
+        },
+        {
+          "_id": 2007,
+          "count": 0
+        },
+        {
+          "_id": 2006,
+          "count": 0
+        },
+        {
+          "_id": 2005,
+          "count": 0
+        },
+        {
+          "_id": 2004,
+          "count": 0
+        },
+        {
+          "_id": 2003,
+          "count": 0
+        },
+        {
+          "_id": 2002,
+          "count": 0
+        },
+        {
+          "_id": 2001,
+          "count": 0
+        },
+        {
+          "_id": 2000,
+          "count": 0
+        },
+        {
+          "_id": 1999,
+          "count": 0
+        },
+        {
+          "_id": 1998,
+          "count": 0
+        },
+        {
+          "_id": 1997,
+          "count": 0
+        },
+        {
+          "_id": 1996,
+          "count": 0
+        },
+        {
+          "_id": 1995,
+          "count": 0
+        },
+        {
+          "_id": 1994,
+          "count": 0
+        },
+        {
+          "_id": 1993,
+          "count": 0
+        },
+        {
+          "_id": 1992,
+          "count": 0
+        },
+        {
+          "_id": 1991,
+          "count": 0
+        },
+        {
+          "_id": 1990,
+          "count": 0
+        },
+        {
+          "_id": 1989,
+          "count": 0
+        },
+        {
+          "_id": 1988,
+          "count": 0
+        },
+        {
+          "_id": 1987,
+          "count": 0
+        },
+        {
+          "_id": 1986,
+          "count": 0
+        },
+        {
+          "_id": 1985,
+          "count": 0
+        },
+        {
+          "_id": 1984,
+          "count": 0
+        },
+        {
+          "_id": 1983,
+          "count": 0
+        },
+        {
+          "_id": 1982,
+          "count": 0
+        },
+        {
+          "_id": 1981,
+          "count": 0
+        },
+        {
+          "_id": 1980,
+          "count": 0
+        },
+        {
+          "_id": 1979,
+          "count": 0
+        },
+        {
+          "_id": 1978,
+          "count": 0
+        },
+        {
+          "_id": 1977,
+          "count": 0
+        },
+        {
+          "_id": 1976,
+          "count": 0
+        },
+        {
+          "_id": 1975,
+          "count": 0
+        },
+        {
+          "_id": 1974,
+          "count": 0
+        },
+        {
+          "_id": 1973,
+          "count": 0
+        },
+        {
+          "_id": 1972,
+          "count": 0
+        },
+        {
+          "_id": 1971,
+          "count": 0
+        },
+        {
+          "_id": 1970,
+          "count": 0
+        }
+      ]);
 
     const makeArray = () =>{
       return Array.from({length : 51}, (_, i)=> i + 1970);
     }
 
-    // useEffect(() => {
-    //   //returns
-    //   fetchAllAlbumsInGenre(genreName).then((res)=>{
-    //     setNumber(res.data.length);
-    //   })
-
-    // }, [genreName])
 
     useEffect(() => {
+      let yearArray = makeArray();
+      //function to add missing "dummy" data values since incoming data misses years
+      //when there are no albums of a certain genre 
+      const addMissingYearStat = (array, input) => {
+        const get = (year) => { return find(year) || make(year)}
+        const find = (year) => { return input.find((x)=> {return parseInt(x._id) === year})};
+        const make = (year) => { return {_id: year.toString(), count: 0}}
+        return array.map(get);
+      }
+
       fetsGenreHistory(genreName).then((res)=>{
-        setHistory(res.data);
+        setHistory(addMissingYearStat(yearArray,res.data));
       })
       }, [genreName])
-
-      useEffect(() => {
-
-        let yearArray = makeArray();
-        //function to add missing "dummy" data values since incoming data misses years
-        //when there are no albums of a certain genre 
-        const addMissingYearStat = (array, input) => {
-          const get = (year) => { return find(year) || make(year)}
-          const find = (year) => { return input.find((x)=> {return parseInt(x.year) === year})};
-          const make = (year) => { return {year: year.toString(), count: 0}}
-          return array.map(get);
-        }
-
-        const grouped = history.reduce((groups, cur)=> {
-            const key = cur.year;
-            groups[key] = (groups[key] || 0) + 1;
-            return groups;
-        }, {});
-
-        const result = Object.keys(grouped).map(key => ({year: key, count: grouped[key]}));
-
-        const newResult = addMissingYearStat(yearArray, result)
-        console.log(newResult);
-        
-        setCondensedHistory(newResult);
-        
-    }, [history])
     
       return (
         <div className="my-12">
@@ -69,7 +244,7 @@ const GenreOverTime = (props) => {
           <h1 className="text-4xl mt-3 font-bold mb-3 text-white text-center">{genreName} Albums by Year</h1>
           <ResponsiveContainer width="100%" height={450}>
             <AreaChart
-              data={condensedHistory}
+              data={history}
               margin={{ top: 15, right: 30, left: 20, bottom: 30 }}
 
               >
@@ -80,7 +255,7 @@ const GenreOverTime = (props) => {
                 </linearGradient>
               </defs>
     
-              <XAxis label={{value: 'Years', dy: 35, fill: '#82ca9d' } }  angle="0" dataKey="year" interval="preserveEnd" dx={0} dy={5} tickCount={10} tick={{ fill: 'gray' }}/>
+              <XAxis label={{value: 'Years', dy: 35, fill: '#82ca9d' } }  angle="0" dataKey="_id" interval="preserveEnd" dx={0} dy={5} tickCount={10} tick={{ fill: 'gray' }}/>
               <YAxis label={{value: 'Number of albums', angle: -90, position: 'center', dx: -30,  fill: '#82ca9d'}} type="number" domain={[0, 15]} tickCount={10} tick={{ fill: 'gray' }}/>
               <Tooltip
                 contentStyle={{
@@ -91,7 +266,7 @@ const GenreOverTime = (props) => {
                 color: "#FFFFFF",
                 width: "50px"
               }}/>
-              <Area type="basis" animationDuration={2000} dataKey="count" strokeWidth={2} stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)"/>
+              <Area type="monotoneX" isAnimationActive={true} animationDuration={1000} animationEasing='ease-out' dataKey="count" strokeWidth={2} stroke="#82ca9d" fillOpacity={1} fill="url(#colorPv)"/>
             </AreaChart>
           </ResponsiveContainer>
         </div>

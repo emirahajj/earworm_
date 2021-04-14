@@ -46,7 +46,8 @@ router.get("/all/:genre", async (req,res)=> {
               }
             }, {
               '$unwind': {
-                'path': '$album'
+                'path': '$album',
+                'preserveNullAndEmptyArrays' : true
               }
             }, {
               '$match': {
@@ -61,10 +62,10 @@ router.get("/all/:genre", async (req,res)=> {
               }
             }, {
               '$sort': {
-                '_id': -1
+                '_id': 1
               }
             }
-          ])
+          ]);
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(data);
     } catch (error) {
