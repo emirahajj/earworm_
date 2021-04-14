@@ -13,6 +13,7 @@ const ArtistBio = (props) => {
         fetchAudiodbArtist(artist_name).then((res) => {
             if (res.data['artists'] !== null) {
                 setArtistBio(res.data['artists']['0'].strBiographyEN)
+                console.log(res.data['artists']['0'].strBiographyEN.length)
             } else {
                 setArtistBio("No bio Available");
             }
@@ -22,15 +23,21 @@ const ArtistBio = (props) => {
     return (
         <div>
             {
-                (artistBio && (artistBio.length > 820)?
+                (artistBio ?
                     <div class="flex flex-col">
                         <Collapse collapsedHeight={220} in={open}>
                             <p className="text-justify fade-in">{artistBio}</p>
                         </Collapse>
-                        <button className=" text-gray-400 text-right inline font-bold mt-3 focus:outline-none" onClick={() => setOpen(!open)} variant="custom"
-                            aria-controls="drop"
-                            aria-expanded={open}>{open ? "Less" : "More"}
-                        </button>
+                        {
+                            (artistBio.length > 820 ?
+                                <button className=" text-gray-400 text-right inline font-bold mt-3 focus:outline-none" onClick={() => setOpen(!open)} variant="custom"
+                                    aria-controls="drop"
+                                    aria-expanded={open}>{open ? "Less" : "More"}
+                                </button>
+                                :
+                                <p></p>
+                            )
+                        }
                     </div>
                     :
                     <div className= "flex flex-row mt-10 justify-center font-bold text-gray-300 items-center">
