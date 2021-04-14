@@ -36,18 +36,37 @@ returns an array like : [
 */
 router.get("/all/:genre", async (req,res)=> {
     try {
-        const data =  await Chart.find().sort({year: -1, rank: 1}).populate({path: 'album'});
-        let newdata = data.map(element => {
-            let genre = element["album"]["genre"]
-            let newObj = {
-                year: element.year,
-                genre: genre
+        const data = await Chart.aggregate([
+            {
+              '$lookup': {
+                'from': 'albums', 
+                'localField': 'album', 
+                'foreignField': '_id', 
+                'as': 'album'
+              }
+            }, {
+              '$unwind': {
+                'path': '$album'
+              }
+            }, {
+              '$match': {
+                'album.genre': req.params.genre
+              }
+            }, {
+              '$group': {
+                '_id': '$year', 
+                'count': {
+                  '$sum': 1
+                }
+              }
+            }, {
+              '$sort': {
+                '_id': -1
+              }
             }
-            return (genre === req.params.genre) ? newObj : false;
-        })
-         let newresults = newdata.filter(Boolean);
+          ])
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-        res.status(200).json(newresults);
+        res.status(200).json(data);
     } catch (error) {
         res.status(404).json({message: error.message});
     }
