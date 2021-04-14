@@ -14,8 +14,6 @@ const ArtistBio = (props) => {
             if (res.data['artists'] !== null) {
                 setArtistBio(res.data['artists']['0'].strBiographyEN)
                 console.log(res.data['artists']['0'].strBiographyEN.length)
-            } else {
-                setArtistBio("No bio Available");
             }
         });
     }, [artist_name])
