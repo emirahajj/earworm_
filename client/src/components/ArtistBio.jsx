@@ -28,18 +28,20 @@ const ArtistBio = (props) => {
                         </Collapse>
                         {
                             (artistBio.length > 820 ?
-                                <button className=" text-gray-400 text-right inline font-bold mt-3 focus:outline-none" onClick={() => setOpen(!open)} variant="custom"
-                                    aria-controls="drop"
-                                    aria-expanded={open}>{open ? "Less" : "More"}
-                                </button>
+                                <div className="flex justify-end">
+                                    <button className="flex text-gray-400 mt-3 justify-center font-bold bg-dark rounded-full px-3 py-1 focus:outline-none mb-4 w-1/5" onClick={() => setOpen(!open)} variant="custom"
+                                        aria-controls="drop"
+                                        aria-expanded={open}>{open ? "Less" : "More"}
+                                    </button>
+                                </div>
                                 :
                                 <p></p>
                             )
                         }
                     </div>
                     :
-                    <div className= "flex flex-row mt-10 justify-center font-bold text-gray-300 items-center">
-                        <LoadingRing/>
+                    <div className="flex flex-row mt-10 justify-center font-bold text-gray-300 items-center">
+                        <LoadingRing />
                         <p className="mx-3">Loading</p>
                     </div>
 

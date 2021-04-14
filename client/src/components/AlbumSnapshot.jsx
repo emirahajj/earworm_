@@ -31,14 +31,15 @@ const AlbumSnapshot = ({ image, albumName, date, artistName, genre, description,
 
 
             {
-                (description && (description !== " ")?
+                (description && (description !== " ") ?
                     <div>
                         <Collapse collapsedHeight={220} in={open}>
                             <p className="fade-in mt-4">{description}</p>
                         </Collapse>
-                            <button className="flex text-gray-400 mt-3 justify-start font-bold bg-dark rounded-full px-3 py-1 focus:outline-none mb-4" onClick={() => setOpen(!open)} variant="custom"
+                        <button className="flex text-gray-400 mt-3 justify-start font-bold bg-dark rounded-full px-3 py-1 focus:outline-none mb-4" onClick={() => setOpen(!open)} variant="custom"
                             aria-controls="drop"
-                            aria-expanded={open}>{open ? "Less" : "More"}
+                            aria-expanded={open}>
+                            {open ? "Less" : "More"}
                         </button>
                     </div>
                     :

@@ -8,8 +8,8 @@ let team = [{
     name: "Alfredo Morales",
     image: "https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg",
     role: "Frontend",
-    link: "https://www.instagram.com/fredo_morales/",
-    bio: "Solvitur Ambulando. I like to code and stuff..."
+    link: "https://github.com/AlfredoMora06",
+    bio: "Solvitur Ambulando. I like to code and stuff ..."
 }, {
     name: "Ahmed Abdalla",
     image: "https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg",
