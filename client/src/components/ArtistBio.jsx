@@ -14,6 +14,8 @@ const ArtistBio = (props) => {
             if (res.data['artists'] !== null) {
                 setArtistBio(res.data['artists']['0'].strBiographyEN)
                 console.log(res.data['artists']['0'].strBiographyEN.length)
+            } else {
+                setArtistBio("No bio Available");
             }
         });
     }, [artist_name])
@@ -22,14 +24,9 @@ const ArtistBio = (props) => {
         <div>
             {
                 (artistBio ?
-
-
                     <div class="flex flex-col">
                         <Collapse collapsedHeight={220} in={open}>
-
                             <p className="text-justify fade-in">{artistBio}</p>
-
-
                         </Collapse>
                         {
                             (artistBio.length > 820 ?
@@ -41,7 +38,6 @@ const ArtistBio = (props) => {
                                 <p></p>
                             )
                         }
-
                     </div>
                     :
                     <div className= "flex flex-row mt-10 justify-center font-bold text-gray-300 items-center">
