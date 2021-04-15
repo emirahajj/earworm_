@@ -9,7 +9,7 @@ const AlbumSnapshot = ({ image, albumName, date, artistName, genre, description,
 
     return (
         <div className="flex flex-col fade-in md:flex-row md:justify-around">
-            <div className="flex-shrink-0 w-80 mr-6 mt-10">
+            <div className="flex-shrink-0 w-80 mr-6 mt-10 ">
                 <img className="rounded-3xl" src={image} alt="" />
             </div>
             <div className="flex-shrink md:max-w-xl">
