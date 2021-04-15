@@ -2,7 +2,7 @@
 
 const ChartPosRecap = (props) => {
     return (
-        <div className="flex flex-col mt-10">
+        <div className="flex flex-col mt-10 md:mt-0">
             <h1 className="font-bold text-3xl text-center mt-5">Chart History</h1>
             <h1 className="text-center font-thin mt-3 mb-4">This album has charted {props.positions.length} {props.positions.length > 1 ? 'times' : 'time'}</h1>
             {props.positions.map((position) => {

@@ -6,19 +6,13 @@ import GrammyComponent from '../components/GrammyComponent'
 
 const AlbumSnapshot = ({ image, albumName, date, artistName, genre, description, awards }) => {
     const [open, setOpen] = useState(false);
-    const buttonRef = useRef();
-    const [height, setHeight] = useState(0);
-
-    useEffect(() => {
-        setHeight(0);
-    }, [buttonRef])
 
     return (
-        <div className="album-side flex flex-col mx-6 w-full justify-center fade-in md:flex-row">
-            <div className="flex-shrink-0 w-80 place-self-center">
+        <div className="flex flex-col fade-in md:flex-row md:justify-around">
+            <div className="flex-shrink-0 w-80 mr-6 mt-10">
                 <img className="rounded-3xl" src={image} alt="" />
             </div>
-            <div className="flex-shrink ml-6">
+            <div className="flex-shrink md:max-w-xl">
                 <div className="flex flex-row w-full mt-6 justify-between">
                     <h1 className="text-2xl text-left font-bold inline lg:text-4xl">{albumName}</h1>
                     <div className="flex flex-col place-self-center">
