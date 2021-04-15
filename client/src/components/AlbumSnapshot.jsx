@@ -11,11 +11,8 @@ const AlbumSnapshot = ({ positions, spotifyID, image, albumName, date, artistNam
 
     return (
         <div className="flex flex-col fade-in md:flex-row md:justify-around">
-            <div className="flex-shrink-0">
-                {/* <img className="rounded-3xl" src={image} alt="" /> */}
-                <SpotifyWidget spotifyID={spotifyID} height={600}/>
-            </div>
-            <div className="flex-shrink md:max-w-md lg:max-w-2xl">
+            <div className="flex-shrink flex w-96 flex-col px-4">
+                <img className="rounded-3xl md:w-96 md:mb-3" src={image} alt="" />
                 <div className="flex flex-row w-full mt-6 justify-between">
                     <h1 className="text-2xl text-left font-bold inline lg:text-4xl">{albumName}</h1>
                     <div className="flex flex-col place-self-center">
@@ -40,6 +37,14 @@ const AlbumSnapshot = ({ positions, spotifyID, image, albumName, date, artistNam
                         <p className="mt-10 text-gray-3  text-2xl text-center">No bio available</p>
                     )
                 }
+            </div>
+            
+            <div className="flex-shrink-0 md:max-w-md lg:max-w-2xl ">
+            <SpotifyWidget spotifyID={spotifyID} height={300}/>
+
+                
+
+
 
                 <div className="flex flex-col lg:flex-row justify-around">
                 {awards.length > 0 ? 
