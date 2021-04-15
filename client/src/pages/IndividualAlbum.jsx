@@ -63,15 +63,7 @@ const IndividualAlbum = ({ match: { params: { albumId } } }, props) => {
         <div>
             <Navbar />
             <div className="flex flex-col mt-10 w-full text-justify justify-center px-6">
-                <AlbumSnapshot image={image} albumName={albumName} date={date} artistName={artistName} genre={genre} description={desc} awards={awards}/>
-                <div className="flex flex-col justify-center md:flex-row md:justify-around md:items-center">
-                        <SpotifyWidget spotifyID={spotifyID} height={300} />
-                        <ChartPosRecap positions={chartPos}/>
-                </div>
-                <div className="flex flex-row w-full justify-center" >
-                    <GrammyRecap  awards={awards} artist={artistName} />
-                </div>
-
+                <AlbumSnapshot spotifyID= {spotifyID} positions={chartPos} image={image} albumName={albumName} date={date} artistName={artistName} genre={genre} description={desc} awards={awards}/>
             </div>
 
         </div>

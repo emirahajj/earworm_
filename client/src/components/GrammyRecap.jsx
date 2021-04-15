@@ -3,9 +3,9 @@ import GrammyComponent from '../components/GrammyComponent'
 
 const GrammyRecap = (props) => {
     return (
-        <div className="flex flex-row justify-center bg-opacity-90 rounded-3xl bg-dark-1 mt-10 mb-10 md:w-100">
+        <div className="flex flex-row justify-center bg-opacity-90 rounded-3xl bg-dark-1 mt-10 mb-10 md:w-80 md:self-center px-6">
         {props.awards.length > 0 ?  
-            (<div className="my-2 max-w-sm">
+            (<div className="my-2">
                 <h1 className="font-bold text-center text-3xl">Awards</h1>
                 <div className="flex flex-row my-4 justify-center">
                     {props.awards.map(element => {
