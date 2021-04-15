@@ -11,8 +11,8 @@ const AlbumSnapshot = ({ positions, spotifyID, image, albumName, date, artistNam
 
     return (
         <div className="flex flex-col fade-in md:flex-row md:justify-around">
-            <div className="flex-shrink flex w-96 flex-col px-4">
-                <img className="rounded-3xl md:w-96 md:mb-3" src={image} alt="" />
+            <div className="flex-shrink flex flex-col px-4 lg:max-w-xl">
+                <img className="rounded-3xl  md:mb-3 " src={image} alt="" />
                 <div className="flex flex-row w-full mt-6 justify-between">
                     <h1 className="text-2xl text-left font-bold inline lg:text-4xl">{albumName}</h1>
                     <div className="flex flex-col place-self-center">
