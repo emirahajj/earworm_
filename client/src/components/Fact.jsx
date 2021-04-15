@@ -1,19 +1,32 @@
-import placeholder from "../img/placeholder-dark.png"
-import Image from "../components/Image"
+import Image from "./Image"
+import { Link } from 'react-router-dom'
+import LinkText from "./LinkText"
 
-const Fact = ({ position, title, artist, cover, genre, styles, topGenre }) => {
+const Fact = ({ position, title, id, artist, cover, genre, styles, topGenre }) => {
     return (
         position === "right" ?
             <div className="flex flex-row-reverse mt-10 mb-10">
                 {/*<Image source={placeholder} />*/}
                 <div className="pt-1">
-                    <p className="text-sm text-center"><strong>{topGenre[0]}</strong> was the most popular genre this year with <strong>{topGenre[1]}</strong> entries in the top 10 albums. Other genres featured this year were {topGenre[2].join(", ")}. </p>
+                    <p className="text-sm text-center">
+                    <Link to={"/genres/" + topGenre[0]}>
+                        <LinkText text={topGenre[0]}/>
+                    </Link> was the most popular genre this year with <strong>{topGenre[1]}</strong> entries in the top 10 albums. Other genres featured in this year's top 10 albums were {topGenre[2].join(", ")}. </p>
                 </div>
             </div> :
             <div className="flex mt-10 mb-10">
                 <Image source={cover} />
                 <div className="pl-4">
-                    <p className="text-sm"><strong>{title}</strong> by <strong>{artist}</strong> was ranked the #1 album for this year. <strong>{artist}</strong> is also known for {styles.join(", ")} music. </p>
+                    <p className="text-sm">
+                    <Link to={"/albums/" + id}>
+                        <LinkText text={title}/>
+                    </Link> by  
+                    <Link to={"/artists/" + artist.replace(' ', '-')}>
+                        <LinkText text={artist}/>
+                    </Link> was ranked the #1 album for this year. 
+                    <Link to={"/artists/" + artist.replace(' ', '-')}>
+                        <LinkText text={artist}/>
+                    </Link> is also known for {styles.join(", ")} music. </p>
                 </div>
             </div>
     )

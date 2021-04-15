@@ -1,4 +1,3 @@
-import logo from "../img/concert.jpeg"
 import "../App.css"
 
 const TeamProfile = (props) => {

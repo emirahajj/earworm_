@@ -76,11 +76,12 @@ const Home = () => {
                 </section>
 
                 <section className="col-span-2 max-w-md justify-center fade-in">
-                    <Label text="Statistics" />
+                    <Label text="Quick Facts" />
                     {chart.slice(0, 1).map((entry) => {
                         return (
                             <Fact
                                 key={entry._id}
+                                id={entry["album"]._id}
                                 title={entry["album"].title}
                                 artist={entry["album"].artist}
                                 genre={entry["album"].genre}
