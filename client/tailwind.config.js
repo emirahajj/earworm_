@@ -8,8 +8,15 @@ module.exports = {
                 'dark-1': '#1E1E1E',
                 'gray-1': '#282828',
                 'gray-2': '#404040',
-                'gray-3': '#787878'
+                'gray-3': '#787878',
             },
+            backgroundColor: theme => ({
+                ...theme('colors'),
+                'primary': '#3490dc',
+                'secondary': '#ffed4a',
+                'danger': '#e3342f',
+                'search':'#0000003d'
+            }),
             backgroundImage: theme => ({
                 'concert': "url('/src/img/concert.jpeg')",
                 'headset' : "url('/src/img/dark-headset.jpg')",
