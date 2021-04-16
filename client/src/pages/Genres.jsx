@@ -27,7 +27,7 @@ const Genres = () => {
             placeholder="Search Genre" 
             onChange={(e) => {
                 setSearchLetters(e.target.value); //value of searchbar
-                console.log(searchLetters);
+                //console.log(searchLetters);
             }}
             />
 
