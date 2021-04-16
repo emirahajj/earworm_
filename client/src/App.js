@@ -5,7 +5,7 @@ import Artists from "./pages/Artists"
 import About from "./pages/About"
 import Genres from "./pages/Genres"
 import IndividualGenre from "./pages/IndividualGenre"
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import IndividualArtist from './pages/IndividualArtist';
 import IndividualAlbum from './pages/IndividualAlbum';
 
@@ -23,6 +23,10 @@ const App = () => {
                     <Route exact path="/genres" component={Genres} />
                     <Route path="/genres/:genreId" component={IndividualGenre} />
                     <Route exact path="/albums/:albumId" component={IndividualAlbum} />
+                    <Route>
+                        <Redirect to="/home"/>
+                    </Route>
+
 
                 </Switch>
             </div>
