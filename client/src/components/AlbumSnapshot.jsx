@@ -1,10 +1,11 @@
-import { useState, useEffect, useRef } from "react";
+import { useState} from "react";
 import { Link } from "react-router-dom"
 import Collapse from "@material-ui/core/Collapse"
 import "../App.css"
 import SpotifyWidget from '../components/SpotifyWidget'
-import GrammyRecap from './GrammyRecap'
+import GrammyComponent from './GrammyComponent'
 import ChartPosRecap from './ChartPosRecap'
+import Tooltip from '@material-ui/core/Tooltip'
 
 const AlbumSnapshot = ({ positions, spotifyID, image, albumName, date, artistName, genre, description, awards }) => {
     const [open, setOpen] = useState(false);
@@ -15,11 +16,18 @@ const AlbumSnapshot = ({ positions, spotifyID, image, albumName, date, artistNam
                 <img className="rounded-3xl  md:mb-3 " src={image} alt="" />
                 <div className="flex flex-row w-full mt-6 justify-between">
                     <h1 className="text-2xl text-left font-bold inline lg:text-4xl">{albumName}</h1>
+
                     <div className="flex flex-col place-self-center">
-                            <h1 className="text-2xl ml-2 font-light inline" >{date}</h1>
+                        <div className="flex flex-row ml-2">
+                            {awards.map(element => {
+                                return <Tooltip title={<p style={{fontSize: "14px", width: "200px", textAlign: "center", lineHeight: "18px"}}>This album won <br/><b>{element.award}</b> <br/> at the {element.year} Grammy's</p>} placement="bottom">
+                                        <div><GrammyComponent/></div>
+                                        </Tooltip>
+                            })}
+                        </div>
                     </div>
                 </div>
-                <Link className="text-2xl block text-gray-300" to={"/artists/" + artistName.replace(" ", "-")}> {artistName}</Link>
+                <Link className="text-2xl text-gray-300" to={"/artists/" + artistName.replace(" ", "-")}> {artistName}</Link>
                 <Link to={`/genres/`} className="text-xl text-gray-400 text-left font-bold ">{genre}</Link>
                 {
                     (description && (description !== " ") ?
@@ -39,22 +47,10 @@ const AlbumSnapshot = ({ positions, spotifyID, image, albumName, date, artistNam
                 }
             </div>
             
-            <div className="flex-shrink-0 md:max-w-md lg:max-w-2xl ">
-            <SpotifyWidget spotifyID={spotifyID} height={300}/>
-
-                
-
-
-
+            <div className="flex-shrink-0 md:max-w-md lg:max-w-xl ">
+                <SpotifyWidget spotifyID={spotifyID} height={500}/>
                 <div className="flex flex-col lg:flex-row justify-around">
-                {awards.length > 0 ? 
-                    <>
-                        <ChartPosRecap positions={positions}/>
-                        <GrammyRecap  awards={awards} artist={artistName} />
-                    </> : <ChartPosRecap positions={positions}/>
-                }
-                
-
+                    <ChartPosRecap positions={positions}/>
                 </div>
             </div>
         </div>

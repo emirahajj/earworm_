@@ -1,7 +1,7 @@
 const GrammyComponent = () => {
   return (
     <svg
-      className="w-10 mx-1"
+      className="w-6 mx-1"
       id="Layer_1"
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
