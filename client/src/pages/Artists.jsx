@@ -22,6 +22,7 @@ const Artists = () => {
         setArtists(null);
     }
 
+
     return (
         <div>
             <Navbar />
