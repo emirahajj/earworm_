@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import placeholder from "../img/placeholder-dark.png"
 import { fetchAudiodbArtist } from '../api/index'
+import "../App.css"
 
 const ArtistsThumbImg = (props) => {
     const [artistImg, setArtistImg] = useState(null);
@@ -18,7 +19,7 @@ const ArtistsThumbImg = (props) => {
     return (
         <div>
             {(artistImg ?
-                <img src={artistImg} alt="N/A"></img>
+                <img className="fade-in" src={artistImg} alt="N/A"></img>
                 :
                 <img className="h-full" src={placeholder} alt="Artist Cover"></img>
             )}
