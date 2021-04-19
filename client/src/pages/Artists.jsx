@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar"
 import { fetchArtistsLetter } from '../api/index';
 import "../App.css";
 import ArtistsThumb from "../components/ArtistsThumb";
+import LoadingRing from "../components/LoadingRing"
 
 
 const Artists = () => {
@@ -29,14 +30,14 @@ const Artists = () => {
         <div>
             <Navbar />
 
-            <input 
-            className="flex mx-auto w-1/4 mt-14 mb-4 p-4 bg-search"
-            type="text" 
-            placeholder="Search Artist" 
-            onChange={(e) => {
-                setSearchLetters(e.target.value); //value of searchbar
-                //console.log(searchLetters);
-            }}
+            <input
+                className="flex mx-auto w-1/4 mt-14 mb-4 p-4 bg-search"
+                type="text"
+                placeholder="Search Artist"
+                onChange={(e) => {
+                    setSearchLetters(e.target.value); //value of searchbar
+                    //console.log(searchLetters);
+                }}
             />
 
             <div className="flex justify-center fade-in pb-6">
@@ -74,7 +75,10 @@ const Artists = () => {
                         </div>
                     </div>
                     :
-                    <h3 className="text-center">No Results</h3>
+                    <div className="flex flex-row mt-10 justify-center font-bold text-gray-300 items-center">
+                        <LoadingRing />
+                        <p className="mx-3">Loading</p>
+                    </div>
                 )
             }
         </div >
