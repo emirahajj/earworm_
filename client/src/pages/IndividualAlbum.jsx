@@ -24,36 +24,36 @@ const IndividualAlbum = ({ match: { params: { albumId } } }, props) => {
 
     useEffect(() => {
         fetchAlbum(albumId).then((res) => {
-                let object = res.data[0];
-                setArtistName(object.artist);
-                setAlbumName(object.title);
-                setGenre(object.genre);
-                setDate(object.release);
-                setImage(object.img);
-                setAwards(object.awards);
-                setChartPos(object.chart_positions);
-    
-                fetchAudiodbAlbum(object.artist, object.title).then((res) => {
-                    //
-                    if (res.data['album'] !== null) {
-                        setDesc(res.data['album'][0].strDescriptionEN);
-                        console.log(res.data)
-                    }
-                })
-                fetchToken().then((res) => {
-                    let spotify = new SpotifyWebApi();
-                    spotify.setAccessToken(res.data.body["access_token"]);
-                    console.log(res.data.body["access_token"])
-                    spotify.searchAlbums(`${object.title}, ${object.artist}`).then((data) => {
-                        console.log(data);
-                        //
-                        setSpotifyID('https://open.spotify.com/embed/album/' + data.albums.items[0].id);
-                    }).catch((err) => {
-                        console.log(err);
-                    })
-                })
+            let object = res.data[0];
+            setArtistName(object.artist);
+            setAlbumName(object.title);
+            setGenre(object.genre);
+            setDate(object.release);
+            setImage(object.img);
+            setAwards(object.awards);
+            setChartPos(object.chart_positions);
 
-        }).catch((err)=>{
+            fetchAudiodbAlbum(object.artist, object.title).then((res) => {
+                //
+                if (res.data['album'] !== null) {
+                    setDesc(res.data['album'][0].strDescriptionEN);
+                    console.log(res.data)
+                }
+            })
+            fetchToken().then((res) => {
+                let spotify = new SpotifyWebApi();
+                spotify.setAccessToken(res.data.body["access_token"]);
+                console.log(res.data.body["access_token"])
+                spotify.searchAlbums(`${object.title}, ${object.artist}`).then((data) => {
+                    console.log(data);
+                    //
+                    setSpotifyID('https://open.spotify.com/embed/album/' + data.albums.items[0].id);
+                }).catch((err) => {
+                    console.log(err);
+                })
+            })
+
+        }).catch((err) => {
             setAlbumName("No album found");
         })
 
@@ -61,14 +61,14 @@ const IndividualAlbum = ({ match: { params: { albumId } } }, props) => {
 
 
     return (
-        (albumName==="No album found") ? <Redirect to="/home"/> :
-        <div>
-            <Navbar />
-            <div className="flex flex-col mt-10 w-full text-justify justify-center px-6">
-                <AlbumSnapshot spotifyID= {spotifyID} positions={chartPos} image={image} albumName={albumName} date={date} artistName={artistName} genre={genre} description={desc} awards={awards}/>
-            </div>
+        (albumName === "No album found") ? <Redirect to="/home" /> :
+            <div>
+                <Navbar />
+                <div className="flex flex-col mt-10 w-full text-justify justify-center px-6">
+                    <AlbumSnapshot spotifyID={spotifyID} positions={chartPos} image={image} albumName={albumName} date={date} artistName={artistName} genre={genre} description={desc} awards={awards} />
+                </div>
 
-        </div>
+            </div>
     );
 }
 
