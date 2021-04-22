@@ -8,6 +8,8 @@ import IndividualGenre from "./pages/IndividualGenre"
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import IndividualArtist from './pages/IndividualArtist';
 import IndividualAlbum from './pages/IndividualAlbum';
+import NavBar from './components/Navbar';
+import SpotifyWidget from './components/SpotifyWidget';
 
 const App = () => {
     return (
@@ -30,6 +32,7 @@ const App = () => {
 
                 </Switch>
             </div>
+            <SpotifyWidget spotifyID=" "></SpotifyWidget>
         </Router>
     );
 }
