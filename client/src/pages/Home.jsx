@@ -7,6 +7,7 @@ import Dropdown from "../components/Dropdown"
 import Entry from "../components/Entry"
 import Fact from "../components/Fact"
 import GenrePie from "../components/GenrePie"
+import List from "../components/List"
 import SimpleBarReact from "simplebar-react"
 import "simplebar/src/simplebar.css"
 
@@ -75,25 +76,34 @@ const Home = () => {
                     
                 </section>
 
-                <section className="col-span-2 max-w-md justify-center fade-in">
-                    <Label text="Quick Facts" />
-                    {chart.slice(0, 1).map((entry) => {
-                        return (
-                            <Fact
-                                key={entry._id}
-                                id={entry["album"]._id}
-                                title={entry["album"].title}
-                                artist={entry["album"].artist}
-                                genre={entry["album"].genre}
-                                styles={entry["album"].styles}
-                                cover={entry["album"].img}
-                            />
-                        )
-                    })}
-                    <Fact 
-                        position="right"
-                        topGenre = {getTopGenre()}
-                    />
+                <section className="col-span-2 grid justify-items-center max-w-xl fade-in">
+                    <div>
+                        <Label text="Quick Facts" />
+                    </div>
+                    <div className="justify-self-start">
+                        <div className="flex flex-row">
+                            <div>
+                                {chart.slice(0, 1).map((entry) => {
+                                    return (
+                                        <Fact
+                                            key={entry._id}
+                                            id={entry["album"]._id}
+                                            title={entry["album"].title}
+                                            artist={entry["album"].artist}
+                                            genre={entry["album"].genre}
+                                            styles={entry["album"].styles}
+                                            cover={entry["album"].img}
+                                        />
+                                    )
+                                })}
+                                <Fact 
+                                    position="right"
+                                    topGenre = {getTopGenre()}
+                                />
+                            </div>
+                            <List />
+                        </div>
+                    </div>
 
                     <Label text="Top 100 Albums by Genre" />
                     <GenrePie chartyear={chart} type="yearly"/>

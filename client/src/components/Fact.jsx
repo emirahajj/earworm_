@@ -5,7 +5,7 @@ import LinkText from "./LinkText"
 const Fact = ({ position, title, id, artist, cover, genre, styles, topGenre }) => {
     return (
         position === "right" ?
-            <div className="flex flex-row-reverse mt-10 mb-10">
+            <div className="flex flex-row-reverse mt-8 w-96">
                 {/*<Image source={placeholder} />*/}
                 <div className="pt-1">
                     <p className="text-sm text-center">
@@ -14,7 +14,7 @@ const Fact = ({ position, title, id, artist, cover, genre, styles, topGenre }) =
                     </Link> was the most popular genre this year with <strong>{topGenre[1]}</strong> entries in the top 10 albums. Other genres featured in this year's top 10 albums were {topGenre[2].join(", ")}. </p>
                 </div>
             </div> :
-            <div className="flex mt-10 mb-10">
+            <div className="flex w-96">
                 <Image source={cover} />
                 <div className="pl-4">
                     <p className="text-sm">
