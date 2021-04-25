@@ -10,7 +10,7 @@ import { Redirect } from "react-router";
 
 
 
-const IndividualAlbum = ({ match: { params: { albumId } } }, props) => {
+const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
 
     const [artistName, setArtistName] = useState(" ");
     const [albumName, setAlbumName] = useState(" ");
@@ -22,8 +22,20 @@ const IndividualAlbum = ({ match: { params: { albumId } } }, props) => {
     const [chartPos, setChartPos] = useState([]);
     const [desc, setDesc] = useState(" ")
 
+    // const handleChange = useCallback(
+    //     () => {
+    //         callback
+    //     },
+    //     [input],
+    // )
+
+    const handleChange = () => {
+        console.log(spotifyID)
+        onChangeAlbumId(spotifyID)
+    }
+
     useEffect(() => {
-        fetchAlbum(albumId).then((res) => {
+        fetchAlbum(albumID).then((res) => {
             let object = res.data[0];
             setArtistName(object.artist);
             setAlbumName(object.title);
@@ -57,15 +69,17 @@ const IndividualAlbum = ({ match: { params: { albumId } } }, props) => {
             setAlbumName("No album found");
         })
 
-    }, [albumId]);
+    }, [albumID]);
 
 
     return (
-        (albumName === "No album found") ? <Redirect to="/home" /> :
+        // (albumName === "No album found") ? <Redirect to="/home" /> :
             <div>
                 <Navbar />
                 <div className="flex flex-col mt-10 w-full text-justify justify-center px-6">
-                    <AlbumSnapshot spotifyID={spotifyID} positions={chartPos} image={image} albumName={albumName} date={date} artistName={artistName} genre={genre} description={desc} awards={awards} />
+                    <AlbumSnapshot positions={chartPos} image={image} albumName={albumName} date={date} artistName={artistName} genre={genre} description={desc} awards={awards} />
+                    <button onClick={handleChange}>This is a button</button>
+
                 </div>
 
             </div>

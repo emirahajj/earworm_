@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Landing from "./pages/Landing"
 import Home from "./pages/Home"
 import Artists from "./pages/Artists"
@@ -12,10 +12,13 @@ import NavBar from './components/Navbar';
 import SpotifyWidget from './components/SpotifyWidget';
 
 const App = () => {
+
+    const [spotifyID, setSpotifyID] = useState(" ");
+
     return (
 
         <Router>
-            <div>
+            <div classname= "h-screen relative">
                 <Switch>
                     <Route path="/" exact component={Landing} />
                     <Route path="/home" component={Home} />
@@ -24,7 +27,7 @@ const App = () => {
                     <Route path="/about" component={About} />
                     <Route exact path="/genres" component={Genres} />
                     <Route path="/genres/:genreId" component={IndividualGenre} />
-                    <Route exact path="/albums/:albumId" component={IndividualAlbum} />
+                    <Route exact path="/albums/:albumId" component={(props) => <IndividualAlbum albumID = {props.match.params.albumId} onChangeAlbumId={setSpotifyID}/>} />
                     <Route>
                         <Redirect to="/home"/>
                     </Route>
@@ -32,7 +35,7 @@ const App = () => {
 
                 </Switch>
             </div>
-            <SpotifyWidget spotifyID=" "></SpotifyWidget>
+            <SpotifyWidget spotifyID={spotifyID}></SpotifyWidget>
         </Router>
     );
 }

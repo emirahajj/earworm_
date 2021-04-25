@@ -7,7 +7,7 @@ import GrammyComponent from './GrammyComponent'
 import ChartPosRecap from './ChartPosRecap'
 import Tooltip from '@material-ui/core/Tooltip'
 
-const AlbumSnapshot = ({ positions, spotifyID, image, albumName, date, artistName, genre, description, awards }) => {
+const AlbumSnapshot = ({ positions, image, albumName, date, artistName, genre, description, awards }) => {
     const [open, setOpen] = useState(false);
 
     return (
@@ -48,7 +48,6 @@ const AlbumSnapshot = ({ positions, spotifyID, image, albumName, date, artistNam
             </div>
             
             <div className="flex-shrink-0 md:max-w-md lg:max-w-xl ">
-                <SpotifyWidget spotifyID={spotifyID} height={500}/>
                 <div className="flex flex-col lg:flex-row justify-around">
                     <ChartPosRecap positions={positions}/>
                 </div>
