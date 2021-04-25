@@ -81,8 +81,8 @@ const Home = () => {
                         <Label text="Quick Facts" />
                     </div>
                     <div className="justify-self-start">
-                        <div className="flex flex-row">
-                            <div>
+                        <div className="flex flex-row mt-5">
+                            <div className="w-96 space-y-6">
                                 {chart.slice(0, 1).map((entry) => {
                                     return (
                                         <Fact
@@ -100,6 +100,9 @@ const Home = () => {
                                     position="right"
                                     topGenre = {getTopGenre()}
                                 />
+                                <p className="text-center text-sm mt-8">
+                                    <strong>When We All Fall Asleep, Where Do We Go?</strong> by Billie Eilish was the album with that had the most awards this year with a total of 5 awards.
+                                </p>
                             </div>
                             <List />
                         </div>
