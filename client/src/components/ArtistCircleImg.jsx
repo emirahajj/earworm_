@@ -24,7 +24,7 @@ const ArtistsThumbImg = (props) => {
 
 
     return (
-        <div className="flex-none w-48 h-48 rounded-2xl overflow-hidden shadow-md fade-in transition duration-500 ease-in-out transform hover:scale-110 fade-in">
+        <div className="flex-none w-72 h-72 rounded-full overflow-hidden shadow-md mx-8">
             {(spotifyID ?
                 <img className="object-cover object-center fade-in h-full w-full" src={spotifyID} alt="N/A"></img>
                 :
