@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, memo } from 'react';
 import Landing from "./pages/Landing"
 import Home from "./pages/Home"
 import Artists from "./pages/Artists"
@@ -15,11 +15,15 @@ const App = () => {
 
     const [spotifyID, setSpotifyID] = useState(" ");
 
+    const dropProps = useCallback((props) => {
+        return <IndividualAlbum albumID = {props.match.params.albumId} onChangeAlbumId={setSpotifyID}/>
+    })
+
     return (
 
         <Router>
-            <div classname= "h-screen relative">
-                <Switch>
+            <div className= "h-screen relative">
+                <Switch >
                     <Route path="/" exact component={Landing} />
                     <Route path="/home" component={Home} />
                     <Route exact path="/artists" component={Artists} />
@@ -27,7 +31,7 @@ const App = () => {
                     <Route path="/about" component={About} />
                     <Route exact path="/genres" component={Genres} />
                     <Route path="/genres/:genreId" component={IndividualGenre} />
-                    <Route exact path="/albums/:albumId" component={(props) => <IndividualAlbum albumID = {props.match.params.albumId} onChangeAlbumId={setSpotifyID}/>} />
+                    <Route exact path="/albums/:albumId" component={dropProps} />
                     <Route>
                         <Redirect to="/home"/>
                     </Route>
@@ -40,4 +44,4 @@ const App = () => {
     );
 }
 
-export default App;
+export default memo(App);

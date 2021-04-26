@@ -1,8 +1,8 @@
 import { useState} from "react";
+import {memo} from "react";
 import { Link } from "react-router-dom"
 import Collapse from "@material-ui/core/Collapse"
 import "../App.css"
-import SpotifyWidget from '../components/SpotifyWidget'
 import GrammyComponent from './GrammyComponent'
 import ChartPosRecap from './ChartPosRecap'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -56,4 +56,4 @@ const AlbumSnapshot = ({ positions, image, albumName, date, artistName, genre, d
     )
 }
 
-export default AlbumSnapshot
+export default memo(AlbumSnapshot)

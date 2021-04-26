@@ -1,14 +1,10 @@
-import React from "react";
+import {memo} from "react";
 import Navbar from "../components/Navbar"
 import AlbumSnapshot from "../components/AlbumSnapshot"
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback} from 'react'
 import { fetchAlbum, fetchAudiodbAlbum, fetchToken } from '../api/index'
 import SpotifyWebApi from 'spotify-web-api-js'
 import { Redirect } from "react-router";
-
-
-
-
 
 const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
 
@@ -22,17 +18,9 @@ const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
     const [chartPos, setChartPos] = useState([]);
     const [desc, setDesc] = useState(" ")
 
-    // const handleChange = useCallback(
-    //     () => {
-    //         callback
-    //     },
-    //     [input],
-    // )
-
-    const handleChange = () => {
-        console.log(spotifyID)
-        onChangeAlbumId(spotifyID)
-    }
+    const handleChange = useCallback(() => {
+        onChangeAlbumId(spotifyID);
+    },[onChangeAlbumId, spotifyID])
 
     useEffect(() => {
         fetchAlbum(albumID).then((res) => {
@@ -73,7 +61,7 @@ const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
 
 
     return (
-        // (albumName === "No album found") ? <Redirect to="/home" /> :
+        (albumName === "No album found") ? <Redirect to="/home" /> :
             <div>
                 <Navbar />
                 <div className="flex flex-col mt-10 w-full text-justify justify-center px-6">
