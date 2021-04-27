@@ -18,7 +18,6 @@ const ChartPosRecap = (props) => {
             {props.positions.map((position) => {
                 return (
                     <div className="flex flex-row justify-center">
-
                         <Badge badgeContent={`#${position.rank}`} classes={{colorPrimary: classes.badge }} color="primary">
                             <h1 className="bg-dark text-center py-1 px-2 my-1 rounded-full font-bold w-20 shadow-md">{position.year}</h1>
                         </Badge>

@@ -65,7 +65,7 @@ app.use("/token", (req,res)=> {
           sAPI.setAccessToken(data.body['access_token']);
         },
         function(err) {
-            res.status(404).json({message: error.message});
+            res.status(404).json({message: err.message});
         }
       );
 });
