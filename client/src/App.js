@@ -15,12 +15,7 @@ const App = () => {
 
     const [spotifyID, setSpotifyID] = useState(" ");
 
-    const dropProps = useCallback((props) => {
-        return <IndividualAlbum albumID = {props.match.params.albumId} onChangeAlbumId={setSpotifyID}/>
-    })
-
     return (
-
         <Router>
             <div className= "h-screen relative">
                 <Switch >
@@ -31,11 +26,10 @@ const App = () => {
                     <Route path="/about" component={About} />
                     <Route exact path="/genres" component={Genres} />
                     <Route path="/genres/:genreId" component={IndividualGenre} />
-                    <Route exact path="/albums/:albumId" component={dropProps} />
+                    <Route exact path="/albums/:albumId" render={(props) => <IndividualAlbum albumID = {props.match.params.albumId} onChangeAlbumId={setSpotifyID}/>} />
                     <Route>
                         <Redirect to="/home"/>
                     </Route>
-
 
                 </Switch>
             </div>
