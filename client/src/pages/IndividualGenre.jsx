@@ -34,7 +34,7 @@ const IndividualGenre = ({ match: { params: { genreId } } }) => {
             (genreCount === -1) ? <Redirect to="/genres"/> :
             <div>
             <Navbar />
-            <div className="grid grid-cols-1 mt-10 ml-10 lg:grid-cols-5 fade-in">
+            <div className="grid grid-cols-1 mt-10 ml-10 lg:grid-cols-5 fade-in pb-20">
                 <div className="flex flex-col lg:col-span-3">
                     <div className="flex flex-col">
                         <div class="font-bold text-8xl">{genreId}</div>

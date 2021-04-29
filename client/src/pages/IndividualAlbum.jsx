@@ -71,7 +71,7 @@ const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
         (albumName === "No album found") ? <Redirect to="/home" /> :
             <div>
                 <Navbar />
-                <div className="flex flex-col mt-10 w-full text-justify justify-center px-6">
+                <div className="flex flex-col mt-10 w-full text-justify justify-center px-6 pb-20">
                     <AlbumSnapshot positions={chartPos} image={image} albumName={albumName} date={date} artistName={artistName} genre={genre} description={desc} awards={awards} />
                     <button onClick={handleChange}>This is a button</button>
                 
