@@ -7,13 +7,16 @@ import Dropdown from "../components/Dropdown"
 import Entry from "../components/Entry"
 import Fact from "../components/Fact"
 import GenrePie from "../components/GenrePie"
-import List from "../components/List"
+import TopGenreArtistsList from "../components/TopGenreArtistsList"
 import SimpleBarReact from "simplebar-react"
 import "simplebar/src/simplebar.css"
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
     const [chart, setChart] = useState([])
+
+    // Chart expansion switch to show all entries
+    const [more, setMore] = useState(false)
 
     useEffect(() => {
         fetchChartYear(chartYear).then((res) => {
@@ -23,6 +26,7 @@ const Home = () => {
     }, [chartYear])
 
     const onYearChange = (year) => {
+        setMore(false)
         setChartYear(year)
     }
 
@@ -48,6 +52,21 @@ const Home = () => {
         return [topGenre, topCount, otherGenres]
     }
 
+    // Method for creating an entry component
+    const createEntry = (entry) => {
+        return (
+            <Entry
+                key={entry._id}
+                id={entry["album"]._id}
+                rank={entry.rank}
+                year={chartYear}
+                title={entry["album"].title}
+                artist={entry["album"].artist}
+                cover={entry["album"].img}
+            />
+        )
+    }
+
     return (
         <div>
             <Navbar />
@@ -58,19 +77,12 @@ const Home = () => {
                     <Dropdown year={chartYear} onChange={onYearChange} />
                     <SimpleBarReact style={{ maxHeight: 700 }}>
                         <div className="flex-initial flex-col p-5">
-                            {chart.map((entry) => {
-                                return (
-                                    <Entry
-                                        key={entry._id}
-                                        id={entry["album"]._id}
-                                        rank={entry.rank}
-                                        year={chartYear}
-                                        title={entry["album"].title}
-                                        artist={entry["album"].artist}
-                                        cover={entry["album"].img}
-                                    />
-                                )
-                            })}
+                            {chart.slice(0, 10).map(createEntry)}
+                            {!more && 
+                            <button className="bg-dark text-md px-8 py-2 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1 focus:outline-none ml-24 mb-8" 
+                            onClick={() => {setMore(true)}}
+                            > More </button>}
+                            {more && chart.slice(10).map(createEntry)}
                         </div>
                     </SimpleBarReact>
                     
@@ -100,16 +112,17 @@ const Home = () => {
                                     position="right"
                                     topGenre = {getTopGenre()}
                                 />
-                                <p className="text-center text-sm mt-8">
+                                {/*<p className="text-center text-sm mt-8">
                                     <strong>When We All Fall Asleep, Where Do We Go?</strong> by Billie Eilish was the album with that had the most awards this year with a total of 5 awards.
-                                </p>
+                                </p>*/}
                             </div>
-                            <List />
+                            <TopGenreArtistsList />
                         </div>
                     </div>
-
-                    <Label text="Top 100 Albums by Genre" />
-                    <GenrePie chartyear={chart} type="yearly"/>
+                    <div>
+                        <Label text="Top 100 Albums by Genre" />
+                        <GenrePie chartyear={chart} type="yearly"/>
+                    </div>
 
                 </section>
             </div>
