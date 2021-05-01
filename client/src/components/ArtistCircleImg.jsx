@@ -4,7 +4,7 @@ import { fetchToken } from '../api/index'
 import "../App.css"
 import SpotifyWebApi from 'spotify-web-api-js'
 
-const ArtistsThumbImg = (props) => {
+const ArtistCircleImg = (props) => {
     const [spotifyID, setSpotifyID] = useState("");
     let artist_name = props.name;
 
@@ -37,4 +37,4 @@ const ArtistsThumbImg = (props) => {
 
 }
 
-export default ArtistsThumbImg
+export default ArtistCircleImg
