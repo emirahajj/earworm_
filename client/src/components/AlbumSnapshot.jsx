@@ -7,13 +7,13 @@ import GrammyComponent from './GrammyComponent'
 import ChartPosRecap from './ChartPosRecap'
 import Tooltip from '@material-ui/core/Tooltip'
 
-const AlbumSnapshot = ({ positions, image, albumName, date, artistName, genre, description, awards }) => {
+const AlbumSnapshot = ({ image, albumName, date, artistName, genre, description, awards }) => {
     const [open, setOpen] = useState(false);
 
     return (
         <div className="flex flex-col fade-in md:flex-row md:justify-around">
-            <div className="flex-shrink flex flex-col px-4 lg:max-w-xl">
-                <img className="rounded-3xl  md:mb-3 " src={image} alt="" />
+            <div className="flex-shrink flex flex-col px-4 md:max-w-md">
+                <img className="rounded-3xl  md:mb-3" src={image} alt="" />
                 <div className="flex flex-row w-full mt-6 justify-between">
                     <h1 className="text-2xl text-left font-bold inline lg:text-4xl">{albumName}</h1>
 
@@ -47,11 +47,6 @@ const AlbumSnapshot = ({ positions, image, albumName, date, artistName, genre, d
                 }
             </div>
             
-            <div className="flex-shrink-0 md:max-w-md lg:max-w-xl ">
-                <div className="flex flex-col lg:flex-row justify-around">
-                    <ChartPosRecap positions={positions}/>
-                </div>
-            </div>
         </div>
     )
 }
