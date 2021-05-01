@@ -17,7 +17,8 @@ const App = () => {
 
     return (
         <Router>
-            <div className= "h-screen relative">
+            <div className= "pb-20">
+            <NavBar/>
                 <Switch >
                     <Route path="/" exact component={Landing} />
                     <Route path="/home" component={Home} />
