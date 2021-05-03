@@ -1,6 +1,8 @@
 import { fetchChartYear } from '../api/index';
 import React, { useState, useEffect } from 'react';
 import "../App.css"
+import SimpleBarReact from "simplebar-react"
+import "simplebar/src/simplebar.css"
 import Navbar from "../components/Navbar"
 import Label from "../components/Label"
 import Dropdown from "../components/Dropdown"
@@ -8,8 +10,7 @@ import Entry from "../components/Entry"
 import Fact from "../components/Fact"
 import GenrePie from "../components/GenrePie"
 import TopGenreArtistsList from "../components/TopGenreArtistsList"
-import SimpleBarReact from "simplebar-react"
-import "simplebar/src/simplebar.css"
+import Facts from "../components/Facts"
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
@@ -30,7 +31,7 @@ const Home = () => {
         setChartYear(year)
     }
 
-    // Creates a new array object
+    // Creates a new array object with data
     const getTopGenre = () => {
         var count = {}
         var topGenre = ""
@@ -93,7 +94,7 @@ const Home = () => {
                         <Label text="Quick Facts" />
                     </div>
                     <div className="justify-self-start">
-                        <div className="flex flex-row mt-5">
+                        {/*<div className="flex flex-row mt-5">
                             <div className="w-96 space-y-6">
                                 {chart.slice(0, 1).map((entry) => {
                                     return (
@@ -112,12 +113,13 @@ const Home = () => {
                                     position="right"
                                     topGenre = {getTopGenre()}
                                 />
-                                {/*<p className="text-center text-sm mt-8">
+                                <p className="text-center text-sm mt-8">
                                     <strong>When We All Fall Asleep, Where Do We Go?</strong> by Billie Eilish was the album with that had the most awards this year with a total of 5 awards.
-                                </p>*/}
+                                </p>
                             </div>
                             <TopGenreArtistsList />
-                        </div>
+                        </div>*/}
+                        <Facts topEntry={chart[0]} topGenre={getTopGenre()} />
                     </div>
                     <div>
                         <Label text="Top 100 Albums by Genre" />
