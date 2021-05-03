@@ -3,8 +3,6 @@ import LinkText from "../LinkText"
 import Image from "../Image"
 
 const MostAwarded = ({ mostAwarded, moreMostAwarded}) => {
-    console.log(mostAwarded)
-    console.log(moreMostAwarded.length)
     return (
         moreMostAwarded.length === 0 ?
         <div className="flex flex-row-reverse items-center">
@@ -22,7 +20,7 @@ const MostAwarded = ({ mostAwarded, moreMostAwarded}) => {
             <div className="flex flex-row space-x-3 mb-3">
                 <Image source={mostAwarded.img} />
                 {moreMostAwarded.map((anotherMostAwarded) => {
-                    return ( <Image source={anotherMostAwarded["album"].img} /> )
+                    return ( <Image key={anotherMostAwarded["album"]._id} source={anotherMostAwarded["album"].img} /> )
                 })}
             </div>
             <p className="text-sm text-center">

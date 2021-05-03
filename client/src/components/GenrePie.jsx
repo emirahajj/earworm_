@@ -45,7 +45,6 @@ const GenrePie = ({chartyear, type, genreId}) => {
 
         let result = Object.keys(grouped).map(key => ({genre: key, count: grouped[key]}));
         result.sort((a, b) => b.count - a.count);
-        console.log(result)
         
         if (type === "allTime"){
           // result[1]={genre: "Other", count: 5778-result[0].count}

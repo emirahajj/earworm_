@@ -1,10 +1,20 @@
+import { useState, useEffect } from 'react';
+import { fetchChartYearByGenre } from '../api/index';
 import PropTypes from "prop-types"
 import TopEntry from "./facts/TopEntry"
 import TopGenre from "./facts/TopGenre"
 import MostAwarded from "./facts/MostAwarded"
-import TopGenreArtistsList from "../components/TopGenreArtistsList"
+import TopGenreArtistsList from "./facts/TopGenreArtistsList"
 
-const Facts = ({ topEntry, data }) => {
+const Facts = ({ topEntry, year, data }) => {
+    const [topGenreEntries, setTopGenreEntries] = useState([])
+
+    useEffect(() => {
+        fetchChartYearByGenre(data[0], year).then((res) => {
+            console.log("Fetching top albums for the top genre..")
+            setTopGenreEntries(res.data.slice(0, 5))
+        })
+    }, [data, year])
 
     return (
         <div className="flex flex-row mt-5">
@@ -28,7 +38,10 @@ const Facts = ({ topEntry, data }) => {
                     moreMostAwarded={data[4]}
                 />
             </div>
-            <TopGenreArtistsList />
+            <TopGenreArtistsList 
+                genre={data[0]} 
+                entries={topGenreEntries}
+            />
         </div>
     )
 }

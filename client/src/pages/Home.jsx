@@ -108,11 +108,11 @@ const Home = () => {
                     
                 </section>
 
-                <section className="col-span-2 grid justify-items-center max-w-xl fade-in">
+                <section className="col-span-2 grid justify-items-center max-w-2xl fade-in">
                     <div>
                         <Label text="Quick Facts" />
                     </div>
-                    <div className="justify-self-start mt-3">
+                    <div className="mt-3">
                         {/*<div className="flex flex-row mt-5">
                             <div className="w-96 space-y-6">
                                 {chart.slice(0, 1).map((entry) => {
@@ -143,6 +143,7 @@ const Home = () => {
                                 <Facts
                                     key="0"
                                     topEntry={entry}
+                                    year={chartYear}
                                     data={getFactsData()} 
                                 />
                             )
