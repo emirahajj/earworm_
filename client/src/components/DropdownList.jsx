@@ -16,6 +16,7 @@ const DropdownList = (props) => {
                 {years.map((year) => {
                     return (
                         <DropdownItem
+                            key={year}
                             onSwitch={props.onSwitch}
                             year={year}
                         />
