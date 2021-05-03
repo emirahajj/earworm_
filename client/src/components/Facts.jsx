@@ -1,9 +1,10 @@
 import PropTypes from "prop-types"
 import TopEntry from "./facts/TopEntry"
 import TopGenre from "./facts/TopGenre"
+import MostAwarded from "./facts/MostAwarded"
 import TopGenreArtistsList from "../components/TopGenreArtistsList"
 
-const Facts = ({ topEntry, topGenre }) => {
+const Facts = ({ topEntry, data }) => {
 
     return (
         <div className="flex flex-row mt-5">
@@ -18,7 +19,13 @@ const Facts = ({ topEntry, topGenre }) => {
                     styles={topEntry["album"].styles}
                 />
                 <TopGenre
-                    topGenreData={topGenre}
+                    topGenre={data[0]}
+                    topGenreCount={data[1]}
+                    otherGenres={data[2]}
+                />
+                <MostAwarded 
+                    mostAwarded={data[3]}
+                    moreMostAwarded={data[4]}
                 />
             </div>
             <TopGenreArtistsList />
