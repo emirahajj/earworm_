@@ -1,3 +1,4 @@
+import PropTypes from "prop-types"
 import TopEntry from "./facts/TopEntry"
 import TopGenre from "./facts/TopGenre"
 import TopGenreArtistsList from "../components/TopGenreArtistsList"
@@ -23,6 +24,16 @@ const Facts = ({ topEntry, topGenre }) => {
             <TopGenreArtistsList />
         </div>
     )
+}
+
+Facts.defaultProps = {
+    topEntry: {},
+    topGenre: []
+}
+
+Facts.propTypes = {
+    topEntry: PropTypes.object,
+    topGenre: PropTypes.array
 }
 
 export default Facts

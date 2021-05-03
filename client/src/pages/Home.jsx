@@ -119,7 +119,15 @@ const Home = () => {
                             </div>
                             <TopGenreArtistsList />
                         </div>*/}
-                        <Facts topEntry={chart[0]} topGenre={getTopGenre()} />
+                        {chart.slice(0, 1).map((entry) => {
+                            return (
+                                <Facts
+                                    key="0"
+                                    topEntry={entry}
+                                    topGenre={getTopGenre()} 
+                                />
+                            )
+                        })}
                     </div>
                     <div>
                         <Label text="Top 100 Albums by Genre" />
