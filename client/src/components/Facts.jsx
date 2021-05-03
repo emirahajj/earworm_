@@ -35,12 +35,10 @@ const Facts = ({ topEntry, data }) => {
 
 Facts.defaultProps = {
     topEntry: {},
-    topGenre: []
 }
 
 Facts.propTypes = {
     topEntry: PropTypes.object,
-    topGenre: PropTypes.array
 }
 
 export default Facts
