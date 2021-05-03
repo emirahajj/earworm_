@@ -11,7 +11,6 @@ const Facts = ({ topEntry, year, data }) => {
 
     useEffect(() => {
         fetchChartYearByGenre(data[0], year).then((res) => {
-            console.log("Fetching top albums for the top genre..")
             setTopGenreEntries(res.data.slice(0, 5))
         })
     }, [data, year])

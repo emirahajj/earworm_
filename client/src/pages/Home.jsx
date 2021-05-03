@@ -113,31 +113,6 @@ const Home = () => {
                         <Label text="Quick Facts" />
                     </div>
                     <div className="mt-3">
-                        {/*<div className="flex flex-row mt-5">
-                            <div className="w-96 space-y-6">
-                                {chart.slice(0, 1).map((entry) => {
-                                    return (
-                                        <Fact
-                                            key={entry._id}
-                                            id={entry["album"]._id}
-                                            title={entry["album"].title}
-                                            artist={entry["album"].artist}
-                                            genre={entry["album"].genre}
-                                            styles={entry["album"].styles}
-                                            cover={entry["album"].img}
-                                        />
-                                    )
-                                })}
-                                <Fact 
-                                    position="right"
-                                    topGenre = {getTopGenre()}
-                                />
-                                <p className="text-center text-sm mt-8">
-                                    <strong>When We All Fall Asleep, Where Do We Go?</strong> by Billie Eilish was the album that had the most awards this year with a total of 5 awards.
-                                </p>
-                            </div>
-                            <TopGenreArtistsList />
-                        </div>*/}
                         {chart.slice(0, 1).map((entry) => {
                             return (
                                 <Facts
