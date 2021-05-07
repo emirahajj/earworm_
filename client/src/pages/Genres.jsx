@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import Navbar from "../components/Navbar"
 import fetchData, { fetchGenres } from '../api/index';
 import "../App.css";
 //import SearchBar from "../components/SearchBar.jsx"
@@ -20,15 +19,14 @@ const Genres = () => {
 
     return (
         <div>
-            <Navbar />
-            <input 
-            className="flex mx-auto w-1/4 mt-14 mb-4 p-4 bg-search"
-            type="text" 
-            placeholder="Search Genre" 
-            onChange={(e) => {
-                setSearchLetters(e.target.value); //value of searchbar
-                //console.log(searchLetters);
-            }}
+            <input
+                className="flex mx-auto w-1/4 mt-14 mb-4 p-4 bg-search"
+                type="text"
+                placeholder="Search Genre"
+                onChange={(e) => {
+                    setSearchLetters(e.target.value); //value of searchbar
+                    //console.log(searchLetters);
+                }}
             />
 
             <div className="flex justify-center fade-in pb-8">

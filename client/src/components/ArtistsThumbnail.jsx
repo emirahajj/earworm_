@@ -6,24 +6,21 @@ import "../App.css"
 
 const ArtistsThumbnail = (props) => {
     const [spotifyID, setSpotifyArtistURL] = useState("");
-    const [artistName, setArtistName] = useState(props.name);
-    const [token, setToken] = useState(props.token);
 
     useEffect(() => {
         let spotify = new SpotifyWebApi();
-        spotify.setAccessToken(token);
-        spotify.searchArtists(`${artistName}`).then((data) => {
+        spotify.setAccessToken(props.token);
+        spotify.searchArtists(`${props.name}`).then((data) => {
             setSpotifyArtistURL(data.artists.items[0].images[1].url);
         }).catch((err) => {
             console.log(err);
         })
-
-    }, [artistName, token])
+    }, [props.name, props.token])
 
     return (
         <div>
-            <div className="flex justify-center">
-                <Link to={"/artists/" + props.name.replace(' ', '-')}>
+            <Link to={"/artist/" + props.name.replace(' ', '-')}>
+                <div className="flex justify-center">
                     <div className="flex-none w-48 h-48 rounded-2xl overflow-hidden shadow-md fade-in transition duration-500 ease-in-out transform hover:scale-110 fade-in">
                         {(spotifyID ?
                             <img className="object-cover object-center fade-in h-full w-full" src={spotifyID} alt="N/A"></img>
@@ -31,14 +28,12 @@ const ArtistsThumbnail = (props) => {
                             <img className="h-full" src={placeholder} alt="Artist Cover"></img>
                         )}
                     </div>
-                </Link>
-            </div>
+                </div>
 
-            <div className="flex justify-center mb-8 fade-in">
-                <Link to={"/artists/" + props.name.replace(' ', '-')}>
+                <div className="flex justify-center mb-8 fade-in">
                     <p className="mt-4 text-lg text-center font-bold">{props.name}</p>
-                </Link>
-            </div>
+                </div>
+            </Link>
         </div>
     )
 }

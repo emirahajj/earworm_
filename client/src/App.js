@@ -17,19 +17,19 @@ const App = () => {
 
     return (
         <Router>
-            <div className= "pb-20">
-            <NavBar/>
+            <div className="pb-20">
+                <NavBar />
                 <Switch >
                     <Route path="/" exact component={Landing} />
                     <Route path="/home" component={Home} />
-                    <Route exact path="/artists" component={Artists} />
-                    <Route path="/artists/:artist_name" component={IndividualArtist} />
+                    <Route path="/artist/:artist_name" component={IndividualArtist} />
+                    <Route exact path="/artists/:letter" component={Artists} />
                     <Route path="/about" component={About} />
                     <Route exact path="/genres" component={Genres} />
                     <Route path="/genres/:genreId" component={IndividualGenre} />
-                    <Route exact path="/albums/:albumId" render={(props) => <IndividualAlbum albumID = {props.match.params.albumId} onChangeAlbumId={setSpotifyID}/>} />
+                    <Route exact path="/albums/:albumId" render={(props) => <IndividualAlbum albumID={props.match.params.albumId} onChangeAlbumId={setSpotifyID} />} />
                     <Route>
-                        <Redirect to="/home"/>
+                        <Redirect to="/home" />
                     </Route>
 
                 </Switch>
