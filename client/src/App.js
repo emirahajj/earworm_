@@ -1,4 +1,4 @@
-import React, { useState, useCallback, memo } from 'react';
+import React, { useState, memo } from 'react';
 import Landing from "./pages/Landing"
 import Home from "./pages/Home"
 import Artists from "./pages/Artists"

@@ -10,6 +10,7 @@ import "../App.css"
 const IndividualArtist = ({ match: { params: { artist_name } } }) => {
 
     const [artistName, setArtistName] = useState(" ");
+    const [artistImage, setArtistImage] = useState(" ");
     const [albumIdArray, setAlbumIdArray] = useState([]);
     const [genreArray, setGenreArray] = useState([]);
 
@@ -17,6 +18,7 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
         fetchArtist(artist_name.replace('-', '%20')).then((res) => {
             if (res.data[0]) {
                 setArtistName(res.data[0].name);
+                setArtistImage(res.data[0].image)
                 setAlbumIdArray(res.data[0].albums);
                 setGenreArray(res.data[0].genres);
             } else {
@@ -32,7 +34,7 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
                     <div className="flex flex-col lg:col-span-4">
                         <div className="flex flex-row mt-10">
 
-                            <ArtistCircleImg name={artistName} />
+                            <ArtistCircleImg name={artistName} image= {artistImage} />
 
                             <div className=" w-full">
                                 <h1 className="text-5xl font-bold">{artistName}</h1>
