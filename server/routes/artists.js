@@ -17,9 +17,9 @@ router.get("/", async (req, res) => {
 router.get("/:name", async (req, res) => {
     try {
         let formattedName = req.params.name.replace('%20', ' ')
-        const data = await Artist.find({ name: formattedName });
+        const data = await Artist.find({ name: formattedName });                //wait till names are formatted and store them in data.
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-        res.status(200).json(data);
+        res.status(200).json(data);                                             //If response is received then fetch it in json format. 
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
