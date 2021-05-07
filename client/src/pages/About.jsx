@@ -3,11 +3,13 @@ import questions from "../components/questions.js"
 import Question from "../components/Question"
 import team from "../components/team"
 import TeamProfile from "../components/TeamProfile"
+import Navbar from '../components/Navbar';
 import "../App.css"
 
 const About = () => {
     return (
         <div>
+            <Navbar />
             <div className="fade-in">
                 <h1 className="text-3xl font-bold text-center mb-4 mt-4">About Earworm</h1>
                 <section className="flex justify-center pb-7">

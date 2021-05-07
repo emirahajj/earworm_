@@ -8,7 +8,6 @@ import IndividualGenre from "./pages/IndividualGenre"
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import IndividualArtist from './pages/IndividualArtist';
 import IndividualAlbum from './pages/IndividualAlbum';
-import NavBar from './components/Navbar';
 import SpotifyWidget from './components/SpotifyWidget';
 
 const App = () => {
@@ -18,7 +17,6 @@ const App = () => {
     return (
         <Router>
             <div className="pb-20">
-                <NavBar />
                 <Switch >
                     <Route path="/" exact component={Landing} />
                     <Route path="/home" component={Home} />

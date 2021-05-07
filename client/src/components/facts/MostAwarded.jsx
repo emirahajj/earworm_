@@ -11,7 +11,7 @@ const MostAwarded = ({ mostAwarded, moreMostAwarded}) => {
                 <Link to={"/albums/" + mostAwarded._id}>
                     <LinkText text={mostAwarded.title}/>
                 </Link> by  
-                <Link to={"/artists/" + mostAwarded.artist.replace(' ', '-')}>
+                <Link to={"/artist/" + mostAwarded.artist.replace(' ', '%20')}>
                     <LinkText text={mostAwarded.artist}/>
                 </Link> was the album that had the most awards on this year's chart with a total of <strong>{mostAwarded.awards.length}</strong> awards. The album was released in <strong>{mostAwarded.release}</strong>.
             </p>
@@ -27,7 +27,7 @@ const MostAwarded = ({ mostAwarded, moreMostAwarded}) => {
                 <Link to={"/albums/" + mostAwarded._id}>
                     <LinkText text={mostAwarded.title}/>
                 </Link> by  
-                <Link to={"/artists/" + mostAwarded.artist.replace(' ', '-')}>
+                <Link to={"/artist/" + mostAwarded.artist.replace(' ', '%20')}>
                     <LinkText text={mostAwarded.artist}/>
                 </Link>
                 {moreMostAwarded.map((anotherMostAwarded, index) => {
@@ -37,7 +37,7 @@ const MostAwarded = ({ mostAwarded, moreMostAwarded}) => {
                             <Link to={"/albums/" + anotherMostAwarded["album"]._id}>
                                 <LinkText text={anotherMostAwarded["album"].title}/>
                             </Link> by  
-                            <Link to={"/artists/" + anotherMostAwarded["album"].artist.replace(' ', '-')}>
+                            <Link to={"/artist/" + anotherMostAwarded["album"].artist.replace(' ', '%20')}>
                                 <LinkText text={anotherMostAwarded["album"].artist}/>
                             </Link>
                             </span> 
@@ -48,7 +48,7 @@ const MostAwarded = ({ mostAwarded, moreMostAwarded}) => {
                             <Link to={"/albums/" + anotherMostAwarded["album"]._id}>
                                 <LinkText text={anotherMostAwarded["album"].title}/>
                             </Link> by  
-                            <Link to={"/artists/" + anotherMostAwarded["album"].artist.replace(' ', '-')}>
+                            <Link to={"/artist/" + anotherMostAwarded["album"].artist.replace(' ', '%20')}>
                                 <LinkText text={anotherMostAwarded["album"].artist}/>
                             </Link>
                             </span> 

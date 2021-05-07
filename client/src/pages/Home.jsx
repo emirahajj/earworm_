@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import "../App.css"
 import SimpleBarReact from "simplebar-react"
 import "simplebar/src/simplebar.css"
-//import Navbar from "../components/Navbar"
 import Label from "../components/Label"
 import Dropdown from "../components/Dropdown"
 import Entry from "../components/Entry"
 import GenrePie from "../components/GenrePie"
 import Facts from "../components/Facts"
+import Navbar from '../components/Navbar';
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
@@ -89,7 +89,7 @@ const Home = () => {
 
     return (
         <div>
-            {/*<Navbar />*/}
+            <Navbar />
             <div className="grid grid-flow-col gap-20">
 
                 <section className="ml-10 w-96 fade-in">

@@ -5,6 +5,7 @@ import AlbumModal from '../components/AlbumModal'
 import ArtistCircleImg from "../components/ArtistCircleImg"
 import ArtistsBio from "../components/ArtistBio"
 import { Link, Redirect } from "react-router-dom";
+import Navbar from '../components/Navbar';
 import "../App.css"
 
 const IndividualArtist = ({ match: { params: { artist_name } } }) => {
@@ -30,6 +31,7 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
     return (
         (artistName === "No match") ? <Redirect to="/artists" /> :
             <div>
+                <Navbar />
                 <div className="grid grid-cols-1 lg:grid-cols-5 fade-in">
                     <div className="flex flex-col lg:col-span-4">
                         <div className="flex flex-row mt-10">

@@ -21,10 +21,10 @@ const Fact = ({ position, title, id, artist, cover, genre, styles, topGenre }) =
                     <Link to={"/albums/" + id}>
                         <LinkText text={title}/>
                     </Link> by  
-                    <Link to={"/artists/" + artist.replace(' ', '-')}>
+                    <Link to={"/artist/" + artist.replace(' ', '%20')}>
                         <LinkText text={artist}/>
                     </Link> was ranked the #1 album for this year. 
-                    <Link to={"/artists/" + artist.replace(' ', '-')}>
+                    <Link to={"/artist/" + artist.replace(' ', '%20')}>
                         <LinkText text={artist}/>
                     </Link> is also known for {styles.join(", ")} music. </p>
                 </div>
