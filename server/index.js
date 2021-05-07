@@ -88,6 +88,47 @@ app.use("/token", (req,res)=> {
 //     })
 // })
 
+//this code retrieves all the artist objects from the DB and updates their
+//images using the spotify API. setTimeOut is used to ensure that we don't get 
+//rate limited from Spotify. Should be run once or twice a year along with the code
+//that puts new entries into the chart
+
+// sAPI.clientCredentialsGrant().then(
+//   function(data) {
+//     // Save the access token so that it's used in future calls
+//     sAPI.setAccessToken(data.body['access_token']);
+//     console.log("token set: " + data.body['access_token']);
+//   },
+//   function(err) {
+//       console.log("error")
+//   })
+
+// let artists = async () => {
+//   let result = await Artist.find();
+//   return result
+// }
+// artists().then(x => {
+//   x.forEach(async (element, index) =>{
+//     //element.updateOne()
+//     setTimeout(()=> {
+//       sAPI.searchArtists(element.name).then((data) => {
+//         Artist.findOneAndUpdate({name: element.name}, {$set: {image: data.body.artists.items[0].images[0].url}}, (err, doc)=>{
+//           if (err) {
+//             console.log(err)
+//           }
+//           //console.log(data.body.artists.items[0].images[0].url)
+//           //console.log(doc);
+//         })
+//         console.log(element.name)
+//         console.log(data.body.artists.items[0].images[0].url)
+//         }).catch((err) => {
+//         console.log(err);
+//     })
+//     }, 1500 * index)
+//     //)
+//   })
+// })
+
 
 // //loop through the whole scraped array to populate our DB
 // entries.forEach(async element => {

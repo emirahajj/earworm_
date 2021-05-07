@@ -17,16 +17,17 @@ const Artists = ({ match: { params: { letter } } }) => {
             console.log(letters + " has the following token: " + res.data.body["access_token"])
             setToken(res.data.body["access_token"])
         })
-    }, [])
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            fetchArtistsLetter(letters).then((result) => {
-                setArtists(result.data)
-            })
-        }, 2000);
-        return () => clearTimeout(timer);
+        fetchArtistsLetter(letters).then((result) => {
+            setArtists(result.data)
+        })
     }, [letters])
+
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+
+    //     }, 2000);
+    //     return () => clearTimeout(timer);
+    // }, [letters])
 
     const onLetterChange = (temp_letter) => {
         if (temp_letter !== letters) {
@@ -63,7 +64,7 @@ const Artists = ({ match: { params: { letter } } }) => {
                             {
                                 artists.map((artist, index) => {
                                     console.log(artists.length)
-                                    return <ArtistsThumbnail key={index} name={artist.name} id={artist._id} token={token} />;
+                                    return <ArtistsThumbnail key={index} name={artist.name} id={artist._id} token={token} image={artist.image}/>;
                                 })
                             }
                         </div>
