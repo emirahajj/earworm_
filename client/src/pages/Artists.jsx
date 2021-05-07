@@ -4,6 +4,7 @@ import { fetchArtistsLetter, fetchToken } from '../api/index';
 import "../App.css";
 import ArtistsThumbnail from "../components/ArtistsThumbnail";
 import LoadingRing from "../components/LoadingRing"
+import Navbar from '../components/Navbar';
 
 const Artists = ({ match: { params: { letter } } }) => {
     const [letters, setLetters] = useState(letter);
@@ -32,6 +33,7 @@ const Artists = ({ match: { params: { letter } } }) => {
 
     return (
         <div>
+            <Navbar />
             <div className="flex justify-center fade-in pb-6">
                 <h2 className="flex justify-center text-center bg-dark w-3/5 h-14 mt-10 pt-4 rounded-full font-bold">Browse through some of your favorite artists: </h2>
             </div>

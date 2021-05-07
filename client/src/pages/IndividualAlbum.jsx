@@ -4,6 +4,7 @@ import { fetchAlbum, fetchAudiodbAlbum, fetchToken } from '../api/index'
 import SpotifyWebApi from 'spotify-web-api-js'
 import { Redirect } from "react-router";
 import ChartPosRecap from '../components/ChartPosRecap'
+import Navbar from '../components/Navbar';
 
 const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
 
@@ -86,6 +87,7 @@ const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
     return (
         (albumName === "No album found") ? <Redirect to="/home" /> :
             <div>
+                <Navbar />
                 <div className="flex flex-col md:flex-row mt-10 w-full text-justify justify-around px-6">
                     <AlbumSnapshot image={image} albumName={albumName} date={date} artistName={artistName} genre={genre} description={desc} awards={awards} />
                     <div className= "flex flex-col w-full md:max-w-md justify-center">

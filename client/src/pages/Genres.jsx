@@ -4,6 +4,7 @@ import fetchData, { fetchGenres } from '../api/index';
 import "../App.css";
 //import SearchBar from "../components/SearchBar.jsx"
 import GenreThumb from "../components/GenreThumb.jsx";
+import Navbar from '../components/Navbar';
 // if (val.includes(searchLetters)) 
 const Genres = () => {
 
@@ -19,6 +20,7 @@ const Genres = () => {
 
     return (
         <div>
+            <Navbar />
             <input
                 className="flex mx-auto w-1/4 mt-14 mb-4 p-4 bg-search"
                 type="text"
