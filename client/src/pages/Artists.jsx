@@ -11,6 +11,7 @@ const Artists = ({ match: { params: { letter } } }) => {
     const [token, setToken] = useState('');
 
     const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+    const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
     useEffect(() => {
         fetchToken().then((res) => {
@@ -36,9 +37,23 @@ const Artists = ({ match: { params: { letter } } }) => {
             </div>
 
             <nav>
-                <ul className="flex justify-center pb-12 fade-in">
+                <ul className="flex justify-center pb-3 fade-in">
                     {
                         alphabet.map((temp_letter, index) => {
+                            return <Link
+                                key={index}
+                                className={"py-2 px-1.5 md:px-2 lg:px-3 xl:px-4 rounded-full transition duration-500 ease-in-out font-bold" + (temp_letter === letters ? 'outline-none focus:outline-none bg-dark shadow-md' : 'outline-none focus:outline-none hover:bg-dark hover:shadow-md hover:scale-110')}
+                                onClick={() => onLetterChange(temp_letter)}
+                                to={"/artists/" + temp_letter}
+                            >{temp_letter}</Link>
+                        })
+                    }
+                </ul>
+            </nav>
+            <nav>
+                <ul className="flex justify-center pb-12 fade-in">
+                    {
+                        numbers.map((temp_letter, index) => {
                             return <Link
                                 key={index}
                                 className={"py-2 px-1.5 md:px-2 lg:px-3 xl:px-4 rounded-full transition duration-500 ease-in-out font-bold" + (temp_letter === letters ? 'outline-none focus:outline-none bg-dark shadow-md' : 'outline-none focus:outline-none hover:bg-dark hover:shadow-md hover:scale-110')}
@@ -57,7 +72,7 @@ const Artists = ({ match: { params: { letter } } }) => {
                             {
                                 artists.map((artist, index) => {
                                     console.log(artists.length)
-                                    return <ArtistsThumbnail key={index} name={artist.name} id={artist._id} token={token} image={artist.image}/>;
+                                    return <ArtistsThumbnail key={index} name={artist.name} id={artist._id} token={token} image={artist.image} />;
                                 })
                             }
                         </div>
