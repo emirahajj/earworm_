@@ -46,15 +46,15 @@ const Home = () => {
             genreCount[entry["album"].genre] = (genreCount[entry["album"].genre] || 0) + 1
 
             // Find the most awarded album
-            if(entry["album"].awards.length > mostAwarded.awards.length) {
+            if (entry["album"].awards.length > mostAwarded.awards.length) {
                 mostAwarded = entry["album"]
             }
         })
 
         // Check if there is more than one most awarded album (same number of awards)
         const moreMostAwarded = chart.filter((entry) => {
-            return (entry["album"]._id !== mostAwarded._id) && 
-                   (entry["album"].awards.length === mostAwarded.awards.length)
+            return (entry["album"]._id !== mostAwarded._id) &&
+                (entry["album"].awards.length === mostAwarded.awards.length)
         })
 
         // Find genre with the most entries
@@ -98,14 +98,14 @@ const Home = () => {
                     <SimpleBarReact style={{ maxHeight: 840 }}>
                         <div className="flex-initial flex-col p-5">
                             {chart.slice(0, 10).map(createEntry)}
-                            {!more && 
-                            <button className="bg-dark text-md px-8 py-2 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1 focus:outline-none ml-24 mb-4" 
-                            onClick={() => {setMore(true)}}
-                            > More </button>}
+                            {!more &&
+                                <button className="bg-dark text-md px-8 py-2 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1 focus:outline-none ml-24 mb-4"
+                                    onClick={() => { setMore(true) }}
+                                > More </button>}
                             {more && chart.slice(10).map(createEntry)}
                         </div>
                     </SimpleBarReact>
-                    
+
                 </section>
 
                 <section className="col-span-2 grid justify-items-center max-w-2xl fade-in">
@@ -119,14 +119,14 @@ const Home = () => {
                                     key="0"
                                     topEntry={entry}
                                     year={chartYear}
-                                    data={getFactsData()} 
+                                    data={getFactsData()}
                                 />
                             )
                         })}
                     </div>
                     <div>
                         <Label text="Top 100 Albums by Genre" />
-                        <GenrePie chartyear={chart} type="yearly"/>
+                        <GenrePie chartyear={chart} type="yearly" />
                     </div>
 
                 </section>

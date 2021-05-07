@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../components/Navbar"
 import { useState, useEffect } from 'react'
 import { fetchArtist } from '../api/index'
 import AlbumModal from '../components/AlbumModal'
@@ -29,7 +28,6 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
     return (
         (artistName === "No match") ? <Redirect to="/artists" /> :
             <div>
-                <Navbar />
                 <div className="grid grid-cols-1 lg:grid-cols-5 fade-in">
                     <div className="flex flex-col lg:col-span-4">
                         <div className="flex flex-row mt-10">
