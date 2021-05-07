@@ -4,7 +4,14 @@ const NavItem = (props) => {
     var highlight = false;
     const location = useLocation()
 
-    if (props.text.toLowerCase() === location.pathname.slice(1)) {
+    // Find index of "/" when a path has a subpath
+    // Example: artists/A
+    var slashIndex = location.pathname.slice(1).indexOf("/")
+
+    if (props.text.toLowerCase() === location.pathname.slice(1) ||
+        props.text.toLowerCase() === location.pathname.slice(1, slashIndex + 1) ||
+        props.text.toLowerCase() === location.pathname.slice(1, slashIndex + 1) + "s")
+    {
         highlight = true;
     }
 
