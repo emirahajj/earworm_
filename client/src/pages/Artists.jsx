@@ -22,13 +22,6 @@ const Artists = ({ match: { params: { letter } } }) => {
         })
     }, [letters])
 
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-
-    //     }, 2000);
-    //     return () => clearTimeout(timer);
-    // }, [letters])
-
     const onLetterChange = (temp_letter) => {
         if (temp_letter !== letters) {
             setLetters(temp_letter);
@@ -76,7 +69,7 @@ const Artists = ({ match: { params: { letter } } }) => {
                     </div>
                 )
             }
-        </div >
+        </div>
     );
 }
 

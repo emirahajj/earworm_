@@ -1,5 +1,3 @@
-import {memo} from "react";
-import Navbar from "../components/Navbar"
 import AlbumSnapshot from "../components/AlbumSnapshot"
 import { useState, useEffect, useCallback} from 'react'
 import { fetchAlbum, fetchAudiodbAlbum, fetchToken } from '../api/index'

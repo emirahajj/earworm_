@@ -1,7 +1,6 @@
 import "../App.css"
 import {useEffect, useState} from 'react'
 import {ResponsiveContainer, PieChart, Pie, Cell, Legend} from 'recharts'
-import Chart from "./Chart";
 
 var colors = [
     "#F97470",
