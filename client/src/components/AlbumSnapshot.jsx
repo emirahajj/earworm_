@@ -1,5 +1,5 @@
-import { useState} from "react";
-import {memo} from "react";
+import { useState } from "react";
+import { memo } from "react";
 import { Link } from "react-router-dom"
 import Collapse from "@material-ui/core/Collapse"
 import "../App.css"
@@ -20,14 +20,14 @@ const AlbumSnapshot = ({ image, albumName, date, artistName, genre, description,
                     <div className="flex flex-col place-self-center">
                         <div className="flex flex-row ml-2">
                             {awards.map(element => {
-                                return <Tooltip title={<p style={{fontSize: "14px", width: "200px", textAlign: "center", lineHeight: "18px"}}>This album won <br/><b>{element.award}</b> <br/> at the {element.year} Grammy's</p>} placement="bottom">
-                                        <div><GrammyComponent/></div>
-                                        </Tooltip>
+                                return <Tooltip title={<p style={{ fontSize: "14px", width: "200px", textAlign: "center", lineHeight: "18px" }}>This album won <br /><b>{element.award}</b> <br /> at the {element.year} Grammy's</p>} placement="bottom">
+                                    <div><GrammyComponent /></div>
+                                </Tooltip>
                             })}
                         </div>
                     </div>
                 </div>
-                <Link className="text-2xl text-gray-300" to={"/artists/" + artistName.replace(" ", "-")}> {artistName}</Link>
+                <Link className="text-2xl text-gray-300" to={"/artist/" + artistName.replace(" ", "-")}> {artistName}</Link>
                 <Link to={`/genres/`} className="text-xl text-gray-400 text-left font-bold ">{genre}</Link>
                 {
                     (description && (description !== " ") ?
@@ -46,7 +46,7 @@ const AlbumSnapshot = ({ image, albumName, date, artistName, genre, description,
                     )
                 }
             </div>
-            
+
         </div>
     )
 }
