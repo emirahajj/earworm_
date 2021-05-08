@@ -34,7 +34,7 @@ const SearchBox = () => {
     return(
         <div>
             <input
-                className="flex justify-end w-96 p-4 bg-search mt-4 mx-14"
+                className="flex justify-end w-96 p-4 bg-search mt-4 mx-14 focus:outline-none"
                 type="text"
                 placeholder="Search Artist"
                 onChange={(e) => {
