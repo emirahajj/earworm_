@@ -88,21 +88,22 @@ const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
         (albumName === "No album found") ? <Redirect to="/home" /> :
             <div>
                 <Navbar />
-                <div className="flex flex-col md:flex-row mt-10 w-full text-justify justify-around px-6">
+                <div className="flex flex-col lg:flex-row mt-10 w-full text-justify justify-around px-6">
                     <AlbumSnapshot image={image} albumName={albumName} date={date} artistName={artistName} genre={genre} description={desc} awards={awards} />
-                    <div className= "flex flex-col w-full md:max-w-md justify-center">
+                    <div className= "flex flex-col w-full lg:max-w-md justify-center">
                         <h1 className=" text-3xl font-bold text-center py-3">Tracklist</h1>
-                        <div className= "bg-gray-1 rounded-2xl bg-opacity-90 px-6 py-4 justify-center">
-                        {spotifyTracks.map((track) => {
+                        <div className= "bg-gray-1 rounded-2xl bg-opacity-90 px-6 py-4">
+                        {spotifyTracks.map((track, index) => {
                             return (
                                 <>
-                                    <p className=" leading-7">{track.name}</p>
-                                    <hr className=" border-gray-500 px-5"/>
+                                    <p className="leading-7 text-gray-100 font-light">{index + 1}. {track.name}</p>
+                                    {index === spotifyTracks.length -1 ? <></> : <hr className=" border-gray-500 px-5"/> }
+                                    
                                 </>
                                 )
                         })}
                         </div>
-                        <div><button className="bg-primary rounded-full w-48" onClick={handleChange}>Listen to this album</button></div>
+                        <div className= "w-full py-8 flex justify-center"><button className=" bg-dark-1 hover:bg-purple-700 rounded-full w-48 py-2 px-2 font-bold" onClick={handleChange}>Listen to this album</button></div>
 
                         <ChartPosRecap positions={chartPos}/>
                     </div>
