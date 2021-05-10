@@ -119,7 +119,6 @@ const Home = () => {
                                 <Facts
                                     key="0"
                                     topEntry={entry}
-                                    year={chartYear}
                                     data={getFactsData()}
                                 />
                             )

@@ -3,7 +3,7 @@ import TopEntry from "./facts/TopEntry"
 import TopGenre from "./facts/TopGenre"
 import MostAwarded from "./facts/MostAwarded"
 
-const Facts = ({ topEntry, year, data }) => {
+const Facts = ({ topEntry, data }) => {
 
     return (
         <div className="flex flex-row mt-2">
