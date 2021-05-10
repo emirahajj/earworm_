@@ -32,7 +32,7 @@ router.get("/:year", async (req,res)=> {
 router.get("/:year/:genre", async (req,res)=> {
     try {
         const data =  await Chart.find({year: req.params.year}).populate({path: "album"}).sort({rank: "ascending"});
-        let result = data.filter((element)=> element.album.genre === req.params.genre);
+        let result = data.filter((element)=> element.album.genre === req.params.genre.replace('|','/'));
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(result);
     } catch (error) {

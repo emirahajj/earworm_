@@ -21,6 +21,7 @@ const Artists = ({ match: { params: { letter } } }) => {
         })
         fetchArtistsLetter(letters).then((result) => {
             setArtists(result.data)
+            
         })
     }, [letters])
 
@@ -28,6 +29,7 @@ const Artists = ({ match: { params: { letter } } }) => {
         if (temp_letter !== letters) {
             setLetters(temp_letter);
             setArtists(null);
+
         }
     }
 

@@ -34,7 +34,7 @@ const Chart = (props) => {
 
     return(
         <section className="ml-10 w-96 fade-in">
-        <Label text={(props.type === "byYear") ? "Billboard 200 Albums": `Top ${props.genre} Albums`} />
+        <Label text={(props.type === "byYear") ? "Billboard 200 Albums": `Top ${props.genre.replace('|','/')} Albums`} />
         <Dropdown year={chartYear} onChange={onYearChange} />
         <div className="flex flex-col p-5">
             {chart.slice(0, 10).map((entry) => {
@@ -50,7 +50,7 @@ const Chart = (props) => {
                     />
                 )
             })}
-            {chart.length === 0 ? <p className="text-center mt-20 text-xl">No {props.genre} albums this chart year...</p> : <p></p> }
+            {chart.length === 0 ? <p className="text-center mt-20 text-xl">No {props.genre.replace('|','/')} albums this chart year...</p> : <p></p> }
 
         </div>
     </section>

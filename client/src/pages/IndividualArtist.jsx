@@ -16,7 +16,7 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
     const [genreArray, setGenreArray] = useState([]);
 
     useEffect(() => {
-        fetchArtist(artist_name.replace('-', '%20')).then((res) => {
+        fetchArtist(artist_name).then((res) => {
             if (res.data[0]) {
                 setArtistName(res.data[0].name);
                 setArtistImage(res.data[0].image)
