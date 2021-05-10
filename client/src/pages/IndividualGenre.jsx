@@ -19,7 +19,7 @@ const IndividualGenre = ({ match: { params: { genreId } } }) => {
 
     useEffect(() => {
         fetchAllAlbumsInGenre(genreId).then((res) => {
-            res.data[0] ? setGenreCount(res.data[0][`${genreId}`]): setGenreCount(-1);
+            res.data[0] ? setGenreCount(res.data[0][`${genreId.replace('|', '/')}`]): setGenreCount(-1);
         })
         fetchGenre(genreId).then((res) => {
             if(res.data[0]){setGenreObject(res.data[0]);}
@@ -37,7 +37,7 @@ const IndividualGenre = ({ match: { params: { genreId } } }) => {
             <div className="grid grid-cols-1 mt-10 ml-10 lg:grid-cols-5 fade-in pb-20">
                 <div className="flex flex-col lg:col-span-3">
                     <div className="flex flex-col">
-                        <div class="font-bold text-8xl">{genreId}</div>
+                        <div class="font-bold text-8xl">{genreId.replace('|','/')}</div>
                         <div class="flex flex-col">
                             <Collapse collapsedHeight={220} in={open}>
                                 {genreObject ? <p className="font-light mt-4 text-gray-200 text-justify" id="drop">{genreObject.desc}</p> : <p></p>}
