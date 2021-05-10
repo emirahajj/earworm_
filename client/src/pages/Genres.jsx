@@ -22,7 +22,7 @@ const Genres = () => {
         <div>
             <Navbar />
             <input
-                className="flex mx-auto w-1/4 mt-14 mb-4 p-4 bg-search"
+                className="flex mx-auto w-1/4 mt-14 mb-4 p-4 bg-search focus:outline-none"
                 type="text"
                 placeholder="Search Genre"
                 onChange={(e) => {
