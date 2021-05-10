@@ -9,6 +9,7 @@ import Entry from "../components/Entry"
 import GenrePie from "../components/GenrePie"
 import Facts from "../components/Facts"
 import Navbar from '../components/Navbar';
+import TopGenreArtistsList from "../components/TopGenreArtistsList"
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
@@ -98,27 +99,30 @@ const Home = () => {
                     <SimpleBarReact style={{ maxHeight: 840 }}>
                         <div className="flex-initial flex-col p-5">
                             {chart.slice(0, 10).map(createEntry)}
-                            {!more &&
+                            {!more ?
                                 <button className="bg-dark text-md px-8 py-2 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1 focus:outline-none ml-24 mb-4"
                                     onClick={() => { setMore(true) }}
-                                > More </button>}
+                                > More </button> :
+                                <button className="bg-dark text-md px-8 py-2 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1 focus:outline-none ml-24 mb-8"
+                                    onClick={() => { setMore(false) }}
+                                > Less </button>
+                            }
                             {more && chart.slice(10).map(createEntry)}
                         </div>
                     </SimpleBarReact>
 
                 </section>
 
-                <section className="col-span-2 grid justify-items-center max-w-2xl fade-in">
+                <section className="grid justify-items-center fade-in">
                     <div>
                         <Label text="Quick Facts" />
                     </div>
-                    <div className="mt-3">
+                    <div>
                         {chart.slice(0, 1).map((entry) => {
                             return (
                                 <Facts
                                     key="0"
                                     topEntry={entry}
-                                    year={chartYear}
                                     data={getFactsData()}
                                 />
                             )
@@ -129,6 +133,12 @@ const Home = () => {
                         <GenrePie chartyear={chart} type="yearly" />
                     </div>
 
+                </section>
+                <section className="flex flex-col items-center">
+                    <TopGenreArtistsList 
+                        data={getFactsData()}
+                        year={chartYear}
+                    />
                 </section>
             </div>
         </div>
