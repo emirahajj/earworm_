@@ -9,6 +9,7 @@ import Entry from "../components/Entry"
 import GenrePie from "../components/GenrePie"
 import Facts from "../components/Facts"
 import Navbar from '../components/Navbar';
+import TopGenreArtistsList from "../components/TopGenreArtistsList"
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
@@ -108,11 +109,11 @@ const Home = () => {
 
                 </section>
 
-                <section className="col-span-2 grid justify-items-center max-w-2xl fade-in">
+                <section className="grid justify-items-center fade-in">
                     <div>
                         <Label text="Quick Facts" />
                     </div>
-                    <div className="mt-3">
+                    <div>
                         {chart.slice(0, 1).map((entry) => {
                             return (
                                 <Facts
@@ -129,6 +130,12 @@ const Home = () => {
                         <GenrePie chartyear={chart} type="yearly" />
                     </div>
 
+                </section>
+                <section className="flex flex-col items-center">
+                    <TopGenreArtistsList 
+                        data={getFactsData()}
+                        year={chartYear}
+                    />
                 </section>
             </div>
         </div>
