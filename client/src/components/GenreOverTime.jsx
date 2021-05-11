@@ -241,7 +241,7 @@ const GenreOverTime = (props) => {
       return (
         <div className="my-12">
 
-          <h1 className="text-4xl mt-3 font-bold mb-3 text-white text-center">{genreName} Albums by Year</h1>
+          <h1 className="text-4xl mt-3 font-bold mb-3 text-white text-center">{genreName.replace('|','/')} Albums by Year</h1>
           <ResponsiveContainer width="100%" height={450}>
             <AreaChart
               data={history}

@@ -32,13 +32,13 @@ router.get("/all/:genre", async (req,res)=> {
         const data =  await Album.aggregate([
             {
               '$match': {
-                'genre': req.params.genre
+                'genre': req.params.genre.replace('|','/')
               }
             }, {
-              '$count': req.params.genre
+              '$count': req.params.genre.replace('|','/')
             }
           ]);
-          data[1] = await Album.find({genre: req.params.genre});
+          data[1] = await Album.find({genre: req.params.genre.replace('|','/')});
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(data);
     } catch (error) {

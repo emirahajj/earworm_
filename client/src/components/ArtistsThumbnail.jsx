@@ -6,7 +6,7 @@ import "../App.css"
 const ArtistsThumbnail = (props) => {
     return (
         <div>
-            <Link to={"/artist/" + props.name.replace(' ', '-')}>
+            <Link to={"/artist/" + props.name.replace('/', '|')}>
                 <div className="flex justify-center">
                     <div className="flex-none w-48 h-48 rounded-2xl overflow-hidden shadow-md fade-in transition duration-500 ease-in-out transform hover:scale-110 fade-in">
                         {(props.image !== "0" ?
