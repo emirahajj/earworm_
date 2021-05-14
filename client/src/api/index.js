@@ -17,6 +17,10 @@ export const fetchAllAlbumsInGenre = (genre) => {
   return axios.get(`${url}/albums/all/${genre}`)
 };
 
+//returns array of album objects that begin with a certain letter
+export const fetchAlbumsLetter = (firstCharacter) => {
+  return axios.get(`${url}/albums/albumLetter/${firstCharacter}`)
+}
 //-------ARTISTS ROUTES--------------//
 
 //returns array of uniqe artist objects

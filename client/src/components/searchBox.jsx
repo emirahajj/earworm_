@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { fetchArtistsLetter } from '../api/index';
+import { fetchArtistsLetter, fetchAlbumsLetter } from '../api/index';
 import LoadingRing from "../components/LoadingRing";
 import SuggestedList from "./SuggestedList";
 
@@ -9,7 +9,7 @@ const SearchBox = () => {
     const [inputCharacters, setInputCharacters] = useState('');
     //const [wrapperRef] = useRef(null); 
     const [suggestedArtists, setSuggestedArtists] = useState(null);                             //wrapper
-    // const [display, setDisplay] = useState("false");    
+    const [display, setDisplay] = useState("false");    
 
     useEffect(() => {
         fetchArtistsLetter(inputCharacters).then((res) => {
@@ -24,12 +24,12 @@ const SearchBox = () => {
     //     };
     //   });
     
-    //   const handleClickOutside = event => {
+    // const handleClickOutside = event => {
     //     const { current: wrap } = wrapperRef;
-    //     if (wrap && !wrap.contains(event.target)) {
-    //       setDisplay(false);
+    //         if (wrap && !wrap.contains(event.target)) {
+    //         setDisplay(false);
     //     }
-    //   };
+    // };
 
     return(
         <div>
@@ -37,6 +37,7 @@ const SearchBox = () => {
                 className="flex justify-end w-96 p-4 bg-search mt-4 mx-14 focus:outline-none"
                 type="text"
                 placeholder="Search Artist"
+                onClick = {() => {setDisplay(!display)}}
                 onChange={(e) => {
 
                     setInputCharacters(e.target.value);
@@ -47,11 +48,17 @@ const SearchBox = () => {
             />
 
             {
-                (suggestedArtists ?
+                (suggestedArtists && !display ?
                     <div className="flex justify-start fixed z-10">
                         <div className="justify-start container grid grid-cols-1 fade-in w-96 mx-14">
                             {
-                                suggestedArtists.slice(0,10).map((suggestedArtist, index) => {
+                                suggestedArtists.filter((val) => {
+                                    if (inputCharacters == "") {
+                                        return val.name
+                                    } else if (val.name.toLowerCase().includes(inputCharacters.toLowerCase())) {
+                                        return val.name
+                                    }
+                                }).slice(0,10).map((suggestedArtist, index) => {
                                     return <SuggestedList key={index} name={suggestedArtist.name} id={suggestedArtist.id} />;
                                 })
                             }
