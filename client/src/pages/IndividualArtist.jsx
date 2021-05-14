@@ -9,7 +9,6 @@ import Navbar from '../components/Navbar';
 import "../App.css"
 
 const IndividualArtist = ({ match: { params: { artist_name } } }) => {
-
     const [artistName, setArtistName] = useState(" ");
     const [artistImage, setArtistImage] = useState(" ");
     const [albumIdArray, setAlbumIdArray] = useState([]);
@@ -25,9 +24,9 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
             } else {
                 setArtistName("No match");
             }
-
         })
     }, [artist_name]);
+
     return (
         (artistName === "No match") ? <Redirect to="/artists" /> :
             <div>
@@ -36,29 +35,23 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
                     <div className="flex flex-col lg:col-span-4">
                         <div className="flex flex-row mt-10">
 
-                            <ArtistCircleImg name={artistName} image= {artistImage} />
+                            <ArtistCircleImg name={artistName} image={artistImage} />
 
                             <div className=" w-full">
                                 <h1 className="text-5xl font-bold">{artistName}</h1>
-                                <h2 className="text-xl text-gray-400 font-bold"> {genreArray.map((genre, i) =>
-                                    (i === genreArray.length - 1) ? <Link to={"/genres/" + genre}>{genre}</Link> : <Link to={"/genres/" + genre}>{genre + ', '}</Link>
-                                )}</h2>
+                                <h2 className="text-xl text-gray-400 font-bold">
+                                    {
+                                        genreArray.map((genre, i) =>
+                                            (i === genreArray.length - 1) ? <Link to={"/genres/" + genre}>{genre}</Link> : <Link to={"/genres/" + genre}>{genre + ', '}</Link>
+                                        )
+                                    }
+                                </h2>
                                 <br />
                                 <ArtistsBio name={artistName} />
                             </div>
-
-                            {  /*<div className="flex flex-row justify-center mt-6 ml-12">                                      </div>*/}
-
-
-
-
                         </div>
 
-
-
-
                         <div className="flex justify-center mt-6 mx-8">
-
                             <div>
                                 <h1 className="text-4xl font-bold mb-1">Albums</h1>
                                 <div className="mb-8">
@@ -69,11 +62,9 @@ const IndividualArtist = ({ match: { params: { artist_name } } }) => {
                                     {albumIdArray.map((album) => <AlbumModal id={album} />
                                     )}
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
