@@ -17,13 +17,13 @@ export const fetchAllAlbumsInGenre = (genre) => {
   return axios.get(`${url}/albums/all/${genre}`)
 };
 /************************************************ */
-export const fetchAlbumByName = (name) => {
-  return axios.get(`${url}/albumsByName/${name}`)
+export const fetchAlbumsByTitle = (title) => {
+  return axios.get(`${url}/albums/${title}`)/////
 };
 
 //returns array of album objects that begin with a certain letter
 export const fetchAlbumsLetter = (firstCharacter) => {
-  return axios.get(`${url}/albumsByName/albumLetter/${firstCharacter}`)
+  return axios.get(`${url}/albums/albumLetter/${firstCharacter}`)
 }
 /*************************************************** */
 //-------ARTISTS ROUTES--------------//

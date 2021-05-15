@@ -14,18 +14,12 @@ const SearchBox = () => {
     const [showAlbums, setShowAlbums]= useState("false"); //ttrue when clicked
 
     useEffect(() => {
-        //1. Make a checkbox ofalbums
-        //2. When checkbox is not active, render artists.
-        //3. When it is active, it would render albums
-        //4. Maybe make a bool state for Albums. Like one click would
-        //   change the state to Albums from Artists.
         fetchArtistsLetter(inputCharacters).then((res) => {
             setSuggestedArtists(res.data);                   //gets the first letter(s) of names. 
         });
     }, [inputCharacters])                                   //whenever a character is typed, useEffect is called.
 
     useEffect(() => {
-        //Array kaaj kortise but array te jinish ashtise na.
         fetchAlbumsLetter(inputCharacters).then((res) => {
             setSuggestedAlbums(res.data);
         });
@@ -42,6 +36,7 @@ const SearchBox = () => {
                 onChange={(e) => {
 
                     setInputCharacters(e.target.value);
+                    console.log(suggestedAlbums);
                 }
             }
             />
@@ -67,7 +62,7 @@ const SearchBox = () => {
                         <div className="justify-start container grid grid-cols-1 fade-in w-96 mx-14">
                             {
                                 suggestedAlbums.slice(0,10).map((suggestedAlbum, index) => {
-                                    return <AlbumSuggestions key={index} name={suggestedAlbum.name} id={suggestedAlbum._id} />;
+                                    return <AlbumSuggestions key={index} name={suggestedAlbum.title} id={suggestedAlbum._id} />;
                                 })
                             }
                         </div>

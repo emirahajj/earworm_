@@ -26,12 +26,12 @@ router.get("/:id", async (req,res)=> {
     }
 });
 
-/*******added by Red to fetch by name *****/
-router.get("/:name", async (req, res) => {
+/*******added by Red to fetch by title *****/
+router.get("/:title", async (req, res) => {
     try {
-        let formattedName = req.params.name.replace('%20', ' ')
-        let formatted2 = formattedName.replace('|','/')
-        const data = await Album.find({name: formatted2});
+        let formattedTitle = req.params.title.replace('%20', ' ')
+        let formatted2 = formattedTitle.replace('|','/')
+        const data = await Album.find({title: formatted2});
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(data);
     } catch (error) {
@@ -42,7 +42,7 @@ router.get("/:name", async (req, res) => {
 router.get("/albumLetter/:firstCharacter", async (req, res) => {
     try{
         let char = req.params.firstCharacter;
-        const data = await Album.find({ name: { $regex: '^' + char, $options: 'i' } });
+        const data = await Album.find({ title: { $regex: '^' + char, $options: 'i' } });
         res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.status(200).json(data);
     } catch (error) {
