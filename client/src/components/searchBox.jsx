@@ -7,11 +7,10 @@ import AlbumSuggestions from "./AlbumSuggestions";
 const SearchBox = () => {
 
     const [inputCharacters, setInputCharacters] = useState('');
-    //const [wrapperRef] = useRef(null); 
-    const [suggestedArtists, setSuggestedArtists] = useState(null);                             //wrapper
-    const [display, setDisplay] = useState("false");    
+    const [suggestedArtists, setSuggestedArtists] = useState(null);                             
     const [suggestedAlbums, setSuggestedAlbums] = useState(null);
-    const [showAlbums, setShowAlbums]= useState("false"); //ttrue when clicked
+    const [showAlbums, setShowAlbums]= useState(false); 
+    const [showList, setShowList] = useState(false);
 
     useEffect(() => {
         fetchArtistsLetter(inputCharacters).then((res) => {
@@ -25,16 +24,30 @@ const SearchBox = () => {
         });
     }, [inputCharacters])
 
+    let searchRef = useRef();
+
+    useEffect(() => {
+        let handler = (event) => {
+            if (!searchRef.current.contains(event.target)) {
+                setShowList(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handler);
+        
+        return () => {
+            document.removeEventListener("mousedown", handler)
+        }
+    });
 
     return(
-        <div>
+        <div ref={searchRef}>
             <input
                 className="flex justify-end w-96 p-4 bg-search mt-4 mx-14 focus:outline-none"
                 type="text"
                 placeholder="Search"
-                onClick = {() => {setDisplay(!display)}}
+                onClick={() => setShowList((showList) => !showList)}
                 onChange={(e) => {
-
                     setInputCharacters(e.target.value);
                     console.log(suggestedAlbums);
                 }
@@ -47,7 +60,7 @@ const SearchBox = () => {
             />
 
             {
-                (suggestedArtists && showAlbums ?
+                (suggestedArtists && !showAlbums && showList?
                     <div className="flex justify-start fixed z-10">
                         <div className="justify-start container grid grid-cols-1 fade-in w-96 mx-14">
                             {
@@ -57,12 +70,12 @@ const SearchBox = () => {
                             }
                         </div>
                     </div>
-                    : suggestedAlbums && !showAlbums ?
+                    : suggestedAlbums && showAlbums && showList?
                     <div className="flex justify-start fixed z-10">
                         <div className="justify-start container grid grid-cols-1 fade-in w-96 mx-14">
                             {
                                 suggestedAlbums.slice(0,10).map((suggestedAlbum, index) => {
-                                    return <AlbumSuggestions key={index} name={suggestedAlbum.title} id={suggestedAlbum._id} />;
+                                    return <AlbumSuggestions key={index} name={suggestedAlbum.title} />;
                                 })
                             }
                         </div>
@@ -70,7 +83,7 @@ const SearchBox = () => {
                     : 
                     <div className="flex justify-start fixed z-10">
                         <div className="justify-start container grid grid-cols-1 fade-in w-96 mx-14">
-                            No results found
+                           
                         </div>
                     </div>
                 )
