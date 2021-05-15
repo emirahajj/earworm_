@@ -26,6 +26,19 @@ router.get("/:id", async (req,res)=> {
     }
 });
 
+/*******added by Red to fetch by name *****/
+router.get("/:name", async (req, res) => {
+    try {
+        let formattedName = req.params.name.replace('%20', ' ')
+        let formatted2 = formattedName.replace('|','/')
+        const data = await Album.find({name: formatted2});
+        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+        res.status(200).json(data);
+    } catch (error) {
+        res.status(404).json({ messege: error.messege });
+    }
+});
+
 router.get("/albumLetter/:firstCharacter", async (req, res) => {
     try{
         let char = req.params.firstCharacter;
@@ -36,6 +49,7 @@ router.get("/albumLetter/:firstCharacter", async (req, res) => {
         res.status(404).json({ message: error.message });
     }
 });
+/************** */
 
 router.get("/all/:genre", async (req,res)=> {
     try {

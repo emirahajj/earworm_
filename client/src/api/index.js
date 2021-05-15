@@ -16,11 +16,16 @@ export const fetchAlbum = (id) => {
 export const fetchAllAlbumsInGenre = (genre) => {
   return axios.get(`${url}/albums/all/${genre}`)
 };
+/************************************************ */
+export const fetchAlbumByName = (name) => {
+  return axios.get(`${url}/albumsByName/${name}`)
+};
 
 //returns array of album objects that begin with a certain letter
 export const fetchAlbumsLetter = (firstCharacter) => {
-  return axios.get(`${url}/albums/albumLetter/${firstCharacter}`)
+  return axios.get(`${url}/albumsByName/albumLetter/${firstCharacter}`)
 }
+/*************************************************** */
 //-------ARTISTS ROUTES--------------//
 
 //returns array of uniqe artist objects
