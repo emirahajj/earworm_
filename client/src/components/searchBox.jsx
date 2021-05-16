@@ -54,10 +54,19 @@ const SearchBox = () => {
             }
             />
 
-            <input 
-                type="checkbox" 
-                onClick = {() => {setShowAlbums(!showAlbums)}}
-            />
+            <div className="flex items-center pt-2 pl-16">
+                <input 
+                    type="checkbox" 
+                    className="w-6 h-6"
+                    id="check"
+                    onClick = {() => {setShowAlbums(!showAlbums)}}
+                />
+                <label
+                    htmlFor="check" 
+                    className="pl-3">Click to search by album
+                 </label>
+            </div>
+            
 
             {
                 (suggestedArtists && !showAlbums && showList?
@@ -65,7 +74,7 @@ const SearchBox = () => {
                         <div className="justify-start container grid grid-cols-1 fade-in w-96 mx-14">
                             {
                                 suggestedArtists.slice(0,10).map((suggestedArtist, index) => {
-                                    return <SuggestedList key={index} name={suggestedArtist.name} id={suggestedArtist._id} />;
+                                    return <SuggestedList key={index} name={suggestedArtist.name} genres={suggestedArtist.genres} id={suggestedArtist._id} />;
                                 })
                             }
                         </div>
@@ -75,7 +84,7 @@ const SearchBox = () => {
                         <div className="justify-start container grid grid-cols-1 fade-in w-96 mx-14">
                             {
                                 suggestedAlbums.slice(0,10).map((suggestedAlbum, index) => {
-                                    return <AlbumSuggestions key={index} name={suggestedAlbum.title} />;
+                                    return <AlbumSuggestions key={index} title={suggestedAlbum.title} artist={suggestedAlbum.artist} id={suggestedAlbum._id} />;
                                 })
                             }
                         </div>
