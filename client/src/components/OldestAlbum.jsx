@@ -10,9 +10,12 @@ const OldestAlbum = ({ data, year }) => {
             </div>
             <div className="mt-3 w-80">
                 <p>
-                <Link to={"/albums/" + data.id}>
+                <Link to={"/albums/" + data._id}>
                     <LinkText text={data.title}/>
-                </Link> by {data.artist} was the oldest album on this year's chart.
+                </Link> by
+                <Link to={"/artist/" + data.artist}>
+                    <LinkText text={data.artist}/>
+                </Link> was the oldest album on this year's chart.
                 The album was <strong>{year - data.release}</strong> years old! </p>
             </div>
         </div>
