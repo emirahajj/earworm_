@@ -10,6 +10,7 @@ import GenrePie from "../components/GenrePie"
 import Facts from "../components/Facts"
 import Navbar from '../components/Navbar';
 import TopGenreArtistsList from "../components/TopGenreArtistsList"
+import OldestAlbum from "../components/OldestAlbum"
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
@@ -68,9 +69,25 @@ const Home = () => {
             }
         }
 
-        //console.log(awards)
-
         return [topGenre, topGenreCount, otherGenres, mostAwarded, moreMostAwarded]
+    }
+
+    // Returns the oldest album on a year's chart
+    const getOldestAlbum = () => {
+
+        var oldestAlbum = {
+            release: 2020
+        }
+
+        chart.forEach((entry) => {
+
+            // Find the oldest album
+            if (entry["album"].release < oldestAlbum.release) {
+                oldestAlbum = entry["album"]
+            }
+        })
+
+        return oldestAlbum
     }
 
     // Method for creating an entry component
@@ -137,6 +154,10 @@ const Home = () => {
                 <section className="flex flex-col items-center">
                     <TopGenreArtistsList 
                         data={getFactsData()}
+                        year={chartYear}
+                    />
+                    <OldestAlbum 
+                        data={getOldestAlbum()}
                         year={chartYear}
                     />
                 </section>
