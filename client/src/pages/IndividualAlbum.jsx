@@ -95,7 +95,7 @@ const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
                     <div className= "flex flex-col w-full lg:max-w-md justify-center">
                         <h1 className=" text-3xl font-bold text-center py-3">Tracklist</h1>
                         <SimpleBarReact style={{ maxHeight: 500 }}>
-                            <div className= "bg-gray-1 rounded-2xl bg-opacity-90 px-6 py-4">
+                            <div className= "bg-dark-1 rounded-2xl bg-opacity-90 px-6 py-4">
                             {spotifyTracks.map((track, index) => {
                                 return (
                                     <>
@@ -107,7 +107,7 @@ const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
                             })}
                             </div>
                         </SimpleBarReact>
-                        <div className= "w-full py-8 flex justify-center"><button className=" bg-dark-1 hover:bg-purple-700 rounded-full w-48 py-2 px-2 font-bold" onClick={handleChange}>Listen to this album</button></div>
+                        <div className= "w-full py-8 flex justify-center"><button className=" bg-dark-1 hover:bg-green-800 rounded-full w-48 py-2 px-2 font-bold" onClick={handleChange}>Listen to this album</button></div>
 
                         <ChartPosRecap positions={chartPos}/>
                     </div>
