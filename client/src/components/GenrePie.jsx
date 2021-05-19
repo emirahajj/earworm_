@@ -65,7 +65,7 @@ const GenrePie = ({chartyear, type, genreId}) => {
                 cy="50%"
                 label={{dy:5, offsetRadius: type==="allTime" ? 30: 25} }                
                 labelLine = {{strokeWidth: 2 }}
-                outerRadius={100}>
+                outerRadius={85}>
                 {stat.map((entry, index) => (
                   <Cell
                     key={`cell-${index}`}
@@ -79,7 +79,7 @@ const GenrePie = ({chartyear, type, genreId}) => {
                 wrapperStyle={{
                 color: "#FFFFFF",
                 fontSize: "13px",
-                marginRight: "5px"
+                marginRight: "0px"
               }}
                 layout="vertical"
                 verticalAlign="middle"
