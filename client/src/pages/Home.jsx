@@ -111,7 +111,7 @@ const Home = () => {
             <div className="grid grid-flow-col gap-20">
 
                 <section className="ml-10 w-96 fade-in">
-                    <Label text="Billboard Top Albums" />
+                    <Label text="Billboard 200 Year-End Chart" />
                     <Dropdown year={chartYear} onChange={onYearChange} />
                     <SimpleBarReact style={{ maxHeight: 840 }}>
                         <div className="flex-initial flex-col p-5">
