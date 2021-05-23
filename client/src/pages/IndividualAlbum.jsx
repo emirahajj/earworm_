@@ -61,6 +61,7 @@ const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
                 console.log(res)
 
                 let title = res.data[0].name
+                if (title.toLowerCase === object.title.toLowerCase)
                     console.log(title)
                         let spotifyAlbumID = res.data[0].id
                         fetchAlbumTracks(spotifyAlbumID).then((res)=> {
@@ -88,7 +89,7 @@ const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
                 <div className="flex flex-col lg:flex-row mt-10 w-full text-justify justify-around px-6">
                     <AlbumSnapshot image={image} albumName={albumName} date={date} artistName={artistName} genre={genre} description={desc} awards={awards} />
                     <div className= "flex flex-col w-full lg:max-w-md justify-center">
-                    {spotifyTracks !== [] ?
+                    {spotifyTracks.length !== 0 ?
 
                         
                         <div>
