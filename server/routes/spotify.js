@@ -46,4 +46,27 @@ router.get("/:query", (req,res)=> {
       );
 });
 
+router.get("/album/:id", (req,res)=> {
+    sAPI.clientCredentialsGrant().then(
+        function(data) {
+            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+            //res.status(200).json(data);
+            sAPI.setAccessToken(data.body['access_token']);
+
+            sAPI.getAlbumTracks(req.params.id).then((response) => {
+                console.log(response);
+                //let spotifyAlbumID = response.body.albums.items[0].id
+                res.status(200).json(response)
+
+            }).catch((err) => {
+                console.log(err);
+            })
+          // Save the access token so that it's used in future calls
+        },
+        function(err) {
+            res.status(404).json({message: err.message});
+        }
+      );
+});
+
 export default router;

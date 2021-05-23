@@ -1,6 +1,6 @@
 import AlbumSnapshot from "../components/AlbumSnapshot"
 import { useState, useEffect, useCallback} from 'react'
-import { fetchAlbum, fetchAudiodbAlbum, fetchToken, fetchSpotifyAlbum } from '../api/index'
+import { fetchAlbum, fetchAudiodbAlbum, fetchToken, fetchSpotifyAlbum, fetchAlbumTracks } from '../api/index'
 import SpotifyWebApi from 'spotify-web-api-js'
 import { Redirect } from "react-router";
 import ChartPosRecap from '../components/ChartPosRecap'
@@ -34,19 +34,6 @@ const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
             } catch(err) {
                 console.log(err);
             }
-
-            //let spotify = new SpotifyWebApi();
-            //spotify.setAccessToken(res.data.body["access_token"]);
-            //console.log(res.data.body["access_token"])
-            // spotify.searchAlbums(`${albumName}, ${artistName}`).then((data) => {
-            //     console.log(data);
-            //     //removing + re-adding iframe from the DOM to avoid
-            //     //replacing the current picked spotify URI with
-            //     //the previous one
-
-            // }).catch((err) => {
-            //     console.log(err);
-            // })
         })
     },[albumName, artistName, onChangeAlbumId])
 
@@ -69,24 +56,21 @@ const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
                 }
             })
 
-            fetchToken().then((res) => {
-                let spotify = new SpotifyWebApi();
-                spotify.setAccessToken(res.data.body["access_token"]);
-                console.log(res.data.body["access_token"])
-                spotify.searchAlbums(`${object.title}, ${object.artist}`).then((data) => {
-                    console.log(data);
-                    let title = data.albums.items[0].name
+            fetchSpotifyAlbum(object.title, object.artist).then((res) => {
+                //console.log(`${object.title}, ${object.artist}`);
+                console.log(res)
+
+                let title = res.data[0].name
                     console.log(title)
-                    if (title.includes(object.title)){
-                        let spotifyAlbumID = data.albums.items[0].id
-                        spotify.getAlbumTracks(spotifyAlbumID).then((data)=>{
-                            console.log(data)
-                            setSpotifyTracks(data["items"]);
+                        let spotifyAlbumID = res.data[0].id
+                        fetchAlbumTracks(spotifyAlbumID).then((res)=> {
+                            console.log(res.data)
+                            setSpotifyTracks(res.data.body["items"]);
+                        }).catch((err)=> {
+                            console.log(err)
                         })
-                    } 
-                }).catch((err) => {
-                    console.log(err);
-                })
+            }).catch((err) => {
+                console.log(err);
             })
 
         }).catch((err) => {
@@ -104,7 +88,8 @@ const IndividualAlbum = ({albumID, onChangeAlbumId}) => {
                 <div className="flex flex-col lg:flex-row mt-10 w-full text-justify justify-around px-6">
                     <AlbumSnapshot image={image} albumName={albumName} date={date} artistName={artistName} genre={genre} description={desc} awards={awards} />
                     <div className= "flex flex-col w-full lg:max-w-md justify-center">
-                    {spotifyTracks.length !== 0 ?
+                    {spotifyTracks !== [] ?
+
                         
                         <div>
                         {console.log(spotifyTracks)}

@@ -87,6 +87,11 @@ export const fetchAudiodbAlbum = (artist, album) => {
 
 //-------SPOTIFY ROUTE--------------//
 export const fetchSpotifyAlbum = (title, artist) => {
-  let query = `${title} ${artist}`
+  let query = title + ", " + artist
+  console.log(query)
   return axios.get(`${url}/spotify/${query}`)
+}
+
+export const fetchAlbumTracks = (id) => {
+  return axios.get(`${url}/spotify/album/${id}`)
 }
