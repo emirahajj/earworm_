@@ -6,6 +6,7 @@ import albumRoutes from './routes/albums.js'
 import artistRoutes from './routes/artists.js'
 import genreRoutes from './routes/genres.js'
 import chartRoutes from './routes/chartYear.js'
+import spotifyRoutes from './routes/spotify.js'
 import audiodbRoutes from './routes/audiodb.js'
 import dotenv from 'dotenv'
 import SpotifyWebApi from 'spotify-web-api-node'
@@ -25,6 +26,8 @@ app.use('/albums', albumRoutes);
 app.use('/charts', chartRoutes);
 app.use('/genres', genreRoutes);
 app.use('/audiodb', audiodbRoutes);
+app.use('/spotify', spotifyRoutes);
+
 
 //setting up body parser so we can send requests
 app.use(bodyParser.json({limit: "30mb", extended: true}));
