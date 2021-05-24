@@ -108,7 +108,7 @@ const Home = () => {
     return (
         <div>
             <Navbar />
-            <div className="grid grid-flow-col gap-20">
+            <div className="grid md:grid-flow-col gap-20 sm:grid-flow-row">
 
                 <section className="ml-10 w-96 fade-in">
                     <Label text="Billboard 200 Year-End Chart" />
