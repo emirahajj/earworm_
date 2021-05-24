@@ -7,11 +7,11 @@ let team = [{
     bio: "When she's not programming, Emira likes to make music, vector art, and AR filters for Instagram."
 }, {
     name: "Alfredo Morales",
-    image: "https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg",
+    image: "https://media-exp1.licdn.com/dms/image/C5603AQFPRArkCnLrQA/profile-displayphoto-shrink_200_200/0/1555304477031?e=1627516800&v=beta&t=lNLSeXslwsaiNrPdsSO3o0C--9SRgeT_QRsy0N6a3FI",
     role: "Frontend",
     github: "https://github.com/AlfredoMora06",
-    link: "#",
-    bio: "Solvitur Ambulando. I like to code and stuff ..."
+    link: "https://alfredomora06.github.io/",
+    bio: "Passionate about learning new technologies and extrapolating ideas from different areas."
 }, {
     name: "Ahmed Abdalla",
     image: "https://media-exp1.licdn.com/dms/image/C4E03AQFWDHHPENWx6Q/profile-displayphoto-shrink_800_800/0/1612322072275?e=1627516800&v=beta&t=0fMe2ByeXS-6v2U7CddieeSBIGe8M-aoE87ZCuNYm-o",
