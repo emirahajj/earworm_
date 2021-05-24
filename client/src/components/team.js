@@ -24,9 +24,9 @@ let team = [{
     image: "https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg",
     role: "Frontend",
     link: "#",
-    github: "#",
+    github: "https://github.com/IshaRedohy",
 
-    bio: "Lorum ipsum"
+    bio: "Wants to become a professional full-stack developer after graduating. Learning mobile development currently."
 }];
 
 export default team;
