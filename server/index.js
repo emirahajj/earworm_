@@ -6,6 +6,7 @@ import albumRoutes from './routes/albums.js'
 import artistRoutes from './routes/artists.js'
 import genreRoutes from './routes/genres.js'
 import chartRoutes from './routes/chartYear.js'
+import spotifyRoutes from './routes/spotify.js'
 import audiodbRoutes from './routes/audiodb.js'
 import dotenv from 'dotenv'
 import SpotifyWebApi from 'spotify-web-api-node'
@@ -25,6 +26,8 @@ app.use('/albums', albumRoutes);
 app.use('/charts', chartRoutes);
 app.use('/genres', genreRoutes);
 app.use('/audiodb', audiodbRoutes);
+app.use('/spotify', spotifyRoutes);
+
 
 //setting up body parser so we can send requests
 app.use(bodyParser.json({limit: "30mb", extended: true}));
@@ -43,32 +46,32 @@ const connection = mongoose.connect(process.env.CONNECTION_URL, connectionparams
 
 mongoose.set('useFindAndModify', false);
 
-var clientId = process.env.SPOTIFY_CLIENT_ID,
-  clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+// var clientId = process.env.SPOTIFY_CLIENT_ID,
+//   clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
 
-var sAPI = new SpotifyWebApi({
-    clientId: clientId,
-    clientSecret: clientSecret
-});
-// Create the api object with the credentials
-// Retrieve an access token.
+// var sAPI = new SpotifyWebApi({
+//     clientId: clientId,
+//     clientSecret: clientSecret
+// });
+// // Create the api object with the credentials
+// // Retrieve an access token.
 
 
-app.use("/token", (req,res)=> {
-    sAPI.clientCredentialsGrant().then(
-        function(data) {
-            res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-            res.status(200).json(data);
+// app.use("/token", (req,res)=> {
+//     sAPI.clientCredentialsGrant().then(
+//         function(data) {
+//             res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+//             res.status(200).json(data);
       
-          // Save the access token so that it's used in future calls
-          sAPI.setAccessToken(data.body['access_token']);
-        },
-        function(err) {
-            res.status(404).json({message: err.message});
-        }
-      );
-});
+//           // Save the access token so that it's used in future calls
+//           sAPI.setAccessToken(data.body['access_token']);
+//         },
+//         function(err) {
+//             res.status(404).json({message: err.message});
+//         }
+//       );
+// });
 
 
 // let alby = [];
