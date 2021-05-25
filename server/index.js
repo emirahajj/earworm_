@@ -28,6 +28,10 @@ app.use('/genres', genreRoutes);
 app.use('/audiodb', audiodbRoutes);
 app.use('/spotify', spotifyRoutes);
 
+app.get('/', (req, res) => {
+    res.send("Hello from Earworm API!")
+});
+
 
 //setting up body parser so we can send requests
 app.use(bodyParser.json({limit: "30mb", extended: true}));
@@ -46,32 +50,6 @@ const connection = mongoose.connect(process.env.CONNECTION_URL, connectionparams
 
 mongoose.set('useFindAndModify', false);
 
-// var clientId = process.env.SPOTIFY_CLIENT_ID,
-//   clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
-
-
-// var sAPI = new SpotifyWebApi({
-//     clientId: clientId,
-//     clientSecret: clientSecret
-// });
-// // Create the api object with the credentials
-// // Retrieve an access token.
-
-
-// app.use("/token", (req,res)=> {
-//     sAPI.clientCredentialsGrant().then(
-//         function(data) {
-//             res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-//             res.status(200).json(data);
-      
-//           // Save the access token so that it's used in future calls
-//           sAPI.setAccessToken(data.body['access_token']);
-//         },
-//         function(err) {
-//             res.status(404).json({message: err.message});
-//         }
-//       );
-// });
 
 
 // let alby = [];
