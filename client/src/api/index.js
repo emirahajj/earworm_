@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'https://ear-worm.herokuapp.com/';
+const url = 'https://ear-worm.herokuapp.com';
 
 //-------ALBUMS ROUTES--------------//
 
