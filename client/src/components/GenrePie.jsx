@@ -30,7 +30,6 @@ const GenrePie = ({chartyear, type, genreId}) => {
 
     useEffect(() => {
       setAlbumFullArray(chartyear);
-      //console.log(chartyear)
 
     }, [chartyear])
 
