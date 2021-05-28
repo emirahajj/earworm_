@@ -1,8 +1,7 @@
 import "../App.css"
 import {useEffect, useState} from 'react'
-import { fetsGenreHistory, fetchAllAlbumsInGenre } from "../api";
-import {ResponsiveContainer, AreaChart, XAxis, YAxis, Tooltip, Area, BarChart} from 'recharts'
-import BarGenreChart from "./BarGenreChart";
+import { fetsGenreHistory} from "../api";
+import {ResponsiveContainer, AreaChart, XAxis, YAxis, Tooltip, Area} from 'recharts'
 
 
 const GenreOverTime = (props) => {

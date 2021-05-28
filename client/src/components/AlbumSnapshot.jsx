@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"
 import Collapse from "@material-ui/core/Collapse"
 import "../App.css"
 import GrammyComponent from './GrammyComponent'
-import ChartPosRecap from './ChartPosRecap'
 import Tooltip from '@material-ui/core/Tooltip'
 
 const AlbumSnapshot = ({ image, albumName, date, artistName, genre, description, awards }) => {

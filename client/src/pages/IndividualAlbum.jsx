@@ -1,7 +1,6 @@
 import AlbumSnapshot from "../components/AlbumSnapshot"
 import { useState, useEffect, useCallback} from 'react'
-import { fetchAlbum, fetchAudiodbAlbum, fetchToken, fetchSpotifyAlbum, fetchAlbumTracks } from '../api/index'
-import SpotifyWebApi from 'spotify-web-api-js'
+import { fetchAlbum, fetchAudiodbAlbum, fetchSpotifyAlbum, fetchAlbumTracks } from '../api/index'
 import { Redirect } from "react-router";
 import ChartPosRecap from '../components/ChartPosRecap'
 import Navbar from '../components/Navbar';

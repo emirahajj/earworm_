@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../img/icon.png"
 import { Link } from "react-router-dom"
 
 const  GenreThumb = (props) => {
