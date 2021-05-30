@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { fetchArtistsLetter, fetchAlbumsLetter } from '../api/index';
-import LoadingRing from "../components/LoadingRing";
 import SuggestedList from "./SuggestedList";
 import AlbumSuggestions from "./AlbumSuggestions";
 
@@ -13,90 +12,70 @@ const SearchBox = () => {
     const [showList, setShowList] = useState(false);
 
     useEffect(() => {
-        fetchArtistsLetter(inputCharacters).then((res) => {
-            setSuggestedArtists(res.data);                   //gets the first letter(s) of names. 
-        });
-    }, [inputCharacters])                                   //whenever a character is typed, useEffect is called.
+        if (!showAlbums) {
+            fetchArtistsLetter(inputCharacters).then((res) => {
+                setSuggestedArtists(res.data);                   //gets the first letter(s) of names. 
+            });
+        } else{
+            fetchAlbumsLetter(inputCharacters).then((res) => {
+                setSuggestedAlbums(res.data);
+            });
 
-    useEffect(() => {
-        fetchAlbumsLetter(inputCharacters).then((res) => {
-            setSuggestedAlbums(res.data);
-        });
-    }, [inputCharacters])
-
-    let searchRef = useRef();
-
-    useEffect(() => {
-        let handler = (event) => {
-            if (!searchRef.current.contains(event.target)) {
-                setShowList(false);
-            }
-        };
-
-        document.addEventListener("mousedown", handler);
-        
-        return () => {
-            document.removeEventListener("mousedown", handler)
         }
-    });
+    }, [inputCharacters, showAlbums])                                   //whenever a character is typed, useEffect is called.
+
 
     return(
-        <div ref={searchRef}>
-            <input
-                className="flex justify-end w-96 p-4 bg-search mt-4 mx-14 focus:outline-none"
-                type="text"
-                placeholder="Search"
-                onClick={() => setShowList((showList) => !showList)}
-                onChange={(e) => {
-                    setInputCharacters(e.target.value);
-                    console.log(suggestedAlbums);
-                }
-            }
-            />
-
-            <div className="flex items-center pt-2 pl-16">
-                <input 
-                    type="checkbox" 
-                    className="w-6 h-6"
-                    id="check"
-                    onClick = {() => {setShowAlbums(!showAlbums)}}
+        <div onFocus={() => setShowList(true)}>
+            <div>
+                <input
+                    className="flex justify-end w-96 p-4 bg-search mt-4 mx-14 focus:outline-none"
+                    type="text"
+                    placeholder="Search by Artist"
+                    onChange={(e) => {
+                        setInputCharacters(e.target.value);
+                        console.log(suggestedAlbums);
+                        }
+                    }
                 />
-                <label
-                    htmlFor="check" 
-                    className="pl-3">Click to search by album
-                 </label>
+                <div className="flex items-center pt-2 pl-16">
+                    <input
+                        type="checkbox"
+                        className="w-6 h-6"
+                        id="check"
+                        onClick = {() => {setShowAlbums(!showAlbums)}}
+                    />
+                    <label
+                        htmlFor="check"
+                        className="pl-3">Search by album
+                     </label>
+                </div>
             </div>
-            
 
-            {
-                (suggestedArtists && !showAlbums && showList?
-                    <div className="flex justify-start fixed z-10">
-                        <div className="justify-start container grid grid-cols-1 fade-in w-96 mx-14">
+
+            <div className="flex justify-start fixed z-10">
+                <div className="justify-start container grid grid-cols-1 fade-in w-96 mx-14">
+                    {suggestedArtists && !showAlbums && showList ? 
+                        <>
                             {
                                 suggestedArtists.slice(0,10).map((suggestedArtist, index) => {
-                                    return <SuggestedList key={index} name={suggestedArtist.name} genres={suggestedArtist.genres} id={suggestedArtist._id} />;
+                                    return <SuggestedList onClickItem = {setShowList} key={index} name={suggestedArtist.name} genres={suggestedArtist.genres} id={suggestedArtist._id} />;
                                 })
                             }
-                        </div>
-                    </div>
-                    : suggestedAlbums && showAlbums && showList?
-                    <div className="flex justify-start fixed z-10">
-                        <div className="justify-start container grid grid-cols-1 fade-in w-96 mx-14">
+                        </> 
+                        : suggestedAlbums && showAlbums && showList ?
+                        <>
                             {
                                 suggestedAlbums.slice(0,10).map((suggestedAlbum, index) => {
                                     return <AlbumSuggestions key={index} title={suggestedAlbum.title} artist={suggestedAlbum.artist} id={suggestedAlbum._id} />;
                                 })
                             }
-                        </div>
-                    </div>
-                    : 
-                    <div className="flex justify-start fixed z-10">
-                        <div className="justify-start container grid grid-cols-1 fade-in w-96 mx-14">
-                           
-                        </div>
-                    </div>
-                )
-            }
+                        </> 
+                        :
+                        <></>
+                    }
+                </div>
+            </div>
         </div>
     );
 }
