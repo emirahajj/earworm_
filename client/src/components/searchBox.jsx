@@ -26,10 +26,10 @@ const SearchBox = () => {
 
 
     return(
-        <div onFocus={() => setShowList(true)}>
+        <div onFocus={() => setShowList(true)} className="w-96">
             <div>
                 <input
-                    className="flex justify-end w-96 p-4 bg-search mt-4 mx-14 focus:outline-none"
+                    className="w-full p-4 bg-search mt-4 focus:outline-none"
                     type="text"
                     placeholder="Search by Artist"
                     onChange={(e) => {
@@ -53,7 +53,7 @@ const SearchBox = () => {
             </div>
 
 
-            <div className="flex justify-start fixed z-10">
+            <div className="flex justify-start absolute z-10">
                 <div className="justify-start container grid grid-cols-1 fade-in w-96 mx-14">
                     {suggestedArtists && !showAlbums && showList ? 
                         <>

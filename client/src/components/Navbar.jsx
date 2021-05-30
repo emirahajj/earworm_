@@ -4,19 +4,31 @@ import SearchBox from "./searchBox"
 
 const Navbar = () => {
     return (
-        <nav>
-            <ul className="flex justify-between font-bold">
-                <div className="flex px-10 py-4 space-x-8 ">
-                    <Link to="/home"><NavItem text="Home" /></Link>
-                    <Link to="/artists/A"><NavItem text="Artists" /></Link>
-                    <Link to="/genres"><NavItem text="Genres" /></Link>
-                    <Link to="/about"><NavItem text="About" /></Link>
-                </div>
+        <div>
+            <nav className="md:flex justify-between w-screen hidden md:visible">
+                <ul className="flex flex-col md:flex-row font-bold">
+                        <Link to="/home"><NavItem text="Home" /></Link>
+                        <Link to="/artists/A"><NavItem text="Artists" /></Link>
+                        <Link to="/genres"><NavItem text="Genres" /></Link>
+                        <Link to="/about"><NavItem text="About" /></Link>
+                </ul>
                 <div>
-                    <SearchBox className="flex justify-start"/>
+                    <SearchBox className="justify-end"/>
                 </div>
-            </ul>
-        </nav>
+            </nav>
+            <nav className="flex blah justify-between w-screen sm:visible md:hidden">
+                <ul className="flex flex-col md:flex-row font-bold">
+                        <Link to="/home"><NavItem text="Home" /></Link>
+                        <Link to="/artists/A"><NavItem text="Artists" /></Link>
+                        <Link to="/genres"><NavItem text="Genres" /></Link>
+                        <Link to="/about"><NavItem text="About" /></Link>
+                </ul>
+                {/* <div className="sm:hidden">
+                    <SearchBox className="justify-end"/>
+                </div> */}
+            </nav>
+        </div>
+
     )
 }
 

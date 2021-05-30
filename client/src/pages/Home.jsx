@@ -110,8 +110,8 @@ const Home = () => {
             <Navbar />
             <div className="grid md:grid-flow-col justify-items-center gap-20 sm:grid-flow-row">
 
-                <section className="flex justify-center w-full md:w-96 fade-in">
-                    <div className= "w-96">
+                <section className="flex justify-center w-screen-full md:w-96 fade-in">
+                    <div className= "w-full">
                         <Label text="Billboard 200 Year-End Chart" />
                         <Dropdown year={chartYear} onChange={onYearChange} />
                         <SimpleBarReact style={{ maxHeight: 840 }}>
