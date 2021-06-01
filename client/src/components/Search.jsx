@@ -9,23 +9,6 @@ const Search = () => {
     const [matches, setMatches ] = useState([]);
     const [isArtistQuery, setArtistQuery] = useState(true);
 
-    useEffect(() => {
-        if(query !== ''){
-            if (isArtistQuery){
-                fetchArtistsLetter(query).then((res) => {
-                    setMatches(res.data);
-                    console.log(res.data)                   //gets the first letter(s) of names. 
-                });
-            } else {
-                fetchAlbumsLetter(query).then((res) => {
-                    setMatches(res.data);
-                    console.log(res.data)                   //gets the first letter(s) of names. 
-                    //gets the first letter(s) of names. 
-                });
-            }
-        }
-    }, [isArtistQuery, query])
-
 
     const changeQuery = (e) => {
         setQuery(e.target.value);
@@ -35,15 +18,36 @@ const Search = () => {
         setArtistQuery(e.target.checked);
     }
 
+    useEffect(() => {
+        if(query !== ''){
+            if (isArtistQuery){
+                fetchArtistsLetter(query).then((res) => {
+                    setMatches(res.data);
+                });
+            } else {
+                fetchAlbumsLetter(query).then((res) => {
+                    setMatches(res.data);
+                });
+            }
+        }
+        else {
+            setMatches([]);
+        }
+    }, [isArtistQuery, query])
 
     return(
         <div>
-            <Switch checked={isArtistQuery} onChange={handleCheck}></Switch>
+            <Switch 
+                checked={isArtistQuery} 
+                onChange={handleCheck}
+                color = 'primary'            
+                ></Switch>
             <input 
-                className="bg-search" 
+                className="bg-search focus:outline-none" 
                 type="text" 
                 placeholder= {isArtistQuery ? "Search by Artist" : "Search by Album"}
-                onChange={changeQuery}>
+                onChange={changeQuery}
+                >
             </input>
             <SearchResults results={matches} type={isArtistQuery? "artist" : "album"}/>
         </div>
