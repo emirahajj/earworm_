@@ -20,7 +20,6 @@ const SearchBox = () => {
             fetchAlbumsLetter(inputCharacters).then((res) => {
                 setSuggestedAlbums(res.data);
             });
-
         }
     }, [inputCharacters, showAlbums])                                   //whenever a character is typed, useEffect is called.
 

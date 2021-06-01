@@ -1,6 +1,6 @@
 import NavItem from "./NavItem"
 import { Link } from "react-router-dom"
-import SearchBox from "./searchBox"
+import Search from "./Search"
 
 const Navbar = () => {
     return (
@@ -13,7 +13,7 @@ const Navbar = () => {
                         <Link to="/about"><NavItem text="About" /></Link>
                 </ul>
                 <div>
-                    <SearchBox className="justify-end"/>
+                    <Search className="justify-end"/>
                 </div>
             </nav>
             <nav className="flex blah justify-between w-screen sm:visible md:hidden">
