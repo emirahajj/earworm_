@@ -14,7 +14,7 @@ const TopGenreArtistsList = ({ data, year }) => {
     }, [data, year]) 
 
     return (
-        <div className="flex flex-col items-center mr-10">
+        <div className="flex flex-col items-center">
             <Label text={"Featured " + data[0] + " Artists"} />
             <div className="mt-10 font-bold">
                 <div className="grid grid-flow-col grid-rows-2 items-center gap-4">

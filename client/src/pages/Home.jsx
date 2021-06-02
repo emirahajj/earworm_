@@ -108,7 +108,7 @@ const Home = () => {
     return (
         <div>
             <Navbar />
-            <div className="grid md:grid-flow-col justify-items-center gap-20 sm:grid-flow-row">
+            <div className="grid lg:grid-flow-col justify-items-center gap-20 sm:grid-flow-row px-3">
 
                 <section className="flex justify-center w-screen-full md:w-96 fade-in">
                     <div className= "w-full">
