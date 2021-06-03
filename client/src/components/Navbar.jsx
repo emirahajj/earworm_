@@ -29,6 +29,7 @@ const Navbar = () => {
         bmMenuWrap: {
           position: 'fixed',
           height: '100%',
+          "z-index": '20'
         },
         bmMenu: {
           background: '#282828',          
@@ -43,14 +44,16 @@ const Navbar = () => {
           padding: '0.8em'
         },
         bmOverlay: {
-          background: 'rgba(0, 0, 0, 0.3)'
+          background: 'rgba(0, 0, 0, 0.3)',
+          "z-index": '10'
+
         }
       };
 
     return (
         <div>
             <nav className="md:flex justify-between w-screen hidden md:visible">
-                <ul className="flex flex-col md:flex-row font-bold px-10 py-4 space-x-8">
+                <ul className="flex flex-col md:flex-row font-bold px-10 py-4 space-x-4">
                         <Link to="/home"><NavItem text="Home" /></Link>
                         <Link to="/artists/A"><NavItem text="Artists" /></Link>
                         <Link to="/genres"><NavItem text="Genres" /></Link>

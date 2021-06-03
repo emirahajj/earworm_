@@ -12,9 +12,18 @@ const Search = () => {
         setQuery(e.target.value);
     }
 
-    const changeVisibility = () => {
-        let searchBox = document.getElementById('search');
-        searchBox.classList.toggle("hidden")
+    const show = (e) => {
+        let searchBox = document.getElementsByClassName('search');
+        window.onclick = (f) => {
+            console.log(f.target)
+            if (f.target.id === 'input' || f.target.id === "switch"){
+                searchBox[0].classList.remove("hidden")
+                searchBox[1].classList.remove("hidden")
+            } else {
+                searchBox[0].classList.add("hidden")
+                searchBox[1].classList.add("hidden")
+            }
+        }
     }
 
     const handleCheck = (e) => {
@@ -39,21 +48,24 @@ const Search = () => {
     }, [isArtistQuery, query])
 
     return(
-        <div onBlur={changeVisibility} className="mt-4 md:mt-0 md:px-3 md:pt-2">
+        <div onBlur={show} onFocus={show} className="mt-4 md:mt-0 md:px-3 md:pt-2">
             <h1 className="text-center">Search by {isArtistQuery ? "Artist": "Album"}</h1>
             <div className = "flex sm:flex-row justify-center w-60 md:w-80">
                 <input
                     className="bg-search w-full h-9 focus:outline-none"
-                    type="text"
+                    type="search"
+                    id="input"
                     placeholder= {isArtistQuery ? "eg. 'Lady Gaga'" : "eg. 'Chromatica'"}
                     onChange={changeQuery}>
                 </input>
                 <Switch
+                    id="switch"
                     checked={isArtistQuery}
                     onChange={handleCheck}
                     color = 'primary'> 
                 </Switch>
-                    <SearchResults results={matches} type={isArtistQuery? "artist" : "album"} />
+                <SearchResults results={matches} type={isArtistQuery? "artist" : "album"} />
+
             </div>
         </div>
     );
