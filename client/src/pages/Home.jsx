@@ -108,25 +108,27 @@ const Home = () => {
     return (
         <div>
             <Navbar />
-            <div className="grid md:grid-flow-col gap-20 sm:grid-flow-row">
+            <div className="grid lg:grid-flow-col justify-items-center gap-20 sm:grid-flow-row px-3">
 
-                <section className="ml-10 w-96 fade-in">
-                    <Label text="Billboard 200 Year-End Chart" />
-                    <Dropdown year={chartYear} onChange={onYearChange} />
-                    <SimpleBarReact style={{ maxHeight: 840 }}>
-                        <div className="flex-initial flex-col p-5">
-                            {chart.slice(0, 10).map(createEntry)}
-                            {!more ?
-                                <button className="bg-dark text-md px-8 py-2 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1 focus:outline-none ml-24 mb-4"
-                                    onClick={() => { setMore(true) }}
-                                > More </button> :
-                                <button className="bg-dark text-md px-8 py-2 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1 focus:outline-none ml-24 mb-8"
-                                    onClick={() => { setMore(false) }}
-                                > Less </button>
-                            }
-                            {more && chart.slice(10).map(createEntry)}
-                        </div>
-                    </SimpleBarReact>
+                <section className="flex justify-center w-screen-full md:w-96 fade-in">
+                    <div className= "w-full">
+                        <Label text="Billboard 200 Year-End Chart" />
+                        <Dropdown year={chartYear} onChange={onYearChange} />
+                        <SimpleBarReact style={{ maxHeight: 840 }}>
+                            <div className="flex flex-col p-5">
+                                {chart.slice(0, 10).map(createEntry)}
+                                {!more ?
+                                    <button className="bg-dark text-md px-8 py-2 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1 focus:outline-none  mb-4"
+                                        onClick={() => { setMore(true) }}
+                                    > More </button> :
+                                    <button className="bg-dark text-md px-8 py-2 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1 focus:outline-none mb-8"
+                                        onClick={() => { setMore(false) }}
+                                    > Less </button>
+                                }
+                                {more && chart.slice(10).map(createEntry)}
+                            </div>
+                        </SimpleBarReact>
+                    </div>
 
                 </section>
 

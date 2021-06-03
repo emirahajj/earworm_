@@ -11,7 +11,7 @@ const About = () => {
         <div>
             <Navbar />
             <div className="fade-in">
-                <h1 className="text-3xl font-bold text-center mb-4 mt-4">About Earworm</h1>
+                <h1 className="text-3xl font-bold text-center mb-4 mt-0">About Earworm</h1>
                 <section className="flex justify-center pb-7">
                     <div className="w-1/2">
                         <p className=" text-center text-gray-300">Earworm is a music data visualization and music exploration tool based on the Billboard 200 Year-End charts from 1970-2020. Using these charts, Earworm provides an overview of the albums on every chart year as well as data visualization to offer insights on the way music trends change and develop over time.</p>

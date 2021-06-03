@@ -15,7 +15,7 @@ const NavItem = (props) => {
         highlight = true;
     }
 
-    return <li className={"py-2 px-4 rounded-full transition duration-500 ease-in-out " + (highlight ? 'bg-dark shadow-md' : 'hover:bg-dark hover:shadow-md')}>{props.text}</li>
+    return <p className={"py-2 px-4 rounded-full transition duration-500 ease-in-out " + (highlight ? 'bg-dark shadow-md' : 'hover:bg-dark hover:shadow-md')}>{props.text}</p>
 }
 
 export default NavItem
