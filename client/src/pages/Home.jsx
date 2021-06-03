@@ -118,10 +118,10 @@ const Home = () => {
                             <div className="flex flex-col p-5">
                                 {chart.slice(0, 10).map(createEntry)}
                                 {!more ?
-                                    <button className="bg-dark text-md px-8 py-2 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1 focus:outline-none ml-24 mb-4"
+                                    <button className="bg-dark text-md px-8 py-2 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1 focus:outline-none  mb-4"
                                         onClick={() => { setMore(true) }}
                                     > More </button> :
-                                    <button className="bg-dark text-md px-8 py-2 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1 focus:outline-none ml-24 mb-8"
+                                    <button className="bg-dark text-md px-8 py-2 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1 focus:outline-none mb-8"
                                         onClick={() => { setMore(false) }}
                                     > Less </button>
                                 }

@@ -53,7 +53,7 @@ const Navbar = () => {
     return (
         <div>
             <nav className="md:flex justify-between w-screen hidden md:visible">
-                <ul className="flex flex-col md:flex-row font-bold px-10 py-4 space-x-4">
+                <ul className="flex flex-col md:flex-row font-bold px-6 py-4 space-x-4">
                         <Link to="/home"><NavItem text="Home" /></Link>
                         <Link to="/artists/A"><NavItem text="Artists" /></Link>
                         <Link to="/genres"><NavItem text="Genres" /></Link>
