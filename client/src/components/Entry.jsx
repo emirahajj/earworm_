@@ -1,4 +1,3 @@
-import Image from "../components/Image"
 import {Link} from 'react-router-dom'
 import ImageWithOverlay from "./ImageWithOverlay"
 

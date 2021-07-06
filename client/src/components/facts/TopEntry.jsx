@@ -13,10 +13,7 @@ const TopEntry = (props) => {
                 </Link> by  
                 <Link to={"/artist/" + props.artist.replace(' ', '%20')}>
                     <LinkText text={props.artist}/>
-                </Link> was ranked the #1 album for this year. 
-                <Link to={"/artist/" + props.artist.replace(' ', '%20')}>
-                    <LinkText text={props.artist}/>
-                </Link> is also known for {props.styles.join(", ")} music. </p>
+                </Link> was ranked the #1 album for this year. </p>
             </div>
         </div>
     )

@@ -13,7 +13,7 @@ const MostAwarded = ({ mostAwarded, moreMostAwarded}) => {
                 </Link> by  
                 <Link to={"/artist/" + mostAwarded.artist.replace(' ', '%20')}>
                     <LinkText text={mostAwarded.artist}/>
-                </Link> won the most Grammy's this chart year with a total of <strong>{mostAwarded.awards.length}</strong> awards. The album was released in <strong>{mostAwarded.release}</strong>.
+                </Link> was the most Grammy awarded album this chart year with a total of <strong>{mostAwarded.awards.length}</strong> awards.
             </p>
         </div> :
         <div className="flex flex-col items-center">

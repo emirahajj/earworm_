@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { fetchChartYearByGenre } from '../api/index';
 import { Link } from 'react-router-dom'
 import Label from './Label'
-import ArtistImage from './ArtistImage'
 import ImageWithOverlay from './ImageWithOverlay';
 
 const TopGenreArtistsList = ({ data, year }) => {
