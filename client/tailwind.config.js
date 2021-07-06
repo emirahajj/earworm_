@@ -22,12 +22,14 @@ module.exports = {
                 'headset' : "url('/src/img/dark-headset.jpg')",
                 'headset2' : "url('/src/img/dark-headset2.jpg')",
                 'beats' : "url('/src/img/beats.jpg')",
+                'sur' : "url('/src/img/bigsuresque.png')",
             }),
             backgroundSize: {
                 '100': '100% 100%',
             },
             fontFamily: {
                 'montserrat': ['Montserrat'],
+                'poppins': ['Poppins'] 
             },
             spacing: {
                 '100': '448px',

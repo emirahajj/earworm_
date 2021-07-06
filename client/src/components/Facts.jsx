@@ -7,7 +7,7 @@ const Facts = ({ topEntry, data }) => {
 
     return (
         <div className="flex flex-row mt-2">
-            <div className="max-w-md space-y-6">
+            <div className="w-96 space-y-6">
                 <TopEntry
                     key={topEntry._id}
                     id={topEntry["album"]._id}
@@ -16,11 +16,6 @@ const Facts = ({ topEntry, data }) => {
                     title={topEntry["album"].title}
                     genre={topEntry["album"].genre}
                     styles={topEntry["album"].styles}
-                />
-                <TopGenre
-                    topGenre={data[0]}
-                    topGenreCount={data[1]}
-                    otherGenres={data[2]}
                 />
                 <MostAwarded 
                     mostAwarded={data[3]}

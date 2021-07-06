@@ -18,7 +18,9 @@ const ArtistImage = ({ name }) => {
 
     return (
         <div>
-            <img src={artistImage === "N/A" ? placeholder : artistImage} alt="Album Cover" className="flex-none w-48 h-48 rounded-2xl overflow-hidden shadow-md object-cover transition duration-500 ease-in-out transform hover:scale-110" />
+            <img src={artistImage === "N/A" ? placeholder : artistImage} 
+            alt="Album Cover" 
+            className="flex-none w-36 h-36 rounded-2xl overflow-hidden shadow-md object-cover transition duration-500 ease-in-out transform hover:scale-110" />
         </div>
     )
 }

@@ -108,7 +108,7 @@ const Home = () => {
     return (
         <div>
             <Navbar />
-            <div className="grid lg:grid-flow-col justify-items-center gap-20 sm:grid-flow-row px-3">
+            <div className="grid lg:grid-flow-col justify-items-center gap-20 sm:grid-flow-row px-20">
 
                 <section className="flex justify-center w-screen-full md:w-96 fade-in">
                     <div className= "w-full">
@@ -132,37 +132,41 @@ const Home = () => {
 
                 </section>
 
-                <section className="grid justify-items-center fade-in">
-                    <div>
-                        <Label text="Quick Facts" />
-                    </div>
-                    <div>
-                        {chart.slice(0, 1).map((entry) => {
-                            return (
-                                <Facts
-                                    key="0"
-                                    topEntry={entry}
-                                    data={getFactsData()}
-                                />
-                            )
-                        })}
-                    </div>
-                    <div>
-                        <Label text="Top 100 Albums by Genre" />
-                        <GenrePie chartyear={chart} type="yearly" />
-                    </div>
+                <div className="flex flex-row px-12 gap-12 bg-gray-400 bg-opacity-25 rounded-3xl backdrop-filter backdrop-blur-2xl">
+                {/*quick facts column */}
+                    <section className="grid justify-items-center fade-in">
+                        <div>
+                            <Label text="Quick Facts" />
+                        </div>
+                        <div>
+                            {chart.slice(0, 1).map((entry) => {
+                                return (
+                                    <Facts
+                                        key="0"
+                                        topEntry={entry}
+                                        data={getFactsData()}
+                                    />
+                                )
+                            })}
+                        </div>
+                        <div>
+                            <Label text="Top 100 Albums by Genre" />
+                            <GenrePie chartyear={chart} type="yearly" />
+                        </div>
+                    </section>
+                    {/*featured artists column */}
 
-                </section>
-                <section className="flex flex-col items-center">
-                    <TopGenreArtistsList 
-                        data={getFactsData()}
-                        year={chartYear}
-                    />
-                    <OldestAlbum 
-                        data={getOldestAlbum()}
-                        year={chartYear}
-                    />
-                </section>
+                    <section className="flex flex-col items-center">
+                        <TopGenreArtistsList
+                            data={getFactsData()}
+                            year={chartYear}
+                        />
+                        <OldestAlbum
+                            data={getOldestAlbum()}
+                            year={chartYear}
+                        />
+                    </section>
+                </div>
             </div>
         </div>
     )
