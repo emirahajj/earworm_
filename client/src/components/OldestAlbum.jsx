@@ -3,18 +3,15 @@ import LinkText from "../components/LinkText"
 
 const OldestAlbum = ({ data, year }) => {
     return (
-        <div className="flex flex-col mt-20 items-center text-md text-center">
-            <div>
-                <img src={data.img} alt="Album Cover" className="flex-none w-48 h-48 rounded-2xl overflow-hidden shadow-md object-cover transition duration-500 ease-in-out transform hover:scale-110" 
+        <div className="flex flex-row items-center text-md text-center">
+            <div className="flex-shrink-0">
+                <img src={data.img} alt="Album Cover" className="flex-none w-36 h-36 rounded-2xl overflow-hidden shadow-md object-cover transition duration-500 ease-in-out transform hover:scale-110" 
                 />
             </div>
-            <div className="mt-3 w-80">
+            <div className="w-80 text-sm px-6 text-left">
                 <p>
                 <Link to={"/albums/" + data._id}>
                     <LinkText text={data.title}/>
-                </Link> by
-                <Link to={"/artist/" + data.artist}>
-                    <LinkText text={data.artist}/>
                 </Link> was the oldest album on this year's chart.
                 The album was <strong>{year - data.release}</strong> years old! </p>
             </div>

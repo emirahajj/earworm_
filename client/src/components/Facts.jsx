@@ -2,12 +2,13 @@ import PropTypes from "prop-types"
 import TopEntry from "./facts/TopEntry"
 import TopGenre from "./facts/TopGenre"
 import MostAwarded from "./facts/MostAwarded"
+import OldestAlbum from "./OldestAlbum"
 
-const Facts = ({ topEntry, data }) => {
+const Facts = ({ topEntry, data, chartYear }) => {
 
     return (
-        <div className="flex flex-row">
-            <div className="w-96 space-y-6">
+        <div className="flex flex-row mt-12">
+            <div className="w-96 space-y-8">
                 <TopEntry
                     key={topEntry._id}
                     id={topEntry["album"]._id}
@@ -21,11 +22,11 @@ const Facts = ({ topEntry, data }) => {
                     mostAwarded={data[3]}
                     moreMostAwarded={data[4]}
                 />
+                <OldestAlbum
+                    data={data[5]}
+                    year={chartYear}
+                />
             </div>
-            {/*<TopGenreArtistsList 
-                genre={data[0]} 
-                entries={topGenreEntries}
-            />*/}
         </div>
     )
 }

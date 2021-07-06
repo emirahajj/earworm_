@@ -33,65 +33,6 @@ const Home = () => {
         setChartYear(year)
     }
 
-    // Returns a new array object with data for Facts
-    const getFactsData = () => {
-        var genreCount = {} // To store genres and the number of their entries on a chart
-        var mostAwarded = { // To store most awarded album
-            title: "",
-            awards: []
-        }
-
-        var topGenre = "" // To store genre that had the most entries on a chart
-        var topGenreCount = 0 // To store the number of entries for that genre
-        var otherGenres = [] // To store other genres that had entries the chart
-
-        chart.forEach((entry) => {
-            // Add to genres' counts by looking at the genre of each entry
-            genreCount[entry["album"].genre] = (genreCount[entry["album"].genre] || 0) + 1
-
-            // Find the most awarded album
-            if (entry["album"].awards.length > mostAwarded.awards.length) {
-                mostAwarded = entry["album"]
-            }
-        })
-
-        // Check if there is more than one most awarded album (same number of awards)
-        const moreMostAwarded = chart.filter((entry) => {
-            return (entry["album"]._id !== mostAwarded._id) &&
-                (entry["album"].awards.length === mostAwarded.awards.length)
-        })
-
-        // Find genre with the most entries
-        for (var genre in genreCount) {
-            if (genreCount[genre] > topGenreCount) {
-                topGenreCount = genreCount[genre]
-                topGenre = genre
-            } else {
-                otherGenres.push(genre)
-            }
-        }
-
-        return [topGenre, topGenreCount, otherGenres, mostAwarded, moreMostAwarded]
-    }
-
-    // Returns the oldest album on a year's chart
-    const getOldestAlbum = () => {
-
-        var oldestAlbum = {
-            release: 2020
-        }
-
-        chart.forEach((entry) => {
-
-            // Find the oldest album
-            if (entry["album"].release < oldestAlbum.release) {
-                oldestAlbum = entry["album"]
-            }
-        })
-
-        return oldestAlbum
-    }
-
     // Method for creating an entry component
     const createEntry = (entry) => {
         return (
@@ -134,11 +75,11 @@ const Home = () => {
 
                 </section>
 
-                <div className=" bg-gray-400 bg-opacity-25 rounded-3xl backdrop-filter backdrop-blur-2xl max-w-3xl">
-                    {/* <HomeCard chart={chart} chartYear={chartYear}/> */}
-                    <div className="p-12">
+                <div className=" bg-gray-400 bg-opacity-25 rounded-3xl backdrop-filter backdrop-blur-2xl max-w-5xl">
+                    <HomeCard chart={chart} chartYear={chartYear}/>
+                    {/* <div className="p-12">
                         <img src={beats} alt="" className="w-full rounded-3xl"/>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </div>

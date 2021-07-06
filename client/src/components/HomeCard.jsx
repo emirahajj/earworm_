@@ -18,6 +18,10 @@ const HomeCard = ({chart, chartYear}) => {
             awards: []
         }
 
+        var oldestAlbum = {
+            release: 2020
+        }
+
         var topGenre = "" // To store genre that had the most entries on a chart
         var topGenreCount = 0 // To store the number of entries for that genre
         var otherGenres = [] // To store other genres that had entries the chart
@@ -29,6 +33,9 @@ const HomeCard = ({chart, chartYear}) => {
             // Find the most awarded album
             if (entry["album"].awards.length > mostAwarded.awards.length) {
                 mostAwarded = entry["album"]
+            }
+            if (entry["album"].release < oldestAlbum.release) {
+                oldestAlbum = entry["album"]
             }
         })
 
@@ -48,31 +55,13 @@ const HomeCard = ({chart, chartYear}) => {
             }
         }
 
-        return [topGenre, topGenreCount, otherGenres, mostAwarded, moreMostAwarded]
-    }
-
-    // Returns the oldest album on a year's chart
-    const getOldestAlbum = () => {
-
-        var oldestAlbum = {
-            release: 2020
-        }
-
-        chart.forEach((entry) => {
-
-            // Find the oldest album
-            if (entry["album"].release < oldestAlbum.release) {
-                oldestAlbum = entry["album"]
-            }
-        })
-
-        return oldestAlbum
+        return [topGenre, topGenreCount, otherGenres, mostAwarded, moreMostAwarded, oldestAlbum]
     }
 
 
     return (
         <div className="flex flex-row px-12 gap-12">
-            <section className="grid justify-items-center fade-in">
+            <section className="grid justify-items-center fade-in w-96">
                 <div>
                     <Label text="Quick Facts" />
                 </div>
@@ -83,24 +72,23 @@ const HomeCard = ({chart, chartYear}) => {
                                 key="0"
                                 topEntry={entry}
                                 data={getFactsData()}
+                                chartyear= {chartYear}
                             />
                         )
                     })}
                 </div>
-                <div>
-                    <Label text="Top 100 Albums by Genre" />
+
+                <div className="w-96 relative mt-8">
                     <GenrePie chartyear={chart} type="yearly" />
+                    <p className="absolute right-2 top-2 font-bold text-2xl text-right">Top 5 Genres <br/> {chartYear}</p>
                 </div>
+
             </section>
                     {/*featured artists column */}
 
             <section className="flex flex-col items-center">
                 <TopGenreArtistsList
                     data={getFactsData()}
-                    year={chartYear}
-                />
-                <OldestAlbum
-                    data={getOldestAlbum()}
                     year={chartYear}
                 />
             </section>

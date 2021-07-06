@@ -34,7 +34,7 @@ const GenrePie = ({chartyear, type, genreId}) => {
     }, [chartyear])
 
     useEffect(() => {
-        const grouped = (type === "yearly" ? albumFullArray.filter((element)=> element.rank < 101): albumFullArray).reduce((groups, curr)=> {
+        const grouped = (type === "yearly" ? albumFullArray.filter((element)=> element.rank < 201): albumFullArray).reduce((groups, curr)=> {
             const key = (type === "yearly" ? curr.album.genre: curr.genre);
             //console.log(key)
             groups[key] = (groups[key] || 0) + 1;
@@ -43,6 +43,7 @@ const GenrePie = ({chartyear, type, genreId}) => {
 
         let result = Object.keys(grouped).map(key => ({genre: key, count: grouped[key]}));
         result.sort((a, b) => b.count - a.count);
+        result= result.slice(0,5);
         
         if (type === "allTime"){
           // result[1]={genre: "Other", count: 5778-result[0].count}
@@ -54,7 +55,7 @@ const GenrePie = ({chartyear, type, genreId}) => {
 
     return (
         <div>
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={250}>
             <PieChart>
               <Pie
                 data={stat}
@@ -70,7 +71,7 @@ const GenrePie = ({chartyear, type, genreId}) => {
                     key={`cell-${index}`}
                     cornerRadius={3}
                     stroke="#202743"
-                    strokeWidth={0.75}
+                    strokeWidth={0}
                     fill={colors[(type==="yearly" ? index: colors.length-index -1)]}></Cell>
                 ))}
               </Pie>
@@ -78,14 +79,17 @@ const GenrePie = ({chartyear, type, genreId}) => {
                 wrapperStyle={{
                 color: "#FFFFFF",
                 fontSize: "13px",
-                marginRight: "0px"
+                marginRight: "0px",
+                marginBottom: "25px"
               }}
                 layout="vertical"
-                verticalAlign="middle"
+                verticalAlign="bottom"
                 iconType="circle"
-                align="right"></Legend>
+                align="right">
+                </Legend>
             </PieChart>
           </ResponsiveContainer>
+          <p>{stat[0].genre} dominated the charts this year with {stat[0].count} albums.</p>
         </div>
     )
 }

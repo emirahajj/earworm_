@@ -10,9 +10,6 @@ const MostAwarded = ({ mostAwarded, moreMostAwarded}) => {
             <p className="text-sm text-right pr-4">
                 <Link to={"/albums/" + mostAwarded._id}>
                     <LinkText text={mostAwarded.title}/>
-                </Link> by  
-                <Link to={"/artist/" + mostAwarded.artist.replace(' ', '%20')}>
-                    <LinkText text={mostAwarded.artist}/>
                 </Link> was the most Grammy awarded album this chart year with a total of <strong>{mostAwarded.awards.length}</strong> awards.
             </p>
         </div> :
