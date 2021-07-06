@@ -11,6 +11,8 @@ import Facts from "../components/Facts"
 import Navbar from '../components/Navbar';
 import TopGenreArtistsList from "../components/TopGenreArtistsList"
 import OldestAlbum from "../components/OldestAlbum"
+import HomeCard from '../components/HomeCard';
+import beats from '../img/beats.jpg'
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
@@ -132,40 +134,11 @@ const Home = () => {
 
                 </section>
 
-                <div className="flex flex-row px-12 gap-12 bg-gray-400 bg-opacity-25 rounded-3xl backdrop-filter backdrop-blur-2xl">
-                {/*quick facts column */}
-                    <section className="grid justify-items-center fade-in">
-                        <div>
-                            <Label text="Quick Facts" />
-                        </div>
-                        <div>
-                            {chart.slice(0, 1).map((entry) => {
-                                return (
-                                    <Facts
-                                        key="0"
-                                        topEntry={entry}
-                                        data={getFactsData()}
-                                    />
-                                )
-                            })}
-                        </div>
-                        <div>
-                            <Label text="Top 100 Albums by Genre" />
-                            <GenrePie chartyear={chart} type="yearly" />
-                        </div>
-                    </section>
-                    {/*featured artists column */}
-
-                    <section className="flex flex-col items-center">
-                        <TopGenreArtistsList
-                            data={getFactsData()}
-                            year={chartYear}
-                        />
-                        <OldestAlbum
-                            data={getOldestAlbum()}
-                            year={chartYear}
-                        />
-                    </section>
+                <div className=" bg-gray-400 bg-opacity-25 rounded-3xl backdrop-filter backdrop-blur-2xl max-w-3xl">
+                    {/* <HomeCard chart={chart} chartYear={chartYear}/> */}
+                    <div className="p-12">
+                        <img src={beats} alt="" className="w-full rounded-3xl"/>
+                    </div>
                 </div>
             </div>
         </div>

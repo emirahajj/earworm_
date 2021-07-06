@@ -3,6 +3,7 @@ import { fetchChartYearByGenre } from '../api/index';
 import { Link } from 'react-router-dom'
 import Label from './Label'
 import ImageWithOverlay from './ImageWithOverlay';
+import ArtistImage from './ArtistImage';
 
 const TopGenreArtistsList = ({ data, year }) => {
     const [topGenreEntries, setTopGenreEntries] = useState([])
@@ -16,12 +17,12 @@ const TopGenreArtistsList = ({ data, year }) => {
     return (
         <div className="flex flex-col items-center">
             <Label text={"Featured " + data[0] + " Artists"} />
-            <div className="mt-10 font-bold">
-                <div className="grid grid-flow-col grid-rows-2 items-center gap-4">
+            <div className="mt-12 font-bold">
+                <div className="grid grid-flow-col grid-rows-2 items-center gap-8">
                     {topGenreEntries.map((entry) => {
                         return (
                             <Link key={entry._id} title={entry["album"].artist} to={"/artist/" + entry["album"].artist.replace(' ', '%20')}>
-                                <ImageWithOverlay source={entry["album"].artist} rank={entry["album"].artist} type="artist" />
+                                <ArtistImage name={entry["album"].artist}/>
                             </Link>
                         )
                     })}

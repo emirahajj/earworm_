@@ -17,10 +17,13 @@ const ArtistImage = ({ name }) => {
     }, [name]);
 
     return (
-        <div>
+        <div className="relative w-36 h-36 transform hover:scale-110 transition duration-500">
             <img src={artistImage === "N/A" ? placeholder : artistImage} 
             alt="Album Cover" 
-            className="flex-none w-36 h-36 rounded-2xl overflow-hidden shadow-md object-cover transition duration-500 ease-in-out transform hover:scale-110" />
+            className="absolute w-36 h-36 overflow-hidden rounded-3xl shadow-md object-cover" />
+            <div className={`opacity-0 transition duration-500 ease-in hover:opacity-100 absolute w-full rounded-2xl h-full bg-gradient-to-b from-transparent to-black`}>
+                <h1 className="text-2xl font-bold absolute bottom-1 left-3">{name}</h1>
+            </div>
         </div>
     )
 }

@@ -6,7 +6,7 @@ import MostAwarded from "./facts/MostAwarded"
 const Facts = ({ topEntry, data }) => {
 
     return (
-        <div className="flex flex-row mt-2">
+        <div className="flex flex-row">
             <div className="w-96 space-y-6">
                 <TopEntry
                     key={topEntry._id}
