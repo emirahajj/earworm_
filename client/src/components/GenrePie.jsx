@@ -89,7 +89,8 @@ const GenrePie = ({chartyear, type, genreId}) => {
                 </Legend>
             </PieChart>
           </ResponsiveContainer>
-          <p>{stat[0].genre} dominated the charts this year with {stat[0].count} albums.</p>
+          {/* {stat && <p>{stat[0].genre} dominated the charts this year with {stat[0].count} albums.</p>} */}
+          
         </div>
     )
 }

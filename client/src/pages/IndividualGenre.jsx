@@ -64,7 +64,7 @@ const IndividualGenre = ({ match: { params: { genreId } } }) => {
                 </div>
 
                 <div className="lg:col-span-2">
-                    <Chart type="byGenre" genre={genreId} />
+                    <Chart type="byGenre" genre={genreId} chart_year={2020} />
                 </div>
             </div>
         </div>
