@@ -1,12 +1,12 @@
 import { fetchChartYear } from '../api/index';
 import { fetchChartYearByGenre } from "../api";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import "../App.css"
 import Label from "../components/Label"
 import Dropdown from "../components/Dropdown"
 import Entry from "../components/Entry"
 
-const Chart = ({type, chart_year, genre}) => {
+const Chart = ({type, chart_year, genre, onChangeYear}) => {
     //year integer
     const [chartYear, setChartYear] = useState(chart_year);
 
@@ -32,8 +32,9 @@ const Chart = ({type, chart_year, genre}) => {
 
     const onYearChange = (year) => {
         setChartYear(year)
+        onChangeYear(year)
     }
-
+    
     const createEntry = (entry) => {
         return (
             <Entry

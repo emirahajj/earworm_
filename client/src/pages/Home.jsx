@@ -15,9 +15,6 @@ const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
     const [chart, setChart] = useState([])
 
-    // Chart expansion switch to show all entries
-    const [more, setMore] = useState(false)
-
     useEffect(() => {
         fetchChartYear(chartYear).then((res) => {
             console.log("Fetching chart data..")
@@ -32,10 +29,10 @@ const Home = () => {
         <div>
             <Navbar />
             <div className="grid lg:grid-flow-col justify-items-center gap-20 sm:grid-flow-row px-20">
-                <Chart type="byYear" chart_year={2020} />
+                <Chart type="byYear" chart_year={chartYear} onChangeYear={setChartYear}/>
 
                 <div className=" bg-gray-400 bg-opacity-25 rounded-3xl backdrop-filter backdrop-blur-2xl max-w-4xl">
-                    <HomeCard chart={chart} chartYear={chartYear}/>
+                    <HomeCard chart={chart} chartYear={chartYear} />
                     {/* <ArtistCard/> */}
                 </div>
             </div>
