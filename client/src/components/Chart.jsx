@@ -20,6 +20,7 @@ const Chart = ({type, chart_year, genre, onChangeYear}) => {
             fetchChartYear(chartYear).then((res) => {
                 console.log("Fetching chart data..")
                 setChart(res.data)
+
             })
         } else {
             fetchChartYearByGenre(genre, chartYear).then((res)=> {
@@ -29,6 +30,7 @@ const Chart = ({type, chart_year, genre, onChangeYear}) => {
         }
 
     }, [chartYear, genre, type])
+
 
     const onYearChange = (year) => {
         setChartYear(year)

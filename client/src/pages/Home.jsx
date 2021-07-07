@@ -1,11 +1,8 @@
 import { fetchChartYear } from '../api/index';
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router';
 import "../App.css"
-import SimpleBarReact from "simplebar-react"
 import "simplebar/src/simplebar.css"
-import Label from "../components/Label"
-import Dropdown from "../components/Dropdown"
-import Entry from "../components/Entry"
 import ArtistCard from "../components/ArtistCard"
 import Navbar from '../components/Navbar';
 import HomeCard from '../components/HomeCard';
@@ -13,12 +10,14 @@ import Chart from '../components/Chart';
 
 const Home = () => {
     const [chartYear, setChartYear] = useState(2020);
-    const [chart, setChart] = useState([])
+    const [chart, setChart] = useState([]);
 
     useEffect(() => {
         fetchChartYear(chartYear).then((res) => {
             console.log("Fetching chart data..")
             setChart(res.data)
+
+            console.log(chartYear)
         })
     }, [chartYear])
 
