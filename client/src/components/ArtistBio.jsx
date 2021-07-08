@@ -18,11 +18,10 @@ const ArtistBio = (props) => {
 
     return (
         <div>
-            {console.log(artist_name)}
             {
                 (artistBio ?
-                    <div className="flex flex-col">
-                        <Collapse collapsedHeight={220} in={open}>
+                    <div className="flex flex-col mt-12">
+                        <Collapse collapsedHeight={120} in={open}>
                             <p className="text-justify fade-in">{artistBio}</p>
                         </Collapse>
                         {

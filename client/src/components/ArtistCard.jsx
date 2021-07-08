@@ -1,16 +1,45 @@
 import beats from "../img/beats.jpg"
+import React from "react";
+import { useState, useEffect } from 'react'
+import { fetchArtist } from '../api/index'
+import AlbumModal from '../components/AlbumModal'
+import ArtistCircleImg from "../components/ArtistCircleImg"
+import ArtistsBio from "../components/ArtistBio"
+import { Link, Redirect } from "react-router-dom";
+import Navbar from '../components/Navbar';
 import "../App.css"
 
-const ArtistCard = () => {
+const ArtistCard = ({artist}) => {
+    const [artistName, setArtistName] = useState(" ");
+    const [artistImage, setArtistImage] = useState(" ");
+    const [albumIdArray, setAlbumIdArray] = useState([]);
+    const [genreArray, setGenreArray] = useState([]);
+
+    useEffect(() => {
+        fetchArtist(artist).then((res) => {
+            if (res.data[0]) {
+                setArtistName(res.data[0].name);
+                setArtistImage(res.data[0].image)
+                setAlbumIdArray(res.data[0].albums);
+                setGenreArray(res.data[0].genres);
+            } else {
+                setArtistName("No match");
+            }
+        })
+    }, [artist]);
     return (
         <div className="p-12 h-full">
             <div className="relative w-full">
-                <img src={beats} alt="" className="rounded-3xl"/>
-                <h1 className="absolute bottom-4 left-4 text-6xl font-bold">Artist Name</h1>
+                <img src={artistImage} alt="" className="rounded-3xl w-full h-96 object-cover"/>
+                <h1 className="absolute bottom-4 left-4 text-6xl font-bold">{artistName}</h1>
             </div>
             <div>
-                <p className="my-6">Austin Richard Post (born July 4, 1995), known by his stage name Post Malone, is an American singer, songwriter, rapper, record producer and guitarist. He first gained major recognition in February 2015, after the release of his debut single "White Iverson". In August 2015, Malone landed a record deal with Republic Records. Post Malone was born Austin Richard Post on July 4, 1995, in Syracuse, New York. When he was 10 years old, he and his family moved to Dallas, Texas.</p>
-                <h1 className="text-center text-2xl font-bold">ArtistName has X albums on the Billboard 200 Year End Charts</h1>
+            <ArtistsBio name={artistName} />
+                <h1 className="text-center text-2xl font-bold">{artistName} has {albumIdArray.length} albums on the Billboard 200 Year End Charts</h1>
+                <div className="grid xl:grid-cols-6 lg:grid-cols-4 gap-5 mb-6">
+                                    {albumIdArray.map((album) => <AlbumModal id={album} />
+                                    )}
+                                </div>
             </div>
         </div>
     )

@@ -8,7 +8,7 @@ import Navbar from '../components/Navbar';
 import HomeCard from '../components/HomeCard';
 import Chart from '../components/Chart';
 
-const Home = () => {
+const Home = (props) => {
     const [chartYear, setChartYear] = useState(2020);
     const [chart, setChart] = useState([]);
 
@@ -30,8 +30,10 @@ const Home = () => {
             <div className="grid lg:grid-flow-col justify-items-center gap-20 sm:grid-flow-row px-20">
                 <Chart type="byYear" chart_year={chartYear} onChangeYear={setChartYear}/>
 
-                <div className=" bg-gray-400 bg-opacity-25 rounded-3xl backdrop-filter backdrop-blur-2xl max-w-4xl">
-                    <HomeCard chart={chart} chartYear={chartYear} />
+                <div className=" bg-gray-400 bg-opacity-25 rounded-3xl backdrop-filter backdrop-blur-2xl max-w-4xl overflow-scroll" style={{maxHeight : 940}}>
+                    {/* <HomeCard chart={chart} chartYear={chartYear} /> */}
+                    {/* {props.children} */}
+                    {React.cloneElement(props.children, {chart: chart, chartYear: chartYear})}
                     {/* <ArtistCard/> */}
                 </div>
             </div>
