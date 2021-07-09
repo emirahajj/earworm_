@@ -34,12 +34,11 @@ const ArtistCard = ({artist}) => {
                 <h1 className="absolute bottom-4 left-4 text-6xl font-bold">{artistName}</h1>
             </div>
             <div>
-            <ArtistsBio name={artistName} />
-                <h1 className="text-center text-2xl font-bold">{artistName} has {albumIdArray.length} albums on the Billboard 200 Year End Charts</h1>
+                <ArtistsBio name={artistName} />
+                <h1 className="text-center text-2xl font-bold mb-4">{artistName} has {albumIdArray.length} albums on the Billboard 200 Year End Charts</h1>
                 <div className="grid xl:grid-cols-6 lg:grid-cols-4 gap-5 mb-6">
-                                    {albumIdArray.map((album) => <AlbumModal id={album} />
-                                    )}
-                                </div>
+                    {albumIdArray.map((album) => <AlbumModal id={album} />)}
+                </div>
             </div>
         </div>
     )

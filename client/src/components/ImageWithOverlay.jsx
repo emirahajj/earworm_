@@ -19,7 +19,7 @@ const ImageWithOverlay = ({source, rank, type}) => {
     }, [source]);
 
     return (
-        <div className="relative w-36 h-36">
+        <div className="relative w-28 h-28">
             <img
             src={source === "N/A" ? placeholder : type === "album" ? source : artistImage}
             alt="Album Cover"

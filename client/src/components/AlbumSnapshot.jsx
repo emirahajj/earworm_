@@ -41,7 +41,7 @@ const AlbumSnapshot = ({ image, albumName, date, artistName, genre, description,
                             </button>
                         </div>
                         :
-                        <p className="mt-10 text-gray-3  text-2xl text-center">No bio available</p>
+                        <p className="mt-10 text-gray-3 text-2xl text-center">No bio available</p>
                     )
                 }
             </div>

@@ -11,6 +11,7 @@ import IndividualAlbum from './pages/IndividualAlbum';
 import SpotifyWidget from './components/SpotifyWidget';
 import HomeCard from './components/HomeCard';
 import ArtistCard from './components/ArtistCard';
+import AlbumCard from './components/AlbumCard';
 
 
 const App = () => {
@@ -28,7 +29,7 @@ const App = () => {
                     <Route path="/about" component={About} />
                     <Route exact path="/genres" component={Genres} />
                     <Route path="/genres/:genreId" component={IndividualGenre} />
-                    <Route exact path="/albums/:albumId" render={(props) => <IndividualAlbum albumID={props.match.params.albumId} onChangeAlbumId={setSpotifyID} />} />
+                    <Route exact path="/albums/:albumId" render={(props) => <Home><AlbumCard albumID={props.match.params.albumId} onChangeAlbumId={setSpotifyID} /></Home>} />
                     <Route>
                         <Redirect to="/home" />
                     </Route>
