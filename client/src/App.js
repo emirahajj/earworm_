@@ -25,7 +25,7 @@ const App = () => {
                     <Route path="/" exact component={Landing} />
                     <Route path="/home" render= {(props)=> <Home><HomeCard></HomeCard></Home>}/>
                     <Route path="/artist/:artist_name" render= {(props)=> <Home><ArtistCard artist={props.match.params.artist_name}></ArtistCard></Home>}/>
-                    <Route exact path="/artists/:letter" component={Artists} />
+                    <Route exact path="/artists" render= {(props)=> <Home><Artists></Artists></Home>}/>
                     <Route path="/about" component={About} />
                     <Route exact path="/genres" component={Genres} />
                     <Route path="/genres/:genreId" component={IndividualGenre} />

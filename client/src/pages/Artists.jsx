@@ -7,7 +7,7 @@ import Navbar from '../components/Navbar';
 import "../App.css";
 
 
-const Artists = ({ match: { params: { letter } } }) => {
+const Artists = ({letter, artistLetterChange}) => {
     const [letters, setLetters] = useState(letter);
     const [artists, setArtists] = useState(null);
     const [token, setToken] = useState('');
@@ -22,7 +22,8 @@ const Artists = ({ match: { params: { letter } } }) => {
         })
         fetchArtistsLetter(letters).then((result) => {
             setArtists(result.data)
-            
+            var element = document.getElementById(letters)
+            element.scrollIntoView({behavior: "smooth"})
         })
     }, [letters])
 
@@ -30,35 +31,33 @@ const Artists = ({ match: { params: { letter } } }) => {
         if (temp_letter !== letters) {
             setLetters(temp_letter);
             setArtists(null);
+            artistLetterChange(temp_letter)
 
+        } else {
+            setLetters("!")
         }
     }
 
     return (
-        <div>
+        <div className="p-12">
                 <ul className="flex flex-col justify-center pb-3 fade-in">
                     {
                         alphabet.map((temp_letter, index) => {
-                            return <div>
-                                        <p className={"text-8xl font-bold"}
-                                            onClick={() => onLetterChange(temp_letter)}>{temp_letter}</p>
+                            return <div id={temp_letter} >
+                                        <p className={`text-8xl font-bold ${temp_letter !== letters ? " opacity-20" : ""}`} onClick={() => onLetterChange(temp_letter)}>{temp_letter}</p>
+                                        <hr />
                                         {
-                                            (artists ?
-                                                <div className={`flex justify-center ${temp_letter !== letters ? "hidden" : ""}`}>
-                                                    <div className="justify-center container grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 fade-in">
+                                            (artists &&
+                                                <div className={`flex ${temp_letter !== letters ? "hidden" : ""}`}>
+                                                    <div className="grid grid-cols-3 gap-y-4 fade-in">
                                                         {
                                                             artists.map((artist, index) => {
-                                                                console.log(artists.length)
                                                                 return <ArtistsThumbnail key={index} name={artist.name} id={artist._id} token={token} image={artist.image} />;
                                                             })
                                                         }
                                                     </div>
                                                 </div>
-                                                :
-                                                <div className="flex flex-row mt-10 justify-center font-bold text-gray-300 items-center">
-                                                    <LoadingRing />
-                                                    <p className="mx-3">Loading</p>
-                                                </div>
+
                                             )
                                         }
                             </div>

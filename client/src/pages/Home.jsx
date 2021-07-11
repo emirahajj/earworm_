@@ -13,6 +13,7 @@ import spot from '../img/spotifylogo.png'
 const Home = (props) => {
     const [chartYear, setChartYear] = useState(2020);
     const [chart, setChart] = useState([]);
+    const [artistLetter, setArtistLetter] = useState("A");
 
     let array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
@@ -34,10 +35,10 @@ const Home = (props) => {
             <div className="grid lg:grid-flow-col justify-items-center gap-20 sm:grid-flow-row px-20">
                 <Chart type="byYear" chart_year={chartYear} onChangeYear={setChartYear}/>
 
-                <div className=" bg-gray-400 bg-opacity-25 rounded-3xl backdrop-filter backdrop-blur-2xl max-w-4xl overflow-scroll" style={{height : 940}}>
+                <div className=" bg-gray-400 bg-opacity-25 rounded-3xl backdrop-filter backdrop-blur-2xl max-w-4xl overflow-scroll" style={{height : 940, width: 940}}>
                     {/* <HomeCard chart={chart} chartYear={chartYear} /> */}
 
-                    {React.cloneElement(props.children, {chart: chart, chartYear: chartYear})}
+                    {React.cloneElement(props.children, {chart: chart, chartYear: chartYear, artistLetterChange: setArtistLetter, letter: artistLetter})}
                     {/* <ArtistCard/> */}
                 </div>
             </div>
