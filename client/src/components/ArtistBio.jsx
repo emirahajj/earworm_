@@ -13,13 +13,16 @@ const ArtistBio = (props) => {
             if (res.data['artists'] !== null) {
                 setArtistBio(res.data['artists']['0'].strBiographyEN)
             }
+            else {
+                setArtistBio(" ")
+            }
         });
     }, [artist_name])
 
     return (
         <div>
             {
-                (artistBio ?
+                (artistBio && artistBio !== " " ?
                     <div className="flex flex-col mt-12">
                         <Collapse collapsedHeight={120} in={open}>
                             <p className="text-justify fade-in">{artistBio}</p>

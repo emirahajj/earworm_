@@ -33,7 +33,10 @@ module.exports = {
             },
             spacing: {
                 '100': '448px',
-              }
+            },
+            objectPosition: {
+                'artistImg': '50% 20%' 
+            }
         },
     },
     variants: {

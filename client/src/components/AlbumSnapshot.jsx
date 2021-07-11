@@ -14,15 +14,17 @@ const AlbumSnapshot = ({ image, albumName, date, artistName, genre, description,
             <div className="flex-shrink flex flex-col px-4 md:max-w-md">
                 <img className="rounded-3xl  md:mb-3" src={image} alt="" />
                 <div className="flex flex-row w-full mt-6 justify-between">
-                    <h1 className="text-2xl text-left font-bold inline lg:text-4xl">{albumName}</h1>
-
-                    <div className="flex flex-col place-self-center">
-                        <div className="flex flex-row ml-2">
-                            {awards.map(element => {
+                    <h1 className="text-2xl text-left font-bold inline lg:text-4xl">{albumName}
+                    {awards.map(element => {
                                 return <Tooltip title={<p style={{ fontSize: "14px", width: "200px", textAlign: "center", lineHeight: "18px" }}>This album won <br /><b>{element.award}</b> <br /> at the {element.year} Grammy's</p>} placement="bottom">
                                     <div><GrammyComponent /></div>
                                 </Tooltip>
                             })}
+                    </h1>
+
+                    <div className="flex flex-col place-self-center">
+                        <div className="flex flex-row ml-2">
+
                         </div>
                     </div>
                 </div>

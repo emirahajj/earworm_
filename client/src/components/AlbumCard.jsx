@@ -11,6 +11,7 @@ import spot from '../img/spotifylogo.png'
 import Collapse from "@material-ui/core/Collapse"
 import GrammyComponent from './GrammyComponent'
 import Tooltip from '@material-ui/core/Tooltip'
+import GrammyRecap from "./GrammyRecap";
 
 
 const AlbumCard = ({albumID, onChangeAlbumId}) => {
@@ -96,19 +97,11 @@ const AlbumCard = ({albumID, onChangeAlbumId}) => {
     return (
         (albumName === "No album found") ? <Redirect to="/home" /> :
         <div className="flex p-12 gap-12 flex-row">
-        <div className="max-w-xl">
+        <div className="max-w-xl overflow-scroll">
             <img src={image} alt="" className=" rounded-2xl mb-6"/>
             <div className="flex flex-row">
-                <h1 className="text-4xl font-bold inline">{albumName}</h1>
-                <div className="flex flex-col place-self-center">
-                    <div className="flex flex-row ml-2">
-                        {awards.map(element => {
-                            return <Tooltip title={<p style={{ fontSize: "14px", width: "200px", textAlign: "center", lineHeight: "18px" }}>This album won <br /><b>{element.award}</b> <br /> at the {element.year} Grammy's</p>} placement="bottom">
-                                <div><GrammyComponent /></div>
-                            </Tooltip>
-                        })}
-                    </div>
-                </div>
+                <h1 className="text-4xl font-bold inline-block">{albumName}
+                </h1>
             </div>
 
             <h2 className="text-2xl text-gray-300">{artistName}</h2>
@@ -140,8 +133,9 @@ const AlbumCard = ({albumID, onChangeAlbumId}) => {
                     return <p className="text-gray-300">{element.name}</p>
                 })}
             </div>
-            <div className="flex justify-center">
+            <div className="flex flex-col justify-center">
                 <ChartPosRecap positions={chartPos}/>
+                <GrammyRecap awards= {awards} artist={artistName}/>
             </div>
         </div>
     </div>

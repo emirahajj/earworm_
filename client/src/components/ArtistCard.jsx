@@ -29,8 +29,8 @@ const ArtistCard = ({artist}) => {
     }, [artist]);
     return (
         <div className="p-12 h-full">
-            <div className="relative w-full">
-                <img src={artistImage} alt="" className="rounded-3xl w-full h-96 object-cover"/>
+            <div className="relative w-full h-1/2">
+                <img src={artistImage} alt="" className="rounded-3xl w-full h-full object-cover object-artistImg"/>
                 <h1 className="absolute bottom-4 left-4 text-6xl font-bold">{artistName}</h1>
             </div>
             <div>
