@@ -3,9 +3,9 @@ import ImageWithOverlay from "./ImageWithOverlay"
 
 const Entry = (props) => {
     return (
-        <div className="flex items-center mb-8">
+        <div className="flex flex-col md:flex-row items-center gap-4">
             <ImageWithOverlay source={props.cover} rank={props.rank} type= {"album"}/>
-            <div className="ml-5 w-28">
+            <div className="md:ml-5 w-40 md:w-28">
                 <Link className="font-bold block" to={"/albums/" + props.id}>{props.title}</Link>
                 <Link className="text-gray-400" to={"/artist/" + props.artist.replace(' ', '%20')}>{props.artist}</Link>
 

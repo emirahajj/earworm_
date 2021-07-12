@@ -28,8 +28,8 @@ const Dropdown = ({ year, onChange }) => {
     }
 
     return (
-        <div className="flex justify-center items-center">
-            <button className="flex items-center space-x-2 transition duration-500 ease-in-out bg-dark hover:bg-dark-1 px-14 py-1 mt-2 rounded-full font-bold focus:outline-none shadow-md w-"
+        <div className="flex md:justify-center items-center">
+            <button className="flex items-center space-x-2 transition duration-500 ease-in-out bg-dark hover:bg-dark-1 px-14 py-1 mt-2 rounded-full font-bold focus:outline-none shadow-md"
             onClick={() => setOpen(!open)}>
                 <p>{choice}</p>
                 <div style={downArrow}></div>

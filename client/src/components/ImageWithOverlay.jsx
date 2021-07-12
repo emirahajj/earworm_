@@ -19,13 +19,13 @@ const ImageWithOverlay = ({source, rank, type}) => {
     }, [source]);
 
     return (
-        <div className="relative w-28 h-28">
+        <div className="relative w-40 h-40 md:w-28 md:h-28">
             <img
             src={source === "N/A" ? placeholder : type === "album" ? source : artistImage}
             alt="Album Cover"
             className="w-full h-full absolute rounded-2xl overflow-hidden shadow-md object-cover transition duration-500 ease-in-out transform hover:scale-110" />
             <div className={`absolute w-full rounded-2xl h-full bg-gradient-to-b from-transparent to-black`}>
-                <h1 className="text-3xl font-bold absolute bottom-1 left-3">{rank}</h1>
+                <h1 className="text-5xl md:text-3xl font-bold absolute bottom-1 left-3">{rank}</h1>
             </div>
         </div>
     );

@@ -16,10 +16,10 @@ const Artists = ({letter, artistLetterChange}) => {
     const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
     useEffect(() => {
-        fetchToken().then((res) => {
-            console.log(letters + " has the following token: " + res.data.body["access_token"])
-            setToken(res.data.body["access_token"])
-        })
+        // fetchToken().then((res) => {
+        //     console.log(letters + " has the following token: " + res.data.body["access_token"])
+        //     setToken(res.data.body["access_token"])
+        // })
         fetchArtistsLetter(letters).then((result) => {
             setArtists(result.data)
             var element = document.getElementById(letters)

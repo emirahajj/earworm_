@@ -52,10 +52,10 @@ const Chart = ({type, chart_year, genre, onChangeYear}) => {
     }
 
     return(
-        <section className="ml-10 w-96 fade-in">
+        <section className="w-screen md:w-96 fade-in">
         <Label text={(type === "byYear") ? "Billboard 200 Albums": `Top ${genre.replace('|','/')} Albums`} />
         <Dropdown year={chartYear} onChange={onYearChange} />
-        <div className="flex flex-col p-5 overflow-scroll" style={{maxHeight : 840}}>
+        <div className="flex flex-row md:flex-col px-12 mt-4 gap-12 overflow-scroll" style={{maxHeight : 840}}>
             {chart.slice(0, 10).map(createEntry)}
             {!more ?
                 <button className="bg-dark text-md px-8 py-2 rounded-full shadow-md font-bold text-white transition duration-500 ease-in-out hover:bg-dark-1 focus:outline-none  mb-4"

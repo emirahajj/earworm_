@@ -30,12 +30,12 @@ const Home = (props) => {
 
 
     return (
-        <div>
+        <div className="w-screen">
             <Navbar />
-            <div className="grid lg:grid-flow-col justify-items-center gap-20 sm:grid-flow-row px-20">
+            <div className="grid lg:grid-flow-col justify-items-center sm:grid-flow-row ">
                 <Chart type="byYear" chart_year={chartYear} onChangeYear={setChartYear}/>
 
-                <div className=" bg-gray-400 bg-opacity-25 rounded-3xl backdrop-filter backdrop-blur-2xl max-w-4xl overflow-scroll" style={{height : 940, width: 940}}>
+                <div className=" bg-gray-400 bg-opacity-25 rounded-3xl backdrop-filter backdrop-blur-2xl w-screen md:max-w-4xl overflow-scroll">
                     {/* <HomeCard chart={chart} chartYear={chartYear} /> */}
 
                     {React.cloneElement(props.children, {chart: chart, chartYear: chartYear, artistLetterChange: setArtistLetter, letter: artistLetter})}
